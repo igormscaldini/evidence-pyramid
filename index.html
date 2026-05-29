@@ -35,7 +35,8 @@
     margin: 0;
     padding: 0;
     background:
-      radial-gradient(120% 80% at 50% 0%, #fffaf0 0%, var(--light-accent) 55%, #f3e9d4 100%);
+      radial-gradient(125% 95% at 50% 0%, #f5faff 0%, #e7f1fc 52%, #d6e6f7 100%);
+    background-attachment: fixed;
     color: var(--txt-dark);
     font-family: "Nunito Sans", "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -49,22 +50,22 @@
 
   /* ----------------------------- HEADER ----------------------------- */
   .masthead { text-align: center; margin-bottom: 16px; }
-  .kicker {
+  .ct-logo {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 18px;
+    gap: 14px;
+    text-decoration: none;
+    margin-bottom: 30px;
   }
-  .kicker .lens {
-    width: 18px; height: 18px;
-    display: inline-block;
-    color: var(--blue);
+  .ct-logo svg { width: 56px; height: 50px; flex: none; }
+  .ct-logo .wm {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: clamp(21px, 3.2vw, 31px);
+    letter-spacing: 0.04em;
+    word-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark);
   }
   h1 {
     font-family: "Montserrat", sans-serif;
@@ -76,22 +77,16 @@
     color: var(--dark-accent);
     text-transform: uppercase;
   }
-  h1 .year {
-    font-weight: 600;
-    color: var(--txt-light);
-    font-size: 0.42em;
-    vertical-align: super;
-    letter-spacing: 0;
-  }
   .subtitle {
     font-family: "Nunito Sans", sans-serif;
     font-size: clamp(15px, 1.7vw, 19px);
     font-weight: 600;
     color: var(--txt-mid);
-    max-width: 660px;
+    max-width: 720px;
     margin: 0 auto;
-    line-height: 1.5;
+    line-height: 1.55;
   }
+  .subtitle em { font-style: italic; color: var(--dark-accent); }
 
   /* --------------------------- ANCHOR LABELS ------------------------ */
   .anchor {
@@ -139,8 +134,11 @@
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    filter: drop-shadow(0 6px 10px rgba(35, 59, 71, 0.10));
+    filter: drop-shadow(0 16px 30px rgba(35, 59, 71, 0.16));
   }
+  /* round the very top of the funnel so it reads as one object on the bg */
+  .tier[data-tier="strong"] .band { border-radius: 22px 22px 0 0; overflow: hidden; }
+  .tier[data-tier="unsupported"] .band { border-radius: 0 0 14px 14px; overflow: hidden; }
 
   .tier-inner {
     position: relative;
@@ -175,16 +173,7 @@
     font-size: clamp(20px, 2.6vw, 30px);
     line-height: 1.04;
     letter-spacing: -0.01em;
-    margin: 0 0 5px;
-  }
-  .tier-tag {
-    font-family: "Montserrat", sans-serif;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
     margin: 0;
-    opacity: 0.92;
   }
 
   /* ----------------------------- ITEMS ------------------------------ */
@@ -234,49 +223,6 @@
     line-height: 1.22;
     color: var(--txt-dark);
   }
-
-  /* --------------------------- DIVIDERS ----------------------------- */
-  .divider {
-    position: absolute;
-    top: -13px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 4;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-  }
-  .divider .rule {
-    flex: 1;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.65);
-    border-radius: 2px;
-  }
-  .divider .d-label {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 800;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #ffffff;
-    white-space: nowrap;
-    text-shadow: 0 1px 3px rgba(35, 59, 71, 0.45);
-  }
-  /* emphasized threshold */
-  .divider.key { top: -16px; }
-  .divider.key .d-label {
-    background: var(--dark-accent);
-    color: #fff;
-    padding: 7px 16px;
-    border-radius: 999px;
-    text-shadow: none;
-    box-shadow: 0 6px 16px rgba(35, 59, 71, 0.35);
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-  }
-  .divider.key .rule { background: var(--dark-accent); opacity: 0.5; height: 2px; }
 
   /* ----------------------- CALLOUT CIRCLES -------------------------- */
   .callout {
@@ -462,12 +408,16 @@
 
   <!-- ============================ HEADER ============================ -->
   <header class="masthead">
-    <span class="kicker">
-      <svg class="lens" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      Clearer Thinking · An Evidence Chart
-    </span>
-    <h1>The Self-Help<br>Evidence Pyramid <span class="year">2025</span></h1>
-    <p class="subtitle">Eighty-four popular techniques, sorted by how strongly the research actually supports them. Hover any card to see how it's done.</p>
+    <a class="ct-logo" href="https://www.clearerthinking.org" aria-label="Clearer Thinking">
+      <svg viewBox="0 0 100 88" fill="none" aria-hidden="true">
+        <path d="M65.3 25.1 A26 26 0 1 0 65.3 54.9" stroke="#303030" stroke-width="9" stroke-linecap="round"/>
+        <path d="M25.6 58.4 L12 72" stroke="#303030" stroke-width="9" stroke-linecap="round"/>
+        <path d="M51.5 30.5 A11 11 0 1 0 51.5 49.5" stroke="#0885f8" stroke-width="5.5" stroke-linecap="round"/>
+      </svg>
+      <span class="wm">Clearer Thinking</span>
+    </a>
+    <h1>The Self-Help<br>Evidence Pyramid</h1>
+    <p class="subtitle">Eighty-four popular self-improvement techniques reviewed for <em>The 12 Levers</em> book by Spencer Greenberg, PhD, and Jeremy Stevenson, PhD. They're sorted by how strongly the research actually supports them. Hover over any card to see how it's done.</p>
   </header>
 
   <!-- ========================== TOP ANCHOR ========================== -->
@@ -553,14 +503,6 @@ const TIERS = [
     verdict: "Skip These", sub: "no good evidence",
   },
 ];
-
-/* Thresholds shown between tiers (after tier index i) */
-const DIVIDERS = {
-  0: { label: "Still solid ground", key: false, width: "82%" },
-  1: { label: "Evidence gets thinner", key: false, width: "70%" },
-  2: { label: "⚑ The Evidence Line", key: true,  width: "58%" },
-  3: { label: "Beyond the evidence", key: false, width: "44%" },
-};
 
 const TECHNIQUES = [
   // STRONG EVIDENCE
@@ -670,16 +612,7 @@ TIERS.forEach((tier, i) => {
   section.className = "tier";
   section.dataset.tier = tier.key;
 
-  const divider = DIVIDERS[i - 1];
-  const dividerHTML = divider ? `
-    <div class="divider ${divider.key ? "key" : ""}" style="width:${divider.width}">
-      <span class="rule"></span>
-      <span class="d-label">${divider.label}</span>
-      <span class="rule"></span>
-    </div>` : "";
-
   section.innerHTML = `
-    ${dividerHTML}
     <svg class="band" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1">
@@ -693,7 +626,6 @@ TIERS.forEach((tier, i) => {
       <header class="tier-head" style="color:${tier.headInk}">
         <span class="numeral" style="color:${tier.color}">${tier.roman}</span>
         <h2 class="tier-name">${tier.name}</h2>
-        <p class="tier-tag">${items.length} techniques · ${tier.tag}</p>
       </header>
       <div class="items" id="items-${tier.key}"></div>
     </div>
