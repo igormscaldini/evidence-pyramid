@@ -4,209 +4,471 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Self-Help Techniques: Evidence Pyramid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Familjen+Grotesk:wght@500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --paper: #f1e5c8;
+    --ink: #1d1a14;
+    --ink-soft: #4a4434;
+
+    --strong-bg: #b8c578;
+    --strong-ink: #2f3b18;
+    --modstrong-bg: #d6bd5d;
+    --modstrong-ink: #5a4612;
+    --moderate-bg: #cf8e44;
+    --moderate-ink: #4e2b09;
+    --questionable-bg: #b66639;
+    --questionable-ink: #4b1c0c;
+    --unsupported-bg: #8e3a25;
+    --unsupported-ink: #faece0;
+  }
+
   * { box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  html, body {
     margin: 0;
-    padding: 32px 16px 64px;
-    background: #fafaf9;
-    color: #1c1917;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Paper grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.55;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0 0.10  0 0 0 0.22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(80, 50, 20, 0.22) 100%);
+  }
+
+  .page {
+    position: relative;
+    z-index: 3;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header { text-align: center; margin-bottom: 36px; }
+  .eyebrow {
+    display: inline-block;
+    font-family: "Familjen Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 6px 14px;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    margin-bottom: 18px;
   }
   h1 {
-    text-align: center;
-    margin: 0 0 8px;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 0.95;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+    color: var(--ink);
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--moderate-ink);
   }
   .subtitle {
-    text-align: center;
-    color: #57534e;
-    font-size: 14px;
-    margin: 0 0 36px;
-    max-width: 640px;
-    margin-left: auto;
-    margin-right: auto;
+    font-family: "Caveat", cursive;
+    font-size: 22px;
+    color: var(--ink-soft);
+    margin: 0 auto;
+    max-width: 620px;
+    line-height: 1.3;
   }
+  .legend-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+    font-family: "Familjen Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .legend-line .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--ink);
+    max-width: 140px;
+    opacity: 0.6;
+  }
+
+  /* ---------- PYRAMID ---------- */
   .pyramid {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    max-width: 1300px;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .tier {
+    position: relative;
+    width: 100%;
+    isolation: isolate;
+  }
+  .tier-shape {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .tier-content {
+    position: relative;
+    z-index: 1;
     margin: 0 auto;
+    padding: 28px 20px 38px;
+    text-align: center;
   }
-  .layer {
-    border-radius: 10px;
-    padding: 14px 18px;
-    transition: width 0.2s ease;
-  }
-  .layer-header {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
+
+  /* Per-tier content max-widths sit inside the trapezoid's bottom edge */
+  .tier-strong       .tier-content { max-width: 92%; }
+  .tier-modstrong    .tier-content { max-width: 76%; }
+  .tier-moderate     .tier-content { max-width: 58%; }
+  .tier-questionable .tier-content { max-width: 42%; }
+  .tier-unsupported  .tier-content { max-width: 28%; }
+
+  .tier-head { margin-bottom: 20px; }
+  .tier-numeral {
+    display: inline-block;
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-variation-settings: "opsz" 144;
+    font-size: 22px;
+    line-height: 1;
+    padding: 4px 12px;
+    border: 1.5px solid currentColor;
+    border-radius: 3px;
     margin-bottom: 12px;
-    padding-left: 4px;
   }
-  .layer-header h2 {
-    margin: 0;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+  .tier-name {
+    font-family: "Fraunces", serif;
+    font-weight: 900;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
   }
-  .layer-header .count {
+  .tier-meta {
+    font-family: "Familjen Grotesk", sans-serif;
     font-size: 11px;
-    color: rgba(0, 0, 0, 0.5);
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
   }
+
+  /* Items grid */
   .items {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 14px 12px;
     justify-content: center;
+    align-items: flex-start;
   }
+
   .item {
+    position: relative;
     flex: 0 0 auto;
+    width: 108px;
+    min-height: 132px;
+    padding: 12px 6px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    width: 108px;
-    height: 86px;
-    padding: 10px 6px;
-    background: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 8px;
+    background: #f5ecd2;
+    border: 1.4px solid var(--ink);
+    border-radius: 10px;
     cursor: help;
-    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    box-shadow: 2px 3px 0 rgba(30, 22, 10, 0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
+  /* collage rotation */
+  .item:nth-child(3n)   { transform: rotate(-1.4deg); }
+  .item:nth-child(3n+1) { transform: rotate(1.2deg); }
+  .item:nth-child(3n+2) { transform: rotate(-0.4deg); }
+  .item:nth-child(5n)   { transform: rotate(2deg); }
+  .item:nth-child(7n)   { transform: rotate(-2.2deg); }
   .item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-    background: white;
+    transform: rotate(0) translateY(-3px) scale(1.05);
+    box-shadow: 3px 5px 0 rgba(30, 22, 10, 0.28);
+    z-index: 5;
   }
-  .item svg {
-    width: 22px;
-    height: 22px;
+
+  .icon-disc {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 8px;
-    stroke-width: 1.5;
-  }
-  .item .name {
-    font-size: 11px;
-    line-height: 1.25;
-    color: #292524;
+    border: 1.4px solid var(--ink);
+    position: relative;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    box-shadow: inset 0 -6px 10px rgba(30, 22, 10, 0.10);
+  }
+  .icon-disc::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.2 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .icon-disc svg {
+    width: 26px;
+    height: 26px;
+    stroke-width: 2.1;
+    position: relative;
+    z-index: 1;
+  }
+  .item .label {
+    font-family: "Familjen Grotesk", sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--ink);
+    padding: 0 2px;
   }
 
-  /* Layer colors + widths (pyramid taper) */
-  .layer-strong         { background: #ecfdf5; width: 100%; }
-  .layer-strong .item   { border-color: #6ee7b7; }
-  .layer-strong svg     { color: #047857; }
-  .layer-strong h2      { color: #047857; }
+  /* Tier color treatments */
+  .tier-strong       .icon-disc { background: var(--strong-bg); }
+  .tier-strong       .icon-disc svg { color: var(--strong-ink); }
+  .tier-strong       .tier-numeral,
+  .tier-strong       .tier-name { color: var(--strong-ink); }
 
-  .layer-mod-strong     { background: #f7fee7; width: 92%; }
-  .layer-mod-strong .item { border-color: #bef264; }
-  .layer-mod-strong svg { color: #4d7c0f; }
-  .layer-mod-strong h2  { color: #4d7c0f; }
+  .tier-modstrong    .icon-disc { background: var(--modstrong-bg); }
+  .tier-modstrong    .icon-disc svg { color: var(--modstrong-ink); }
+  .tier-modstrong    .tier-numeral,
+  .tier-modstrong    .tier-name { color: var(--modstrong-ink); }
 
-  .layer-moderate       { background: #fefce8; width: 78%; }
-  .layer-moderate .item { border-color: #fde047; }
-  .layer-moderate svg   { color: #a16207; }
-  .layer-moderate h2    { color: #a16207; }
+  .tier-moderate     .icon-disc { background: var(--moderate-bg); }
+  .tier-moderate     .icon-disc svg { color: var(--moderate-ink); }
+  .tier-moderate     .tier-numeral,
+  .tier-moderate     .tier-name { color: var(--moderate-ink); }
 
-  .layer-questionable   { background: #fff7ed; width: 58%; }
-  .layer-questionable .item { border-color: #fdba74; }
-  .layer-questionable svg { color: #c2410c; }
-  .layer-questionable h2  { color: #c2410c; }
+  .tier-questionable .icon-disc { background: var(--questionable-bg); }
+  .tier-questionable .icon-disc svg { color: #fff5e6; }
+  .tier-questionable .tier-numeral,
+  .tier-questionable .tier-name { color: var(--questionable-ink); }
 
-  .layer-unsupported    { background: #fef2f2; width: 42%; }
-  .layer-unsupported .item { border-color: #fca5a5; }
-  .layer-unsupported svg { color: #b91c1c; }
-  .layer-unsupported h2  { color: #b91c1c; }
+  .tier-unsupported  .icon-disc { background: var(--unsupported-bg); }
+  .tier-unsupported  .icon-disc svg { color: #fbeadd; }
+  .tier-unsupported  .tier-numeral,
+  .tier-unsupported  .tier-name { color: var(--unsupported-bg); }
 
-  /* Tooltip */
+  /* ---------- FOOTER ---------- */
+  .foot {
+    margin-top: 38px;
+    text-align: center;
+    font-family: "Familjen Grotesk", sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+  }
+  .foot .rule-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .foot .rule-row .rule {
+    width: 60px;
+    height: 1px;
+    background: var(--ink);
+    opacity: 0.6;
+  }
+  .foot .rule-row .star {
+    font-family: "Fraunces", serif;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  /* ---------- TOOLTIP ---------- */
   #tooltip {
     position: fixed;
     display: none;
-    max-width: 340px;
-    background: #1c1917;
-    color: #fafaf9;
+    max-width: 320px;
+    background: var(--ink);
+    color: var(--paper);
     padding: 12px 14px;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 13px;
     line-height: 1.5;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 6px 0 rgba(30, 22, 10, 0.35);
     z-index: 1000;
     pointer-events: none;
+    border: 1.5px solid var(--ink);
+    font-family: "Familjen Grotesk", sans-serif;
   }
-  #tooltip .tt-name {
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: white;
-    font-size: 13px;
-  }
-  #tooltip .tt-howto {
-    color: #d6d3d1;
-  }
+  #tooltip .tt-name { font-weight: 700; margin-bottom: 6px; font-size: 13px; letter-spacing: 0.02em; }
+  #tooltip .tt-howto { color: rgba(241, 229, 200, 0.85); }
 
-  @media (max-width: 720px) {
-    .layer { width: 100% !important; }
-    .item { width: 96px; height: 84px; }
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 820px) {
+    .page { padding: 36px 12px 56px; }
+    .tier-strong       .tier-content { max-width: 96%; }
+    .tier-modstrong    .tier-content { max-width: 82%; }
+    .tier-moderate     .tier-content { max-width: 64%; }
+    .tier-questionable .tier-content { max-width: 48%; }
+    .tier-unsupported  .tier-content { max-width: 36%; }
+    .item { width: 96px; min-height: 124px; }
+    .icon-disc { width: 50px; height: 50px; }
+    .icon-disc svg { width: 22px; height: 22px; }
   }
 </style>
 </head>
 <body>
-  <h1>Self-Help Techniques: Evidence Pyramid</h1>
-  <p class="subtitle">84 techniques ranked by strength of evidence. Hover any technique to see how to do it.</p>
+<div class="page">
+
+  <div class="header">
+    <span class="eyebrow">An evidence chart · No. 1</span>
+    <h1>The Self-Help <em>Pyramid</em></h1>
+    <p class="subtitle">eighty-four techniques, sorted by what the research actually shows — hover any card for a how-to.</p>
+    <div class="legend-line">
+      <span class="rule"></span>
+      <span>Best evidence on top &nbsp;·&nbsp; weakest at the bottom</span>
+      <span class="rule"></span>
+    </div>
+  </div>
 
   <div class="pyramid">
-    <div class="layer layer-unsupported">
-      <div class="layer-header">
-        <h2>Unsupported</h2>
-        <span class="count" id="count-unsupported"></span>
+
+    <!-- TIER 1: STRONG (widest) -->
+    <section class="tier tier-strong">
+      <svg class="tier-shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="0,0 100,0 96,100 4,100" fill="#b8c578"/>
+        <polyline points="0,0 100,0" stroke="#1d1a14" stroke-width="1.5" vector-effect="non-scaling-stroke" fill="none"/>
+        <polyline points="4,100 96,100" stroke="#1d1a14" stroke-width="1.5" vector-effect="non-scaling-stroke" fill="none"/>
+      </svg>
+      <div class="tier-content">
+        <header class="tier-head">
+          <div class="tier-numeral">I</div>
+          <h2 class="tier-name">Strong Evidence</h2>
+          <p class="tier-meta"><span class="count" id="count-strong"></span> · do these</p>
+        </header>
+        <div class="items" id="items-strong"></div>
       </div>
-      <div class="items" id="items-unsupported"></div>
-    </div>
-    <div class="layer layer-questionable">
-      <div class="layer-header">
-        <h2>Questionable</h2>
-        <span class="count" id="count-questionable"></span>
+    </section>
+
+    <!-- TIER 2: MOD-STRONG -->
+    <section class="tier tier-modstrong">
+      <svg class="tier-shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="4,0 96,0 89,100 11,100" fill="#d6bd5d"/>
+        <polyline points="11,100 89,100" stroke="#1d1a14" stroke-width="1.5" vector-effect="non-scaling-stroke" fill="none"/>
+      </svg>
+      <div class="tier-content">
+        <header class="tier-head">
+          <div class="tier-numeral">II</div>
+          <h2 class="tier-name">Moderate-to-Strong Evidence</h2>
+          <p class="tier-meta"><span class="count" id="count-modstrong"></span> · reliable</p>
+        </header>
+        <div class="items" id="items-modstrong"></div>
       </div>
-      <div class="items" id="items-questionable"></div>
-    </div>
-    <div class="layer layer-moderate">
-      <div class="layer-header">
-        <h2>Moderate Evidence</h2>
-        <span class="count" id="count-moderate"></span>
+    </section>
+
+    <!-- TIER 3: MODERATE -->
+    <section class="tier tier-moderate">
+      <svg class="tier-shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="11,0 89,0 80,100 20,100" fill="#cf8e44"/>
+        <polyline points="20,100 80,100" stroke="#1d1a14" stroke-width="1.5" vector-effect="non-scaling-stroke" fill="none"/>
+      </svg>
+      <div class="tier-content">
+        <header class="tier-head">
+          <div class="tier-numeral">III</div>
+          <h2 class="tier-name">Moderate Evidence</h2>
+          <p class="tier-meta"><span class="count" id="count-moderate"></span> · promising</p>
+        </header>
+        <div class="items" id="items-moderate"></div>
       </div>
-      <div class="items" id="items-moderate"></div>
-    </div>
-    <div class="layer layer-mod-strong">
-      <div class="layer-header">
-        <h2>Moderate-to-Strong Evidence</h2>
-        <span class="count" id="count-mod-strong"></span>
+    </section>
+
+    <!-- TIER 4: QUESTIONABLE -->
+    <section class="tier tier-questionable">
+      <svg class="tier-shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="20,0 80,0 70,100 30,100" fill="#b66639"/>
+        <polyline points="30,100 70,100" stroke="#1d1a14" stroke-width="1.5" vector-effect="non-scaling-stroke" fill="none"/>
+      </svg>
+      <div class="tier-content">
+        <header class="tier-head">
+          <div class="tier-numeral">IV</div>
+          <h2 class="tier-name">Questionable</h2>
+          <p class="tier-meta"><span class="count" id="count-questionable"></span> · weak signal</p>
+        </header>
+        <div class="items" id="items-questionable"></div>
       </div>
-      <div class="items" id="items-mod-strong"></div>
-    </div>
-    <div class="layer layer-strong">
-      <div class="layer-header">
-        <h2>Strong Evidence</h2>
-        <span class="count" id="count-strong"></span>
+    </section>
+
+    <!-- TIER 5: UNSUPPORTED (narrowest tip) -->
+    <section class="tier tier-unsupported">
+      <svg class="tier-shape" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="30,0 70,0 62,100 38,100" fill="#8e3a25"/>
+        <polyline points="38,100 62,100" stroke="#1d1a14" stroke-width="1.5" vector-effect="non-scaling-stroke" fill="none"/>
+      </svg>
+      <div class="tier-content">
+        <header class="tier-head">
+          <div class="tier-numeral">V</div>
+          <h2 class="tier-name">Unsupported</h2>
+          <p class="tier-meta"><span class="count" id="count-unsupported"></span> · avoid</p>
+        </header>
+        <div class="items" id="items-unsupported"></div>
       </div>
-      <div class="items" id="items-strong"></div>
-    </div>
+    </section>
+
   </div>
 
-  <div id="tooltip">
-    <div class="tt-name"></div>
-    <div class="tt-howto"></div>
+  <div class="foot">
+    <div class="rule-row"><span class="rule"></span><span class="star">✶</span><span class="rule"></span></div>
+    <div>Evidence levels are rough guides, not verdicts. A weak technique might still work for one person; a strong one might not fit your context.</div>
   </div>
+
+</div>
+
+<div id="tooltip">
+  <div class="tt-name"></div>
+  <div class="tt-howto"></div>
+</div>
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
@@ -238,29 +500,29 @@ const TECHNIQUES = [
   { level: "strong", icon: "tree-pine", name: "Nature exposure", howto: "Spend regular time walking, sitting, or exercising in green or blue spaces." },
 
   // MODERATE-TO-STRONG EVIDENCE
-  { level: "mod-strong", icon: "footprints", name: "Step-count target", howto: "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy." },
-  { level: "mod-strong", icon: "wind", name: "Diaphragmatic breathing", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes." },
-  { level: "mod-strong", icon: "clipboard", name: "Action planning", howto: "Specify exactly when, where, how, and with what materials you will act." },
-  { level: "mod-strong", icon: "gift", name: "Temptation bundling", howto: "Pair a beneficial task with an indulgence you only allow during that task." },
-  { level: "mod-strong", icon: "sprout", name: "Tiny Habits", howto: "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion." },
-  { level: "mod-strong", icon: "inbox", name: "GTD capture", howto: "Put every open loop into one trusted inbox, clarify the next action, and review it regularly." },
-  { level: "mod-strong", icon: "home", name: "Environmental design", howto: "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient." },
-  { level: "mod-strong", icon: "compass", name: "Values clarification", howto: "Write the life domains that matter most and choose actions aligned with them." },
-  { level: "mod-strong", icon: "cloud", name: "Cognitive defusion", howto: "Label thoughts as thoughts, such as 'I'm having the thought that…,' instead of treating them as commands." },
-  { level: "mod-strong", icon: "heart", name: "Gratitude journaling", howto: "Write three specific things you feel grateful for each day." },
-  { level: "mod-strong", icon: "star", name: "Three Good Things", howto: "Each evening, list three good events from the day and your role in them (or why they happened)." },
-  { level: "mod-strong", icon: "eye", name: "Process visualization", howto: "Mentally rehearse the steps, obstacles, and responses rather than only the desired outcome." },
-  { level: "mod-strong", icon: "megaphone", name: "Assertiveness scripts", howto: "State the facts, your feeling, your request, and your boundary in calm direct language." },
-  { level: "mod-strong", icon: "ear", name: "Active listening", howto: "Reflect the other person's point and emotion before offering advice or disagreement." },
-  { level: "mod-strong", icon: "sunrise", name: "Morning light", howto: "Get outdoor light soon after waking, ideally while moving and without sunglasses." },
-  { level: "mod-strong", icon: "calendar", name: "Daily review", howto: "At day's end, note what happened, what worked, what failed, and tomorrow's priority." },
-  { level: "mod-strong", icon: "scroll-text", name: "Personal mission", howto: "Draft a short statement of principles, roles, and long-term aims and revisit it regularly." },
-  { level: "mod-strong", icon: "pie-chart", name: "Life audit", howto: "Rate major life domains, choose the lowest rated high-value domain, and set one action." },
-  { level: "mod-strong", icon: "headphones", name: "Deep Work", howto: "Schedule distraction-free blocks for cognitively demanding work and remove communication channels." },
-  { level: "mod-strong", icon: "moon", name: "Sleep stimulus control", howto: "Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time." },
-  { level: "mod-strong", icon: "alarm-clock", name: "Fixed wake time", howto: "Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm." },
+  { level: "modstrong", icon: "footprints", name: "Step-count target", howto: "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy." },
+  { level: "modstrong", icon: "wind", name: "Diaphragmatic breathing", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes." },
+  { level: "modstrong", icon: "clipboard", name: "Action planning", howto: "Specify exactly when, where, how, and with what materials you will act." },
+  { level: "modstrong", icon: "gift", name: "Temptation bundling", howto: "Pair a beneficial task with an indulgence you only allow during that task." },
+  { level: "modstrong", icon: "sprout", name: "Tiny Habits", howto: "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion." },
+  { level: "modstrong", icon: "inbox", name: "GTD capture", howto: "Put every open loop into one trusted inbox, clarify the next action, and review it regularly." },
+  { level: "modstrong", icon: "home", name: "Environmental design", howto: "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient." },
+  { level: "modstrong", icon: "compass", name: "Values clarification", howto: "Write the life domains that matter most and choose actions aligned with them." },
+  { level: "modstrong", icon: "cloud", name: "Cognitive defusion", howto: "Label thoughts as thoughts, such as 'I'm having the thought that…,' instead of treating them as commands." },
+  { level: "modstrong", icon: "heart", name: "Gratitude journaling", howto: "Write three specific things you feel grateful for each day." },
+  { level: "modstrong", icon: "star", name: "Three Good Things", howto: "Each evening, list three good events from the day and your role in them (or why they happened)." },
+  { level: "modstrong", icon: "eye", name: "Process visualization", howto: "Mentally rehearse the steps, obstacles, and responses rather than only the desired outcome." },
+  { level: "modstrong", icon: "megaphone", name: "Assertiveness scripts", howto: "State the facts, your feeling, your request, and your boundary in calm direct language." },
+  { level: "modstrong", icon: "ear", name: "Active listening", howto: "Reflect the other person's point and emotion before offering advice or disagreement." },
+  { level: "modstrong", icon: "sunrise", name: "Morning light", howto: "Get outdoor light soon after waking, ideally while moving and without sunglasses." },
+  { level: "modstrong", icon: "calendar", name: "Daily review", howto: "At day's end, note what happened, what worked, what failed, and tomorrow's priority." },
+  { level: "modstrong", icon: "scroll-text", name: "Personal mission", howto: "Draft a short statement of principles, roles, and long-term aims and revisit it regularly." },
+  { level: "modstrong", icon: "pie-chart", name: "Life audit", howto: "Rate major life domains, choose the lowest rated high-value domain, and set one action." },
+  { level: "modstrong", icon: "headphones", name: "Deep Work", howto: "Schedule distraction-free blocks for cognitively demanding work and remove communication channels." },
+  { level: "modstrong", icon: "moon", name: "Sleep stimulus control", howto: "Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time." },
+  { level: "modstrong", icon: "alarm-clock", name: "Fixed wake time", howto: "Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm." },
 
-  // MODERATE EVIDENCE (incl. former Plausible)
+  // MODERATE EVIDENCE
   { level: "moderate", icon: "target", name: "SMART goals", howto: "Convert a vague aim into a Specific, Measurable, Achievable, Relevant, and Time-bound target." },
   { level: "moderate", icon: "lightbulb", name: "WOOP", howto: "Name the Wish, Outcome, Obstacle, and Plan an if-then response to the obstacle." },
   { level: "moderate", icon: "timer", name: "Pomodoro Technique", howto: "Work on one task for about 25 minutes, take a short break, and repeat." },
@@ -308,20 +570,19 @@ const TECHNIQUES = [
 
 const LEVEL_TO_CONTAINER = {
   "strong": "items-strong",
-  "mod-strong": "items-mod-strong",
+  "modstrong": "items-modstrong",
   "moderate": "items-moderate",
   "questionable": "items-questionable",
   "unsupported": "items-unsupported",
 };
 const LEVEL_TO_COUNT = {
   "strong": "count-strong",
-  "mod-strong": "count-mod-strong",
+  "modstrong": "count-modstrong",
   "moderate": "count-moderate",
   "questionable": "count-questionable",
   "unsupported": "count-unsupported",
 };
 
-// Render items
 const counts = {};
 TECHNIQUES.forEach(t => {
   const container = document.getElementById(LEVEL_TO_CONTAINER[t.level]);
@@ -329,7 +590,10 @@ TECHNIQUES.forEach(t => {
   el.className = "item";
   el.dataset.name = t.name;
   el.dataset.howto = t.howto;
-  el.innerHTML = `<i data-lucide="${t.icon}"></i><span class="name">${t.name}</span>`;
+  el.innerHTML = `
+    <div class="icon-disc"><i data-lucide="${t.icon}"></i></div>
+    <span class="label">${t.name}</span>
+  `;
   container.appendChild(el);
   counts[t.level] = (counts[t.level] || 0) + 1;
 });
@@ -337,10 +601,8 @@ Object.keys(counts).forEach(level => {
   document.getElementById(LEVEL_TO_COUNT[level]).textContent = counts[level] + " techniques";
 });
 
-// Lucide icons
 lucide.createIcons();
 
-// Tooltip behavior
 const tooltip = document.getElementById("tooltip");
 const ttName = tooltip.querySelector(".tt-name");
 const ttHowto = tooltip.querySelector(".tt-howto");
@@ -353,9 +615,7 @@ document.querySelectorAll(".item").forEach(item => {
     positionTooltip(e);
   });
   item.addEventListener("mousemove", positionTooltip);
-  item.addEventListener("mouseleave", () => {
-    tooltip.style.display = "none";
-  });
+  item.addEventListener("mouseleave", () => { tooltip.style.display = "none"; });
 });
 
 function positionTooltip(e) {
