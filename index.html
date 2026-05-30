@@ -567,28 +567,6 @@
   }
   .search-results .r-empty:hover { background: transparent; }
 
-  #download-pdf {
-    flex: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    height: 52px;
-    padding: 0 20px;
-    border: none;
-    border-radius: 14px;
-    background: var(--blue);
-    color: #fff;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 6px 18px rgba(8, 133, 248, 0.28);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-  }
-  #download-pdf svg { width: 18px; height: 18px; }
-  #download-pdf:hover { background: #0a78dd; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(8, 133, 248, 0.34); }
-  #download-pdf:disabled { opacity: 0.6; cursor: default; transform: none; }
-
   /* floating back-to-top */
   #back-to-top {
     position: fixed;
@@ -660,7 +638,6 @@
     .toolbar { flex-direction: column; align-items: stretch; }
     .search-wrap { width: auto; }
     .search-results { min-width: 0; right: 0; }
-    #download-pdf { justify-content: center; }
     .book-promo { flex-direction: column; text-align: center; padding: 30px 22px; gap: 20px; }
     .book-promo-art { width: 200px; }
     .bp-tagline { margin-left: auto; margin-right: auto; }
@@ -725,10 +702,6 @@
       </div>
       <ul id="search-results" class="search-results" hidden></ul>
     </div>
-    <button id="download-pdf" type="button">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 21h14"/></svg>
-      Download as PDF
-    </button>
   </div>
 
   <!-- ========================== TOP ANCHOR ========================== -->
@@ -794,9 +767,6 @@
 </div>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 /* ----------------------------- TIER CONFIG ----------------------------- */
 /* Continuous gradient anchors (top->bottom): blue -> teal -> green -> gold -> orange -> red */
@@ -1166,110 +1136,6 @@ window.addEventListener("scroll", toggleBackToTop, { passive: true });
 toggleBackToTop();
 backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-/* --------------------------- DOWNLOAD PDF ---------------------------- */
-const TIER_PDF = {
-  strong:       { label: "Strong Evidence",        rgb: [8, 133, 248],  ink: [255, 255, 255] },
-  modstrong:    { label: "Moderate-to-Strong",     rgb: [22, 181, 125], ink: [255, 255, 255] },
-  moderate:     { label: "Moderate Evidence",      rgb: [254, 203, 2],  ink: [35, 59, 71] },
-  questionable: { label: "Questionable",           rgb: [248, 145, 27], ink: [255, 255, 255] },
-  unsupported:  { label: "Unsupported",            rgb: [226, 59, 46],  ink: [255, 255, 255] },
-};
-
-const pdfBtn = document.getElementById("download-pdf");
-const pdfBtnLabel = pdfBtn.lastChild;   // the " Download as PDF" text node
-
-pdfBtn.addEventListener("click", async () => {
-  const { jsPDF } = window.jspdf || {};
-  if (!jsPDF || !window.html2canvas) { alert("PDF tools are still loading — please try again in a moment."); return; }
-
-  pdfBtn.disabled = true;
-  pdfBtnLabel.textContent = " Preparing…";
-
-  try {
-    const doc = new jsPDF({ unit: "pt", format: "a4" });
-    const pageW = doc.internal.pageSize.getWidth();
-    const pageH = doc.internal.pageSize.getHeight();
-    const margin = 40;
-
-    function footer() {
-      const p = doc.internal.getCurrentPageInfo().pageNumber;
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(8);
-      doc.setTextColor(166, 166, 166);
-      doc.text("ClearerThinking.org · The Self-Help Evidence Pyramid", margin, pageH - 18);
-      doc.text(String(p), pageW - margin, pageH - 18, { align: "right" });
-    }
-
-    /* ---- PAGE 1: title + the pyramid image ---- */
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(35, 59, 71);
-    doc.setFontSize(22);
-    doc.text("The Self-Help Evidence Pyramid", pageW / 2, 50, { align: "center" });
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(9.5);
-    doc.setTextColor(115, 115, 115);
-    doc.text(
-      "Eighty-four popular self-improvement techniques reviewed for The 12 Levers book by Spencer Greenberg, PhD, and\nJeremy Stevenson, PhD — sorted by how strongly the research supports them.  ·  ClearerThinking.org",
-      pageW / 2, 68, { align: "center" }
-    );
-
-    // capture the funnel (hide the side rail so its clip-path can't create artifacts)
-    const chart = document.querySelector(".chart");
-    const rail = document.querySelector(".rail");
-    const railDisplay = rail ? rail.style.display : null;
-    if (rail) rail.style.display = "none";
-    const canvas = await html2canvas(chart, { backgroundColor: "#eef4fd", scale: 2, logging: false, useCORS: true });
-    if (rail) rail.style.display = railDisplay || "";
-
-    const topY = 92;
-    const availW = pageW - margin * 2;
-    const availH = pageH - topY - 34;
-    const ratio = Math.min(availW / canvas.width, availH / canvas.height);
-    const imgW = canvas.width * ratio;
-    const imgH = canvas.height * ratio;
-    doc.addImage(canvas.toDataURL("image/jpeg", 0.85), "JPEG", (pageW - imgW) / 2, topY, imgW, imgH);
-    footer();
-
-    /* ---- PAGE 2+: the full table ---- */
-    doc.addPage();
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(35, 59, 71);
-    doc.setFontSize(15);
-    doc.text("All 84 techniques", margin, 50);
-
-    const body = [];
-    ["strong", "modstrong", "moderate", "questionable", "unsupported"].forEach(key => {
-      const t = TIER_PDF[key];
-      const techs = TECHNIQUES.filter(x => x.level === key);
-      body.push([{
-        content: `${t.label}  (${techs.length} techniques)`,
-        colSpan: 2,
-        styles: { fillColor: t.rgb, textColor: t.ink, fontStyle: "bold", fontSize: 11, halign: "left" }
-      }]);
-      techs.forEach(x => body.push([x.name, x.howto]));
-    });
-
-    doc.autoTable({
-      startY: 66,
-      margin: { left: margin, right: margin, top: margin },
-      head: [["Technique", "How to do it"]],
-      body,
-      styles: { font: "helvetica", fontSize: 9.5, cellPadding: 5, valign: "top", lineColor: [230, 230, 230], lineWidth: 0.5 },
-      headStyles: { fillColor: [35, 59, 71], textColor: [255, 255, 255], fontStyle: "bold", fontSize: 10 },
-      columnStyles: { 0: { cellWidth: 150, fontStyle: "bold", textColor: [48, 48, 48] }, 1: { textColor: [60, 60, 60] } },
-      didDrawPage: footer
-    });
-
-    doc.save("self-help-evidence-pyramid.pdf");
-  } catch (err) {
-    alert("Sorry — something went wrong building the PDF.");
-    console.error(err);
-  } finally {
-    pdfBtn.disabled = false;
-    pdfBtnLabel.textContent = " Download as PDF";
-  }
 });
 </script>
 </body>
