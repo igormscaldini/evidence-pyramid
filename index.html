@@ -6,7 +6,7 @@
 <title>The Self-Help Evidence Pyramid · Clearer Thinking</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Montserrat:wght@500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
 <style>
   :root {
     /* Clearer Thinking palette */
@@ -57,25 +57,25 @@
     text-decoration: none;
     margin-bottom: 30px;
   }
-  .ct-logo svg { width: 56px; height: 50px; flex: none; }
+  .ct-logo svg { width: 60px; height: 55px; flex: none; }
   .ct-logo .wm {
     font-family: "Montserrat", sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-size: clamp(21px, 3.2vw, 31px);
-    letter-spacing: 0.04em;
-    word-spacing: 0.12em;
+    letter-spacing: 0.07em;
+    word-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--dark);
   }
   h1 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 900;
-    font-size: clamp(34px, 6vw, 66px);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
-    margin: 0 0 16px;
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    font-size: clamp(38px, 6.6vw, 72px);
+    line-height: 1.03;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
     color: var(--dark-accent);
-    text-transform: uppercase;
   }
   .subtitle {
     font-family: "Nunito Sans", sans-serif;
@@ -86,10 +86,9 @@
     margin: 0 auto;
     line-height: 1.55;
   }
-  .subtitle em { font-style: italic; color: var(--dark-accent); }
   .subtitle .book-link { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
-  .subtitle .book-link em { color: inherit; }
   .subtitle .book-link:hover { text-decoration: none; }
+  .subtitle.hover-hint { margin-top: 13px; font-style: italic; color: var(--txt-light); }
 
   /* --------------------------- ANCHOR LABELS ------------------------ */
   .anchor {
@@ -414,15 +413,16 @@
   <!-- ============================ HEADER ============================ -->
   <header class="masthead">
     <a class="ct-logo" href="https://www.clearerthinking.org" aria-label="Clearer Thinking">
-      <svg viewBox="0 0 100 88" fill="none" aria-hidden="true">
-        <path d="M65.3 25.1 A26 26 0 1 0 65.3 54.9" stroke="#303030" stroke-width="9" stroke-linecap="round"/>
-        <path d="M25.6 58.4 L12 72" stroke="#303030" stroke-width="9" stroke-linecap="round"/>
-        <path d="M51.5 30.5 A11 11 0 1 0 51.5 49.5" stroke="#0885f8" stroke-width="5.5" stroke-linecap="round"/>
+      <svg viewBox="0 0 104 96" fill="none" aria-hidden="true">
+        <path d="M78.8 23.5 A35 35 0 1 0 78.8 68.5" stroke="#303030" stroke-width="11" stroke-linecap="round"/>
+        <path d="M26 69.4 L11 85" stroke="#303030" stroke-width="11" stroke-linecap="round"/>
+        <path d="M62.2 32.2 A15 15 0 1 0 62.2 55.8" stroke="#0885f8" stroke-width="7" stroke-linecap="round"/>
       </svg>
       <span class="wm">Clearer Thinking</span>
     </a>
     <h1>The Self-Help<br>Evidence Pyramid</h1>
-    <p class="subtitle">Eighty-four popular self-improvement techniques reviewed for <a class="book-link" href="https://www.clearerthinking.org/the-12-levers-book"><em>The 12 Levers</em> book</a> by Spencer Greenberg, PhD, and Jeremy Stevenson, PhD. They're sorted by how strongly the research actually supports them. Hover over any card to see how it's done.</p>
+    <p class="subtitle">Eighty-four popular self-improvement techniques reviewed for <a class="book-link" href="https://www.clearerthinking.org/the-12-levers-book">The 12 Levers book</a> by Spencer Greenberg, PhD, and Jeremy Stevenson, PhD. They're sorted by how strongly the research actually supports them.</p>
+    <p class="subtitle hover-hint">Hover over any card to see how it's done.</p>
   </header>
 
   <!-- ========================== TOP ANCHOR ========================== -->
