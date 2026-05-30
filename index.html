@@ -87,6 +87,9 @@
     line-height: 1.55;
   }
   .subtitle em { font-style: italic; color: var(--dark-accent); }
+  .subtitle .book-link { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+  .subtitle .book-link em { color: inherit; }
+  .subtitle .book-link:hover { text-decoration: none; }
 
   /* --------------------------- ANCHOR LABELS ------------------------ */
   .anchor {
@@ -119,8 +122,8 @@
   .chart { position: relative; }
   .pyramid {
     position: relative;
-    margin: 0 auto;
-    margin-right: 224px;          /* room for callouts + strength rail */
+    margin: 0 auto;                  /* centered under the anchor titles */
+    max-width: calc(100% - 400px);   /* right gap holds the callouts + strength rail */
   }
 
   .tier {
@@ -152,7 +155,7 @@
   .tier[data-tier="modstrong"]    .tier-inner { max-width: 78%; }
   .tier[data-tier="moderate"]     .tier-inner { max-width: 64%; }
   .tier[data-tier="questionable"] .tier-inner { max-width: 48%; }
-  .tier[data-tier="unsupported"]  .tier-inner { max-width: 38%; }
+  .tier[data-tier="unsupported"]  .tier-inner { max-width: 48%; }
 
   .tier-head { margin-bottom: 18px; }
   .numeral {
@@ -184,6 +187,8 @@
     justify-content: center;
     align-items: stretch;
   }
+  .items.has-rows { flex-direction: column; align-items: center; gap: 14px; }
+  .item-row { display: flex; justify-content: center; gap: 14px 13px; }
   .item {
     position: relative;
     flex: 0 0 auto;
@@ -228,10 +233,10 @@
   .callout {
     position: absolute;
     top: 50%;
-    right: -150px;
+    right: -132px;
     transform: translateY(-50%);
-    width: 132px;
-    min-height: 132px;
+    width: 124px;
+    min-height: 124px;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -261,7 +266,7 @@
   /* ------------------------- STRENGTH RAIL -------------------------- */
   .rail {
     position: absolute;
-    right: 0;
+    right: -8px;
     top: 12px;
     bottom: 12px;
     width: 60px;
@@ -370,8 +375,8 @@
   #tooltip .tt-howto { color: rgba(255, 255, 255, 0.86); }
 
   /* ---------------------------- RESPONSIVE -------------------------- */
-  @media (max-width: 980px) {
-    .pyramid { margin-right: 0; }
+  @media (max-width: 1239px) {
+    .pyramid { max-width: 100%; }
     .rail { display: none; }
     .tier[data-tier="strong"]       .tier-inner { max-width: 96%; }
     .tier[data-tier="modstrong"]    .tier-inner { max-width: 86%; }
@@ -417,7 +422,7 @@
       <span class="wm">Clearer Thinking</span>
     </a>
     <h1>The Self-Help<br>Evidence Pyramid</h1>
-    <p class="subtitle">Eighty-four popular self-improvement techniques reviewed for <em>The 12 Levers</em> book by Spencer Greenberg, PhD, and Jeremy Stevenson, PhD. They're sorted by how strongly the research actually supports them. Hover over any card to see how it's done.</p>
+    <p class="subtitle">Eighty-four popular self-improvement techniques reviewed for <a class="book-link" href="https://www.clearerthinking.org/the-12-levers-book"><em>The 12 Levers</em> book</a> by Spencer Greenberg, PhD, and Jeremy Stevenson, PhD. They're sorted by how strongly the research actually supports them. Hover over any card to see how it's done.</p>
   </header>
 
   <!-- ========================== TOP ANCHOR ========================== -->
@@ -492,14 +497,15 @@ const TIERS = [
     key: "questionable", roman: "IV", name: "Questionable", tag: "weak signal",
     color: "var(--c-questionable)", ink: "#ffffff", headInk: "#233b47",
     bandTop: "#fbae0e", bandBot: "#ed6624",
-    inset: [19, 28],
+    inset: [19, 25],
     verdict: "Weak Signal", sub: "manage expectations",
   },
   {
     key: "unsupported", roman: "V", name: "Unsupported", tag: "avoid",
     color: "var(--c-unsupported)", ink: "#ffffff", headInk: "#ffffff",
     bandTop: "#ed6624", bandBot: "#e23b2e",
-    inset: [28, 34],
+    inset: [25, 32],
+    rows: [3, 3, 2, 1],
     verdict: "Skip These", sub: "no good evidence",
   },
 ];
@@ -624,7 +630,7 @@ TIERS.forEach((tier, i) => {
     </svg>
     <div class="tier-inner">
       <header class="tier-head" style="color:${tier.headInk}">
-        <span class="numeral" style="color:${tier.color}">${tier.roman}</span>
+        <span class="numeral" style="color:${tier.color}" title="${items.length} techniques">${items.length}</span>
         <h2 class="tier-name">${tier.name}</h2>
       </header>
       <div class="items" id="items-${tier.key}"></div>
@@ -637,7 +643,8 @@ TIERS.forEach((tier, i) => {
   pyramid.appendChild(section);
 
   const container = section.querySelector(`#items-${tier.key}`);
-  items.forEach(t => {
+
+  function makeCard(t) {
     const el = document.createElement("div");
     el.className = "item";
     el.dataset.name = t.name;
@@ -649,8 +656,23 @@ TIERS.forEach((tier, i) => {
       </div>
       <span class="label">${t.name}</span>
     `;
-    container.appendChild(el);
-  });
+    return el;
+  }
+
+  if (tier.rows) {
+    // explicit, tapering row layout (e.g. 3 · 3 · 2 · 1)
+    container.classList.add("has-rows");
+    let idx = 0;
+    tier.rows.forEach(n => {
+      const row = document.createElement("div");
+      row.className = "item-row";
+      for (let k = 0; k < n && idx < items.length; k++, idx++) row.appendChild(makeCard(items[idx]));
+      container.appendChild(row);
+    });
+    while (idx < items.length) container.appendChild(makeCard(items[idx++]));
+  } else {
+    items.forEach(t => container.appendChild(makeCard(t)));
+  }
 });
 
 lucide.createIcons();
