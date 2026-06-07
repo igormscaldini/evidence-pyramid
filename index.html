@@ -428,7 +428,9 @@
   #tooltip {
     position: fixed;
     display: none;
-    max-width: 300px;
+    max-width: 312px;
+    max-height: calc(100vh - 28px);
+    overflow-y: auto;
     background: var(--dark-accent);
     color: #fff;
     padding: 13px 15px;
@@ -438,7 +440,7 @@
     line-height: 1.5;
     box-shadow: 0 14px 34px rgba(35, 59, 71, 0.40);
     z-index: 1000;
-    pointer-events: none;
+    pointer-events: auto;
   }
   #tooltip .tt-name {
     font-family: "Montserrat", sans-serif;
@@ -456,6 +458,37 @@
     vertical-align: middle;
   }
   #tooltip .tt-howto { color: rgba(255, 255, 255, 0.86); }
+  #tooltip .tt-sources {
+    margin-top: 12px;
+    padding-top: 11px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  #tooltip .tt-evidence-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tt-color, #fecb02);
+    margin-bottom: 8px;
+  }
+  #tooltip .tt-cite { margin-bottom: 9px; }
+  #tooltip .tt-cite:last-child { margin-bottom: 0; }
+  #tooltip .tt-cite-note {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  #tooltip .tt-cite-src {
+    display: inline-block;
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #bcdcff;
+    text-decoration: none;
+  }
+  #tooltip .tt-cite-src:hover { text-decoration: underline; }
+  #tooltip .tt-cite-src .ext { opacity: 0.65; font-weight: 700; }
 
   /* ----------------------------- TOOLBAR ---------------------------- */
   .toolbar {
@@ -764,6 +797,7 @@
 <div id="tooltip">
   <div class="tt-name"></div>
   <div class="tt-howto"></div>
+  <div class="tt-sources"></div>
 </div>
 
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -811,98 +845,221 @@ const TIERS = [
 
 const TECHNIQUES = [
   // STRONG EVIDENCE
-  { level: "strong", icon: "bike", name: "Aerobic exercise", howto: "Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days." },
-  { level: "strong", icon: "dumbbell", name: "Resistance training", howto: "Train major muscle groups 2–3 times per week with progressive overload and enough recovery." },
-  { level: "strong", icon: "file-text", name: "CBT Thought Record", howto: "Write the situation, emotion, automatic thought, evidence for and against it, a balanced thought, and the next action." },
-  { level: "strong", icon: "list-checks", name: "ABC Technique", howto: "Record the Activating event, Belief, and Consequence, then dispute the belief and choose a more useful response." },
-  { level: "strong", icon: "refresh-cw", name: "Cognitive restructuring", howto: "Identify a distorted thought, test it against evidence, and replace it with a more accurate belief." },
-  { level: "strong", icon: "zap", name: "Behavioral activation", howto: "Schedule small rewarding or valued actions before motivation appears, then track mood afterward." },
-  { level: "strong", icon: "trending-up", name: "Graded exposure", howto: "Build a fear hierarchy and repeatedly face the easiest feared situation until anxiety drops before advancing." },
-  { level: "strong", icon: "shield", name: "ERP (exposure + prevention)", howto: "Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior." },
-  { level: "strong", icon: "puzzle", name: "Problem-solving therapy", howto: "Define the problem, generate options, choose one, act, and review the result." },
-  { level: "strong", icon: "timer", name: "Worry time", howto: "Postpone worries to a scheduled 10–20 minute window and redirect attention when they arise outside it." },
-  { level: "strong", icon: "anchor", name: "Progressive relaxation", howto: "Tense and release each major muscle group in sequence while noticing the contrast." },
-  { level: "strong", icon: "sparkles", name: "Mindfulness meditation", howto: "Focus on breath, body, or sound, and gently return attention whenever the mind wanders." },
-  { level: "strong", icon: "bed", name: "Sleep restriction", howto: "Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves." },
-  { level: "strong", icon: "git-branch", name: "Implementation intentions", howto: "Write a specific 'If situation X happens, then I will do behavior Y' plan." },
-  { level: "strong", icon: "target", name: "Specific goal + feedback", howto: "Set a hard but reachable target and compare progress against it regularly." },
-  { level: "strong", icon: "activity", name: "Self-monitoring", howto: "Record the target behavior or outcome daily so patterns become visible." },
-  { level: "strong", icon: "repeat", name: "Feedback loops", howto: "Review tracked data, identify the next bottleneck, and change one variable at a time." },
-  { level: "strong", icon: "lock", name: "Commitment device", howto: "Stake money, reputation, or access so quitting has a real cost." },
-  { level: "strong", icon: "calendar-check", name: "Stable-cue habits", howto: "Repeat one small behavior after the same cue in the same context until it becomes automatic." },
-  { level: "strong", icon: "layers", name: "Habit stacking", howto: "Attach a new behavior immediately after an existing reliable routine." },
-  { level: "strong", icon: "check-square", name: "Default design", howto: "Make the good option the default and add extra steps to the bad option." },
-  { level: "strong", icon: "users", name: "Social support", howto: "Join or build a group where the desired behavior is normal, visible, and reinforced." },
-  { level: "strong", icon: "candy", name: "Savoring", howto: "Slow down, attend to pleasant details, and deliberately extend the positive experience." },
-  { level: "strong", icon: "tree-pine", name: "Nature exposure", howto: "Spend regular time walking, sitting, or exercising in green or blue spaces." },
+  { level: "strong", icon: "bike", name: "Aerobic exercise", howto: "Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days.", src: [
+    { c: "Noetel et al., 2024, The BMJ", n: "218 studies (14,170 people): walking, jogging & exercise reduced depression (g −0.62).", u: "https://consensus.app/papers/details/c8f3f89f5f6e52f5adc4758fd2c41b76/?utm_source=claude_code" },
+    { c: "Heissel et al., 2023, Br. J. Sports Medicine", n: "41 RCTs (n=2,264): large antidepressant effect (SMD −0.95).", u: "https://consensus.app/papers/details/1fecf171e45956d58e7c72862ab62341/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "dumbbell", name: "Resistance training", howto: "Train major muscle groups 2–3 times per week with progressive overload and enough recovery.", src: [
+    { c: "Gordon et al., 2018, JAMA Psychiatry", n: "33 RCTs (n=1,877): meaningful drop in depressive symptoms (Δ 0.66).", u: "https://consensus.app/papers/details/c8ff84346fa65c3fb9b1f998bac9a6ee/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "file-text", name: "CBT Thought Record", howto: "Write the situation, emotion, automatic thought, evidence for and against it, a balanced thought, and the next action.", src: [
+    { c: "Cuijpers et al., 2023, World Psychiatry", n: "409 RCTs (52,702 patients): CBT clearly beats control (g 0.79).", u: "https://consensus.app/papers/details/50ac6e5cfe1050a48a3e7d1e4b252df7/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "list-checks", name: "ABC Technique", howto: "Record the Activating event, Belief, and Consequence, then dispute the belief and choose a more useful response.", src: [
+    { c: "David et al., 2017, J. Clinical Psychology", n: "84 studies: REBT improves outcomes (d 0.58) and cuts irrational beliefs.", u: "https://consensus.app/papers/details/bac579a79fa65bf7a62c744914d1e160/?utm_source=claude_code" },
+    { c: "King et al., 2024, PLOS ONE", n: "162 studies: ABC-based REBT reduced irrational beliefs, improved mental health.", u: "https://consensus.app/papers/details/1c66298fa7775118a8e6d3d0b8773aa2/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "refresh-cw", name: "Cognitive restructuring", howto: "Identify a distorted thought, test it against evidence, and replace it with a more accurate belief.", src: [
+    { c: "Ciharova et al., 2021, J. Consulting & Clinical Psych.", n: "45 RCTs (n=3,382): superior to usual care (SMD 0.57).", u: "https://consensus.app/papers/details/4a1c6390aa125890be927c44ecc4e0a0/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "zap", name: "Behavioral activation", howto: "Schedule small rewarding or valued actions before motivation appears, then track mood afterward.", src: [
+    { c: "Stein et al., 2019, Psychological Medicine", n: "28 RCTs: large effect on depression (g 0.83).", u: "https://consensus.app/papers/details/a242a54801545d2c9ce8355cdd86cffe/?utm_source=claude_code" },
+    { c: "Cuijpers et al., 2023, Psychotherapy Research", n: "22 RCTs (n=819): large effect for individual BA (g 0.85).", u: "https://consensus.app/papers/details/c722f15456205496847c73211db42939/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "trending-up", name: "Graded exposure", howto: "Build a fear hierarchy and repeatedly face the easiest feared situation until anxiety drops before advancing.", src: [
+    { c: "Wolitzky-Taylor et al., 2008, Clinical Psych. Review", n: "33 RCTs: exposure produced large effects, beating placebo and other therapies.", u: "https://consensus.app/papers/details/f6ed2394ad1157309c9aa4d61e04f7ea/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "shield", name: "ERP (exposure + prevention)", howto: "Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior.", src: [
+    { c: "Reid et al., 2021, Comprehensive Psychiatry", n: "36 RCTs (n=2,020): large effect for ERP in OCD (g 0.74).", u: "https://consensus.app/papers/details/7fc79545278d5810b5f136a9c690a253/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "puzzle", name: "Problem-solving therapy", howto: "Define the problem, generate options, choose one, act, and review the result.", src: [
+    { c: "Cuijpers et al., 2018, European Psychiatry", n: "30 RCTs (n=3,530): effective for depression (g 0.79).", u: "https://consensus.app/papers/details/c3d92ead136853538df31a103a89a5ae/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "timer", name: "Worry time", howto: "Postpone worries to a scheduled 10–20 minute window and redirect attention when they arise outside it.", src: [
+    { c: "Dippel et al., 2023, Int. J. Cognitive Therapy", n: "7 RCTs (n=999): worry postponement cut worry duration (d 0.31).", u: "https://consensus.app/papers/details/7d2fafa67c765e5dad3953a34a47d72a/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "anchor", name: "Progressive relaxation", howto: "Tense and release each major muscle group in sequence while noticing the contrast.", src: [
+    { c: "Donato et al., 2026, J. Psychosomatic Research", n: "31 RCTs (n=2,277): reduced anxiety (SMD −1.11) and improved sleep.", u: "https://consensus.app/papers/details/bf3b8fe1891c5a62a0bd57f359f12eac/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "sparkles", name: "Mindfulness meditation", howto: "Focus on breath, body, or sound, and gently return attention whenever the mind wanders.", src: [
+    { c: "Khoury et al., 2015, J. Psychosomatic Research", n: "29 studies (n=2,668): moderately effective (g 0.55); large on stress.", u: "https://consensus.app/papers/details/e88948a56e445c58a718fcd788b4fca8/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "bed", name: "Sleep restriction", howto: "Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves.", src: [
+    { c: "Maurer et al., 2021, Sleep Medicine Reviews", n: "8 RCTs: large drop in insomnia severity (g −0.93).", u: "https://consensus.app/papers/details/1a0e183706b7567fbcf174787e36b26d/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "git-branch", name: "Implementation intentions", howto: "Write a specific 'If situation X happens, then I will do behavior Y' plan.", src: [
+    { c: "Gollwitzer & Sheeran, 2006, Adv. Exp. Social Psych.", n: "94 tests: medium-to-large effect on goal attainment (d 0.65).", u: "https://consensus.app/papers/details/5f23556f39a35b74957933d9aac4c90f/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "target", name: "Specific goal + feedback", howto: "Set a hard but reachable target and compare progress against it regularly.", src: [
+    { c: "Epton et al., 2017, J. Consulting & Clinical Psych.", n: "141 papers (N=16,523): goal setting changes behavior (d 0.34).", u: "https://consensus.app/papers/details/57b1edb60170556ab63cfcd0089c86b6/?utm_source=claude_code" },
+    { c: "Mento et al., 1987, Org. Behavior & Human Decision Proc.", n: "Classic meta-analysis: specific hard goals plus feedback beat goals alone.", u: "https://consensus.app/papers/details/8fa6860e87975fe2b78d79fe88f0400a/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "activity", name: "Self-monitoring", howto: "Record the target behavior or outcome daily so patterns become visible.", src: [
+    { c: "Harkin et al., 2016, Psychological Bulletin", n: "138 studies (N=19,951): monitoring progress boosts goal attainment (d 0.40).", u: "https://consensus.app/papers/details/1b8034dd0ebf5370ba5b440c4ea66643/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "repeat", name: "Feedback loops", howto: "Review tracked data, identify the next bottleneck, and change one variable at a time.", src: [
+    { c: "Krukowski et al., 2024, Int. J. Behav. Nutr. & Phys. Act.", n: "19 RCTs (N=3,261): adding feedback beat no-feedback (d 0.73).", u: "https://consensus.app/papers/details/21e3eb2f2cf1586da9656d278c33a5c2/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "lock", name: "Commitment device", howto: "Stake money, reputation, or access so quitting has a real cost.", src: [
+    { c: "Rogers et al., 2014, JAMA", n: "Review: deposit/contract commitment devices aid weight loss, exercise & quitting.", u: "https://consensus.app/papers/details/3081c3e6344e5010980c8ae08643ed47/?utm_source=claude_code" },
+    { c: "Coupe et al., 2019, BMC Public Health", n: "Systematic review: commitment devices added ~1.5 kg extra weight loss at 12 mo.", u: "https://consensus.app/papers/details/074b846914b65c8987a0ffd72ef6e266/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "calendar-check", name: "Stable-cue habits", howto: "Repeat one small behavior after the same cue in the same context until it becomes automatic.", src: [
+    { c: "Singh et al., 2024, Healthcare", n: "20 studies (n=2,601): context repetition raises habit automaticity (SMD 0.69).", u: "https://consensus.app/papers/details/8171f2fe40645af4b21a929bd4184961/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "layers", name: "Habit stacking", howto: "Attach a new behavior immediately after an existing reliable routine.", src: [
+    { c: "Stecher et al., 2024, J. Behavioral Medicine", n: "RCT (N=161): anchoring activity to an existing cue raised step counts.", u: "https://consensus.app/papers/details/98e8d36996415b5c9c43226b85f6c7f0/?utm_source=claude_code" },
+    { c: "Kaushal et al., 2017, Annals of Behavioral Medicine", n: "RCT (N=94): cue + consistency intervention increased activity (d 0.39).", u: "https://consensus.app/papers/details/e9b4733057035fbe94921338c601e735/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "check-square", name: "Default design", howto: "Make the good option the default and add extra steps to the bad option.", src: [
+    { c: "Mertens et al., 2021, PNAS", n: "200+ studies (N=2.1M): nudges change behavior (d 0.45); defaults strongest.", u: "https://consensus.app/papers/details/a18522d5c07f581fabbe8a50e1e30897/?utm_source=claude_code" },
+    { c: "Jachimowicz et al., 2019, Behavioural Public Policy", n: "58 studies (N=73,675): defaults have a large effect on choice (d 0.68).", u: "https://consensus.app/papers/details/3acd0367c8105d88858871badac1257d/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "users", name: "Social support", howto: "Join or build a group where the desired behavior is normal, visible, and reinforced.", src: [
+    { c: "Zell et al., 2024, American Psychologist", n: "60 meta-analyses (2.1M people): social support aids adjustment (r 0.24).", u: "https://consensus.app/papers/details/37cca4eac0375ce8a773c3b46b024f08/?utm_source=claude_code" },
+    { c: "Lyons et al., 2021, BMC Psychiatry", n: "8 RCTs (N=2,131): group peer support improves recovery.", u: "https://consensus.app/papers/details/436f70fe557b5408b0f86be90dbbeba9/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "candy", name: "Savoring", howto: "Slow down, attend to pleasant details, and deliberately extend the positive experience.", src: [
+    { c: "Chen et al., 2025, Applied Psych.: Health & Well-Being", n: "20 RCTs (N=4,805): savoring boosts wellbeing and cuts distress (g 0.51).", u: "https://consensus.app/papers/details/a682a09b0c765a4d87cfab14aea5f7a6/?utm_source=claude_code" } ] },
+  { level: "strong", icon: "tree-pine", name: "Nature exposure", howto: "Spend regular time walking, sitting, or exercising in green or blue spaces.", src: [
+    { c: "Coventry et al., 2021, SSM – Population Health", n: "50 studies (16 RCTs): nature reduced depression (d −0.64) and anxiety.", u: "https://consensus.app/papers/details/ddc274c06fba553789c20784d672b251/?utm_source=claude_code" } ] },
 
   // MODERATE-TO-STRONG EVIDENCE
-  { level: "modstrong", icon: "footprints", name: "Step-count target", howto: "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy." },
-  { level: "modstrong", icon: "wind", name: "Diaphragmatic breathing", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes." },
-  { level: "modstrong", icon: "clipboard", name: "Action planning", howto: "Specify exactly when, where, how, and with what materials you will act." },
-  { level: "modstrong", icon: "gift", name: "Temptation bundling", howto: "Pair a beneficial task with an indulgence you only allow during that task." },
-  { level: "modstrong", icon: "sprout", name: "Tiny Habits", howto: "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion." },
-  { level: "modstrong", icon: "inbox", name: "GTD capture", howto: "Put every open loop into one trusted inbox, clarify the next action, and review it regularly." },
-  { level: "modstrong", icon: "home", name: "Environmental design", howto: "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient." },
-  { level: "modstrong", icon: "compass", name: "Values clarification", howto: "Write the life domains that matter most and choose actions aligned with them." },
-  { level: "modstrong", icon: "cloud", name: "Cognitive defusion", howto: "Label thoughts as thoughts, such as 'I'm having the thought that…,' instead of treating them as commands." },
-  { level: "modstrong", icon: "heart", name: "Gratitude journaling", howto: "Write three specific things you feel grateful for each day." },
-  { level: "modstrong", icon: "star", name: "Three Good Things", howto: "Each evening, list three good events from the day and your role in them (or why they happened)." },
-  { level: "modstrong", icon: "eye", name: "Process visualization", howto: "Mentally rehearse the steps, obstacles, and responses rather than only the desired outcome." },
-  { level: "modstrong", icon: "megaphone", name: "Assertiveness scripts", howto: "State the facts, your feeling, your request, and your boundary in calm direct language." },
-  { level: "modstrong", icon: "ear", name: "Active listening", howto: "Reflect the other person's point and emotion before offering advice or disagreement." },
-  { level: "modstrong", icon: "sunrise", name: "Morning light", howto: "Get outdoor light soon after waking, ideally while moving and without sunglasses." },
-  { level: "modstrong", icon: "calendar", name: "Daily review", howto: "At day's end, note what happened, what worked, what failed, and tomorrow's priority." },
-  { level: "modstrong", icon: "scroll-text", name: "Personal mission", howto: "Draft a short statement of principles, roles, and long-term aims and revisit it regularly." },
-  { level: "modstrong", icon: "pie-chart", name: "Life audit", howto: "Rate major life domains, choose the lowest rated high-value domain, and set one action." },
-  { level: "modstrong", icon: "headphones", name: "Deep Work", howto: "Schedule distraction-free blocks for cognitively demanding work and remove communication channels." },
-  { level: "modstrong", icon: "moon", name: "Sleep stimulus control", howto: "Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time." },
-  { level: "modstrong", icon: "alarm-clock", name: "Fixed wake time", howto: "Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm." },
+  { level: "modstrong", icon: "footprints", name: "Step-count target", howto: "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy.", src: [
+    { c: "Chaudhry et al., 2020, Int. J. Behav. Nutr. & Phys. Act.", n: "70 RCTs: step-count monitoring adds ~1,100 steps/day.", u: "https://consensus.app/papers/details/9973fd8752fe5f6bb7627b7e99d11203/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "wind", name: "Diaphragmatic breathing", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.", src: [
+    { c: "Fincham et al., 2023, Scientific Reports", n: "RCTs (N=785): breathwork lowers stress (g −0.35), anxiety & depression.", u: "https://consensus.app/papers/details/47b3b407e9505d2298d4ed70da367884/?utm_source=claude_code" },
+    { c: "Hopper et al., 2019, JBI Evidence Synthesis", n: "Systematic review: diaphragmatic breathing lowers cortisol and stress.", u: "https://consensus.app/papers/details/21e12151b2fe54d9be0b9a1824940af7/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "clipboard", name: "Action planning", howto: "Specify exactly when, where, how, and with what materials you will act.", src: [
+    { c: "da Silva et al., 2018, PLoS ONE", n: "13 RCTs: action planning increases physical activity (d 0.25).", u: "https://consensus.app/papers/details/aa6481d6c7e65c42baa31db56bea1ad7/?utm_source=claude_code" },
+    { c: "Zhang et al., 2018, Health Psychology", n: "95 studies: action/coping planning turns intentions into behavior.", u: "https://consensus.app/papers/details/5b4f67e210375798b8a384e65666b1ce/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "gift", name: "Temptation bundling", howto: "Pair a beneficial task with an indulgence you only allow during that task.", src: [
+    { c: "Milkman et al., 2014, Management Science", n: "Field RCT: bundling tempting audiobooks with gym raised visits up to 51%.", u: "https://consensus.app/papers/details/b4aeaceaa02a54eab1d4b277bb196a7e/?utm_source=claude_code" },
+    { c: "Kirgios et al., 2020, Org. Behavior & Human Decision Proc.", n: "Field RCT (N=6,792): temptation bundling raised weekly workouts 10–12%.", u: "https://consensus.app/papers/details/f3f81f6d3d6759dcadd5d077f099f9d2/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "sprout", name: "Tiny Habits", howto: "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion.", src: [
+    { c: "Singh et al., 2024, Healthcare", n: "20 studies (n=2,601): habit-formation interventions raised habit strength (SMD 0.69).", u: "https://consensus.app/papers/details/8171f2fe40645af4b21a929bd4184961/?utm_source=claude_code" },
+    { c: "Ma et al., 2023, Int. J. Behav. Nutr. & Phys. Act.", n: "10 RCTs: habit-formation interventions increased activity habit (SMD 0.31).", u: "https://consensus.app/papers/details/dd021c716e2b5522b20402ce58c0087d/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "inbox", name: "GTD capture", howto: "Put every open loop into one trusted inbox, clarify the next action, and review it regularly.", src: [
+    { c: "Gilbert et al., 2022, Psychonomic Bulletin & Review", n: "Review: offloading intentions to external reminders reliably aids task completion.", u: "https://consensus.app/papers/details/d165bf2412345797b275c97a8588dffd/?utm_source=claude_code" },
+    { c: "Gilbert et al., 2018, J. Exp. Psychology: General", n: "3 experiments: external reminders boosted task completion vs. memory.", u: "https://consensus.app/papers/details/72ea1e50a7d658cbac831d16885cf544/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "home", name: "Environmental design", howto: "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient.", src: [
+    { c: "Mertens et al., 2021, PNAS", n: "200+ studies (N=2.1M): restructuring choice environments shifts behavior (d 0.45).", u: "https://consensus.app/papers/details/a18522d5c07f581fabbe8a50e1e30897/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "compass", name: "Values clarification", howto: "Write the life domains that matter most and choose actions aligned with them.", src: [
+    { c: "Han et al., 2022, J. Medical Internet Research", n: "34 RCTs: ACT improved valued living and psychological flexibility.", u: "https://consensus.app/papers/details/dc912b9f4de352f1bf19bdef9798da4c/?utm_source=claude_code" },
+    { c: "Viskovich & Pakenham, 2019, J. Clinical Psychology", n: "RCT (n=1,162): ACT improved wellbeing and valued living.", u: "https://consensus.app/papers/details/367dcc8aebb4537b9823ec6cf0a80637/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "cloud", name: "Cognitive defusion", howto: "Label thoughts as thoughts, such as 'I'm having the thought that…,' instead of treating them as commands.", src: [
+    { c: "Larsson et al., 2016, Behavior Modification", n: "RCT: defusion lowered thought believability/discomfort, raised positive affect.", u: "https://consensus.app/papers/details/2744f2db522e5ae2ab762ab85bddeac6/?utm_source=claude_code" },
+    { c: "Masuda et al., 2010, J. Behav. Ther. & Exp. Psychiatry", n: "Experiment: defusion cut discomfort and believability more than distraction.", u: "https://consensus.app/papers/details/bf672d3fdaa057539f73fb111330d33c/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "heart", name: "Gratitude journaling", howto: "Write three specific things you feel grateful for each day.", src: [
+    { c: "Choi et al., 2025, PNAS", n: "145 papers (n=24,804): gratitude gave small wellbeing gains (g 0.19).", u: "https://consensus.app/papers/details/f9c7f6168e6555aa98740c82e1cb0ccd/?utm_source=claude_code" },
+    { c: "Kirca et al., 2023, Int. J. Applied Positive Psych.", n: "25 RCTs (n=6,745): gratitude improved wellbeing (g 0.22).", u: "https://consensus.app/papers/details/6ef6c8d6350b5436b71f1007c6d66eba/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "star", name: "Three Good Things", howto: "Each evening, list three good events from the day and your role in them (or why they happened).", src: [
+    { c: "Gander et al., 2016, Frontiers in Psychology", n: "RCT (n=1,624): the 'three things' exercise raised happiness vs. placebo.", u: "https://consensus.app/papers/details/ca9fc9b70c8b570b98972e6a0c0d21fc/?utm_source=claude_code" },
+    { c: "Mongrain & Anselmo-Matthews, 2012, J. Clinical Psych.", n: "RCT replication: Three Good Things produced lasting happiness gains.", u: "https://consensus.app/papers/details/5e9c0794273d5c96996a48e8d5116362/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "eye", name: "Process visualization", howto: "Mentally rehearse the steps, obstacles, and responses rather than only the desired outcome.", src: [
+    { c: "Lindsay et al., 2021, Phys. Education & Sport Pedagogy", n: "36 studies (n=1,449): mental imagery improved performance (g 0.48).", u: "https://consensus.app/papers/details/fc831c39fd3b517794d0c33db9a82c2b/?utm_source=claude_code" },
+    { c: "Toth et al., 2020, Psychology of Sport & Exercise", n: "37 studies: mental practice gave small but reliable performance gains.", u: "https://consensus.app/papers/details/45720edbab275a8c8f797458cba2ef55/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "megaphone", name: "Assertiveness scripts", howto: "State the facts, your feeling, your request, and your boundary in calm direct language.", src: [
+    { c: "Omura et al., 2017, Int. J. Nursing Studies", n: "Systematic review (8 studies): assertiveness training improved assertive communication.", u: "https://consensus.app/papers/details/282654037a36510695fe2a484f0369d0/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "ear", name: "Active listening", howto: "Reflect the other person's point and emotion before offering advice or disagreement.", src: [
+    { c: "Weger et al., 2014, Int. J. of Listening", n: "Experiment (n=115): active listening made partners feel more understood.", u: "https://consensus.app/papers/details/72e91313d90b5c5da4cd4c77805f4a35/?utm_source=claude_code" },
+    { c: "Lee et al., 2024, Br. J. Clinical Psychology", n: "Lab experiment: active listening raised alliance, positive affect & wellbeing.", u: "https://consensus.app/papers/details/44cb0c624a4e5f578dfe2b30e04b7c6f/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "sunrise", name: "Morning light", howto: "Get outdoor light soon after waking, ideally while moving and without sunglasses.", src: [
+    { c: "Chen et al., 2024, Frontiers in Public Health", n: "31 studies (n=1,031): bright light therapy reduced depression (SMD −1.59).", u: "https://consensus.app/papers/details/dd582d77d58b5c40956e3e2476629dc6/?utm_source=claude_code" },
+    { c: "Chambe et al., 2023, J. of Sleep Research", n: "22 studies: morning light advanced the sleep rhythm and improved sleep.", u: "https://consensus.app/papers/details/61c139107db255f9bd8f301de3f9f3b7/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "calendar", name: "Daily review", howto: "At day's end, note what happened, what worked, what failed, and tomorrow's priority.", src: [
+    { c: "Guo, 2021, Reflective Practice", n: "23 controlled studies (n=2,010): reflection improved learning (g 0.56).", u: "https://consensus.app/papers/details/948fb25cb96f5054bc609daff1e132bb/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "scroll-text", name: "Personal mission", howto: "Draft a short statement of principles, roles, and long-term aims and revisit it regularly.", src: [
+    { c: "Boreham & Schutte, 2023, J. Clinical Psychology", n: "99 studies (n=66,468): purpose in life linked to less depression (r −0.49).", u: "https://consensus.app/papers/details/eedde2dd099051f087cce8725f7a9aa5/?utm_source=claude_code" },
+    { c: "Czekierda et al., 2017, Health Psychology Review", n: "66 studies (n=73,546): meaning/purpose tied to better health (r 0.26).", u: "https://consensus.app/papers/details/13027261b4a05b4baf90c310d7520d81/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "pie-chart", name: "Life audit", howto: "Rate major life domains, choose the lowest rated high-value domain, and set one action.", src: [
+    { c: "de Haan & Nilsson, 2023, Acad. of Mgmt. Learning & Education", n: "39 RCT samples (n=2,528): coaching (incl. life-domain tools) had a moderate effect (g 0.59).", u: "https://consensus.app/papers/details/2ec19f6cdf0d578aac01830c1d15f28f/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "headphones", name: "Deep Work", howto: "Schedule distraction-free blocks for cognitively demanding work and remove communication channels.", src: [
+    { c: "Harris et al., 2020, Int. Review of Sport & Exercise Psych.", n: "22 studies: consistent flow–performance link (r 0.31).", u: "https://consensus.app/papers/details/600f683647d55488a5b119e78b944ca8/?utm_source=claude_code" },
+    { c: "Westbrook et al., 2018, BMJ Quality & Safety", n: "Observational: interruptions (RR 2.82) and multitasking (RR 1.86) raised errors.", u: "https://consensus.app/papers/details/2facd89e742159c1aa556625a30ab259/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "moon", name: "Sleep stimulus control", howto: "Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time.", src: [
+    { c: "Jansson-Fröjmark et al., 2023, J. Sleep Research", n: "11 RCTs: improved sleep latency and total sleep (g 0.38–0.85).", u: "https://consensus.app/papers/details/80755bedbeb85b08a811994907934790/?utm_source=claude_code" },
+    { c: "Edinger et al., 2020, J. Clinical Sleep Medicine", n: "AASM review (89 RCTs): supports stimulus control as effective.", u: "https://consensus.app/papers/details/cea9b8e63141539abeecc0b4510af35a/?utm_source=claude_code" } ] },
+  { level: "modstrong", icon: "alarm-clock", name: "Fixed wake time", howto: "Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm.", src: [
+    { c: "Chaput et al., 2020, Appl. Physiol. Nutr. Metab.", n: "41 studies (92,340 people): regular bed/wake times linked to better health.", u: "https://consensus.app/papers/details/e88d16440d38574e9c1fddb7c2ba6054/?utm_source=claude_code" },
+    { c: "Kalkanis et al., 2025, Sleep Medicine Reviews", n: "59 studies: irregular sleep timing predicts worse outcomes.", u: "https://consensus.app/papers/details/20f6e63978945142bf42e8394d15821e/?utm_source=claude_code" } ] },
 
   // MODERATE EVIDENCE
-  { level: "moderate", icon: "target", name: "SMART goals", howto: "Convert a vague aim into a Specific, Measurable, Achievable, Relevant, and Time-bound target." },
-  { level: "moderate", icon: "lightbulb", name: "WOOP", howto: "Name the Wish, Outcome, Obstacle, and Plan an if-then response to the obstacle." },
-  { level: "moderate", icon: "timer", name: "Pomodoro Technique", howto: "Work on one task for about 25 minutes, take a short break, and repeat." },
-  { level: "moderate", icon: "calendar", name: "Time blocking", howto: "Reserve calendar blocks in advance for specific work you want to do during them, for time to rest, for time to exercise, etc." },
-  { level: "moderate", icon: "user-check", name: "Accountability partner", howto: "Tell someone the exact commitment and report completion on a fixed schedule." },
-  { level: "moderate", icon: "heart-handshake", name: "Self-compassion break", howto: "Notice suffering, remind yourself it is human, and speak to yourself as a good coach would." },
-  { level: "moderate", icon: "hand-heart", name: "Acts of kindness", howto: "Perform small concrete helpful acts and notice their effects on others and yourself." },
-  { level: "moderate", icon: "pen-line", name: "Expressive writing", howto: "Privately write for 15–20 minutes about a stressful event and what it means." },
-  { level: "moderate", icon: "star", name: "Best Possible Self", howto: "Write vividly about a realistic future in which important goals have gone well." },
-  { level: "moderate", icon: "trophy", name: "Strengths use", howto: "Identify a character strength and use it in a new way each day." },
-  { level: "moderate", icon: "notebook", name: "Daily journaling", howto: "Write a brief uncensored account of thoughts, decisions, and lessons each day." },
-  { level: "moderate", icon: "check-circle", name: "No Zero Days", howto: "Do at least one tiny action toward the goal every day, even on bad days." },
-  { level: "moderate", icon: "snowflake", name: "Cold exposure", howto: "Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects." },
-  { level: "moderate", icon: "wind", name: "Breathwork systems", howto: "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery." },
-  { level: "moderate", icon: "waves", name: "Urge surfing", howto: "Notice craving sensations as waves, breathe, and wait without acting until they crest and fall." },
-  { level: "moderate", icon: "user", name: "Identity-based habits", howto: "Treat each small behavior as evidence for the identity you want to strengthen." },
-  { level: "moderate", icon: "key", name: "Keystone habit", howto: "Pick one habit likely to improve other behaviors or make other habits easier and work on developing that habit first." },
-  { level: "moderate", icon: "link", name: "Don't Break the Chain", howto: "Mark each day you complete the habit and try to preserve the streak." },
-  { level: "moderate", icon: "flag", name: "Eat the Frog", howto: "Do the most aversive high-value task first in the workday." },
-  { level: "moderate", icon: "battery-low", name: "Dopamine fast", howto: "Take a planned break from compulsive high-reward behaviors and replace them with low-stimulation activities." },
+  { level: "moderate", icon: "target", name: "SMART goals", howto: "Convert a vague aim into a Specific, Measurable, Achievable, Relevant, and Time-bound target.", src: [
+    { c: "Kleingeld et al., 2011, J. Applied Psychology", n: "k=49: specific difficult goals yield large performance gains (d 0.80).", u: "https://consensus.app/papers/details/2f77562c696353c9abcf4588f825853a/?utm_source=claude_code" },
+    { c: "Mento et al., 1987, Org. Behavior & Human Decision Proc.", n: "Meta-analysis: goal specificity and difficulty raise task performance.", u: "https://consensus.app/papers/details/8fa6860e87975fe2b78d79fe88f0400a/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "lightbulb", name: "WOOP", howto: "Name the Wish, Outcome, Obstacle, and Plan an if-then response to the obstacle.", src: [
+    { c: "Wang et al., 2021, Frontiers in Psychology", n: "21 studies (15,907 people): mental contrasting + if-then plans aid goals (g 0.34).", u: "https://consensus.app/papers/details/6b7622fe5dd45278858cbf92bec1ada0/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "timer", name: "Pomodoro Technique", howto: "Work on one task for about 25 minutes, take a short break, and repeat.", src: [
+    { c: "Albulescu et al., 2022, PLoS ONE", n: "22 samples (N=2,335): micro-breaks boost vigor (d 0.36) and cut fatigue.", u: "https://consensus.app/papers/details/ad9eb8a31f8e5a589ac6eecae765a6bb/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "calendar", name: "Time blocking", howto: "Reserve calendar blocks in advance for specific work you want to do during them, for time to rest, for time to exercise, etc.", src: [
+    { c: "Aeon et al., 2021, PLoS ONE", n: "Meta-analysis: time management moderately improves performance and wellbeing.", u: "https://consensus.app/papers/details/ebf0e94245315877be8aeca7cc6379fd/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "user-check", name: "Accountability partner", howto: "Tell someone the exact commitment and report completion on a fixed schedule.", src: [
+    { c: "Harkin et al., 2016, Psychological Bulletin", n: "138 studies (N=19,951): monitoring boosts attainment (d 0.40), more when reported.", u: "https://consensus.app/papers/details/1b8034dd0ebf5370ba5b440c4ea66643/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "heart-handshake", name: "Self-compassion break", howto: "Notice suffering, remind yourself it is human, and speak to yourself as a good coach would.", src: [
+    { c: "Ferrari et al., 2019, Mindfulness", n: "27 RCTs: improved stress (g 0.67), depression (g 0.66), anxiety (g 0.57).", u: "https://consensus.app/papers/details/ee7c9b0efe0e5e44869f441771046f5d/?utm_source=claude_code" },
+    { c: "Han et al., 2023, Mindfulness", n: "56 RCTs: small-to-medium reductions in depression, anxiety & stress.", u: "https://consensus.app/papers/details/0b9e1bb1b2ab593887bf6c69435923d7/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "hand-heart", name: "Acts of kindness", howto: "Perform small concrete helpful acts and notice their effects on others and yourself.", src: [
+    { c: "Curry et al., 2018, J. Experimental Social Psych.", n: "27 studies (N=4,045): kindness boosts the actor's wellbeing (δ 0.28).", u: "https://consensus.app/papers/details/2a49cd15e3575f26aef3e4bb8ea63f0d/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "pen-line", name: "Expressive writing", howto: "Privately write for 15–20 minutes about a stressful event and what it means.", src: [
+    { c: "Frattaroli, 2006, Psychological Bulletin", n: "146 RCTs: experimental disclosure had a positive, significant effect.", u: "https://consensus.app/papers/details/5e9ec55da4c2523da054aed42603e8b4/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "star", name: "Best Possible Self", howto: "Write vividly about a realistic future in which important goals have gone well.", src: [
+    { c: "Carrillo et al., 2019, PLoS ONE", n: "29 studies (N=2,909): improved wellbeing, optimism & positive affect (d 0.33–0.51).", u: "https://consensus.app/papers/details/936e0253b1b95fe0b14425221c7a0208/?utm_source=claude_code" },
+    { c: "Heekerens & Eid, 2020, J. Positive Psychology", n: "34 RCTs: small gains in positive affect (g 0.28) and optimism.", u: "https://consensus.app/papers/details/d5f1bfaf22cf5b61bce4e334bb0043c4/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "trophy", name: "Strengths use", howto: "Identify a character strength and use it in a new way each day.", src: [
+    { c: "Schutte & Malouff, 2019, J. Happiness Studies", n: "Meta-analysis: raises happiness (g 0.32) and life satisfaction (g 0.42).", u: "https://consensus.app/papers/details/ebf1c0a5eb64584386d453efdcc662db/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "notebook", name: "Daily journaling", howto: "Write a brief uncensored account of thoughts, decisions, and lessons each day.", src: [
+    { c: "Sohal et al., 2022, Family Medicine & Community Health", n: "20 RCTs: journaling gives small-to-moderate symptom reduction.", u: "https://consensus.app/papers/details/dbf52002be3f5768abe9026919bd17ab/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "check-circle", name: "No Zero Days", howto: "Do at least one tiny action toward the goal every day, even on bad days.", src: [
+    { c: "Gardner et al., 2019, Oxford Research Encyclopedia of Psych.", n: "Review: context-consistent daily repetition builds automatic, self-sustaining habits.", u: "https://consensus.app/papers/details/13cb44d2b263511eab1113e16b44f4e8/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "snowflake", name: "Cold exposure", howto: "Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects.", src: [
+    { c: "Cain et al., 2025, PLOS ONE", n: "11 RCTs (n=3,177): cold-water immersion cut stress (SMD −1.0), improved sleep/QoL.", u: "https://consensus.app/papers/details/471a9680e2a9539fb107d5fa262143f1/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "wind", name: "Breathwork systems", howto: "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.", src: [
+    { c: "Fincham et al., 2023, Scientific Reports", n: "12 RCTs: breathwork lowered stress (g −0.35), anxiety & depression.", u: "https://consensus.app/papers/details/47b3b407e9505d2298d4ed70da367884/?utm_source=claude_code" },
+    { c: "Balban et al., 2023, Cell Reports Medicine", n: "RCT: 5-min daily breathwork (incl. box breathing) improved mood, lowered arousal.", u: "https://consensus.app/papers/details/252fb4e9655a544f84d9b7d7bef57bdc/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "waves", name: "Urge surfing", howto: "Notice craving sensations as waves, breathe, and wait without acting until they crest and fall.", src: [
+    { c: "Demina et al., 2023, BMC Neuroscience", n: "17 RCTs (n=1,228): mindfulness reduced craving (SMD −0.70), though quality varied.", u: "https://consensus.app/papers/details/966362d6ba6d545f94cc6ead9cfaddb5/?utm_source=claude_code" },
+    { c: "Bowen & Marlatt, 2009, Psych. of Addictive Behaviors", n: "RCT (n=123): urge surfing cut cigarettes smoked over follow-up.", u: "https://consensus.app/papers/details/b2e63c5e4a725befaf6aecd7e2439312/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "user", name: "Identity-based habits", howto: "Treat each small behavior as evidence for the identity you want to strengthen.", src: [
+    { c: "Rhodes et al., 2024, Health Psychology Review", n: "40 effects (n=4,939): shifting identity changed behavior (d 0.61).", u: "https://consensus.app/papers/details/5bdc237ead11502487337865b13fadd8/?utm_source=claude_code" },
+    { c: "Zhu et al., 2025, Applied Psych.: Health & Well-Being", n: "19 studies (n=13,340): habit strongly tied to identity (r 0.55).", u: "https://consensus.app/papers/details/115344e25b6c50fe95dff6695b9ce884/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "key", name: "Keystone habit", howto: "Pick one habit likely to improve other behaviors or make other habits easier and work on developing that habit first.", src: [
+    { c: "Henriksen et al., 2025, Int. J. Behav. Nutr. & Phys. Act.", n: "RCT (n=469): a diet intervention raised physical activity (spillover) at 6 mo.", u: "https://consensus.app/papers/details/f79c0973c6055bad8983750d1d07c39f/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "link", name: "Don't Break the Chain", howto: "Mark each day you complete the habit and try to preserve the streak.", src: [
+    { c: "Maher et al., 2022, Games for Health Journal", n: "RCT (n=289): a streak/status app extended usage and predicted more activity.", u: "https://consensus.app/papers/details/a233dd0fcd035cc89b3910ba5e9777f7/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "flag", name: "Eat the Frog", howto: "Do the most aversive high-value task first in the workday.", src: [
+    { c: "Habbert et al., 2020, J. Experimental Social Psych.", n: "6 experiments (n=2,013): doing the hardest task first raised self-efficacy.", u: "https://consensus.app/papers/details/1660c861f7f859388a25c0b3d56925f2/?utm_source=claude_code" },
+    { c: "Zhang et al., 2025, Personnel Psychology", n: "Field experiment (n=166): difficult-tasks-first cut fatigue and improved performance.", u: "https://consensus.app/papers/details/890ad08d174b5ec4be7d5b11c1157db6/?utm_source=claude_code" } ] },
+  { level: "moderate", icon: "battery-low", name: "Dopamine fast", howto: "Take a planned break from compulsive high-reward behaviors and replace them with low-stimulation activities.", src: [
+    { c: "Lambert et al., 2022, Cyberpsych., Behavior & Soc. Networking", n: "RCT (n=154): a 1-week social-media break improved wellbeing, cut depression & anxiety.", u: "https://consensus.app/papers/details/07d3b91bbc7a5e79a5a44220ef3fb7d3/?utm_source=claude_code" },
+    { c: "Burnell et al., 2025, SSM – Mental Health", n: "32 RCTs (n=5,544): social-media restriction improved wellbeing (small, g 0.17).", u: "https://consensus.app/papers/details/22d4c424646352afad566e0e1720bb60/?utm_source=claude_code" } ] },
 
   // QUESTIONABLE
-  { level: "questionable", icon: "user", name: "Power posing", howto: "Stand or sit expansively for a minute or two before a challenging interaction." },
-  { level: "questionable", icon: "hand", name: "EFT / tapping", howto: "While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity." },
-  { level: "questionable", icon: "image", name: "Vision board", howto: "Create a collage of goal-related images or words." },
-  { level: "questionable", icon: "message-circle", name: "Positive affirmations", howto: "Repeat short positive statements about yourself (e.g., 'I am strong and capable.')." },
-  { level: "questionable", icon: "clover", name: "Lucky Girl Syndrome", howto: "Repeat that things tend to work out for you and look for opportunities that match the expectation." },
-  { level: "questionable", icon: "feather", name: "Scripting manifestation", howto: "Write a future scene as if the desired outcome has already happened." },
-  { level: "questionable", icon: "headphones", name: "Binaural beats", howto: "Listen to two slightly different tones through headphones to try to induce a target mental state." },
-  { level: "questionable", icon: "puzzle", name: "Brain training games", howto: "Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence." },
-  { level: "questionable", icon: "hourglass", name: "10,000-hour rule", howto: "Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints." },
-  { level: "questionable", icon: "bed-double", name: "Polyphasic sleep", howto: "Split sleep into many short naps to reduce total sleep." },
+  { level: "questionable", icon: "user", name: "Power posing", howto: "Stand or sit expansively for a minute or two before a challenging interaction.", src: [
+    { c: "Ranehill et al., 2015, Psychological Science", n: "Replication (n=200): no effect on hormones or behavior — only felt more powerful.", u: "https://consensus.app/papers/details/d6dba120c11e5172b75d8313bbb1aac7/?utm_source=claude_code" },
+    { c: "Smith & Apicella, 2017, Hormones and Behavior", n: "Study (n=247): no effect on testosterone, cortisol or risk-taking.", u: "https://consensus.app/papers/details/2896a17e021d599088be0614a26ce5b1/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "hand", name: "EFT / tapping", howto: "While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity.", src: [
+    { c: "Boness et al., 2024, J. Psychotherapy Integration", n: "Critique: no evidence the tapping is the active ingredient; meridian basis is pseudoscientific.", u: "https://consensus.app/papers/details/9a492f1394055fc586911136ec3fea98/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "image", name: "Vision board", howto: "Create a collage of goal-related images or words.", src: [
+    { c: "Kappes & Oettingen, 2011, J. Experimental Social Psych.", n: "4 experiments: positive future fantasies sapped energy and predicted poorer achievement.", u: "https://consensus.app/papers/details/807f450249f4577294353af47269d499/?utm_source=claude_code" },
+    { c: "Oettingen, 2012, European Review of Social Psych.", n: "Review: positively fantasizing about goals reduces effort and success.", u: "https://consensus.app/papers/details/a03bca555a205cada2099fcc585e1530/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "message-circle", name: "Positive affirmations", howto: "Repeat short positive statements about yourself (e.g., 'I am strong and capable.').", src: [
+    { c: "Wood et al., 2009, Psychological Science", n: "Experiments: affirmations made low-self-esteem people feel worse, not better.", u: "https://consensus.app/papers/details/13f10637fa255dee9cb67af1c7b65af8/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "clover", name: "Lucky Girl Syndrome", howto: "Repeat that things tend to work out for you and look for opportunities that match the expectation.", src: [
+    { c: "Dixon et al., 2023, Pers. & Social Psych. Bulletin", n: "3 studies (n=1,023): manifestation believers favored risky bets and had more bankruptcies.", u: "https://consensus.app/papers/details/00f6684111d0597ab2afb56018e86836/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "feather", name: "Scripting manifestation", howto: "Write a future scene as if the desired outcome has already happened.", src: [
+    { c: "Dixon et al., 2023, Pers. & Social Psych. Bulletin", n: "Manifestation belief showed no real efficacy — and was tied to risky investing & bankruptcy.", u: "https://consensus.app/papers/details/00f6684111d0597ab2afb56018e86836/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "headphones", name: "Binaural beats", howto: "Listen to two slightly different tones through headphones to try to induce a target mental state.", src: [
+    { c: "Basu et al., 2022, Psychological Research", n: "Meta-analysis/review: small and conflicting effects on memory and attention.", u: "https://consensus.app/papers/details/26dc16d3b1ae577f8d3b547537426bc5/?utm_source=claude_code" },
+    { c: "Leistiko et al., 2023, Current Psychology", n: "Controlled study: no effect of gamma binaural beats on attention or anxiety.", u: "https://consensus.app/papers/details/d364e5b0cb265dcb8514c72a12356613/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "puzzle", name: "Brain training games", howto: "Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence.", src: [
+    { c: "Simons et al., 2016, Psych. Science in the Public Interest", n: "Review: little evidence training transfers to everyday cognition.", u: "https://consensus.app/papers/details/6c060eb45e0650b1af6ba7bd41884cdc/?utm_source=claude_code" },
+    { c: "Nguyen et al., 2021, Neuropsychology Review", n: "Meta-analysis: insufficient evidence it improves general cognition.", u: "https://consensus.app/papers/details/703eba93f7b350a993b1a8ede02e4109/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "hourglass", name: "10,000-hour rule", howto: "Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints.", src: [
+    { c: "Macnamara et al., 2018, Psychological Science", n: "Meta-analysis: deliberate practice explains only a small share of performance.", u: "https://consensus.app/papers/details/cd23567d52fa5b988256a5dd5c521e2b/?utm_source=claude_code" },
+    { c: "Macnamara et al., 2016, Perspectives on Psych. Science", n: "Practice accounted for only ~18% of sports performance variance.", u: "https://consensus.app/papers/details/843cf0b40a135314b8a9cad8199d0cea/?utm_source=claude_code" } ] },
+  { level: "questionable", icon: "bed-double", name: "Polyphasic sleep", howto: "Split sleep into many short naps to reduce total sleep.", src: [
+    { c: "Weaver et al., 2021, Sleep Health (Nat. Sleep Foundation)", n: "Review: no benefits found; linked to adverse physical, mental & performance outcomes.", u: "https://consensus.app/papers/details/80f7ff9a31465e7cb74a009250cd19f0/?utm_source=claude_code" } ] },
 
   // UNSUPPORTED
-  { level: "unsupported", icon: "hash", name: "369 method", howto: "Write a desired outcome 3 times in the morning, 6 times midday, and 9 times at night." },
-  { level: "unsupported", icon: "volume-2", name: "Subliminal audio", howto: "Play affirming messages below conscious audibility while relaxing or sleeping." },
-  { level: "unsupported", icon: "music", name: "Solfeggio frequencies", howto: "Play tracks marketed as specific healing frequencies during meditation, rest, or work." },
-  { level: "unsupported", icon: "gem", name: "Crystals for healing", howto: "Hold or display a crystal to balance energy or heal yourself." },
-  { level: "unsupported", icon: "moon-star", name: "Astrology planning", howto: "Choose goals or timing based on horoscopes, signs, or transits." },
-  { level: "unsupported", icon: "calculator", name: "Numerology goals", howto: "Select goals, dates, or habits based on personally meaningful numbers." },
-  { level: "unsupported", icon: "magnet", name: "Law of Attraction", howto: "Think, visualize, or 'vibrate' as if the desired outcome is inevitable or has already happened." },
-  { level: "unsupported", icon: "shuffle", name: "Multitasking hack", howto: "Rapidly switch between tasks or media streams to get multiple things done at once." },
-  { level: "unsupported", icon: "glass-water", name: "Detox cleanses", howto: "Use juices, teas, fasting, or colon cleanses to 'flush toxins' from the body." },
+  { level: "unsupported", icon: "hash", name: "369 method", howto: "Write a desired outcome 3 times in the morning, 6 times midday, and 9 times at night.", src: [
+    { c: "Dixon et al., 2023, Pers. & Social Psych. Bulletin", n: "Manifestation rituals show no real efficacy; belief tied to risky investing and bankruptcy.", u: "https://consensus.app/papers/details/00f6684111d0597ab2afb56018e86836/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "volume-2", name: "Subliminal audio", howto: "Play affirming messages below conscious audibility while relaxing or sleeping.", src: [
+    { c: "Greenwald et al., 1991, Psychological Science", n: "Double-blind trials: tapes produced none of their claimed effects — placebo only.", u: "https://consensus.app/papers/details/a5ce669769a258e3b028cdd9eb6bbb21/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "music", name: "Solfeggio frequencies", howto: "Play tracks marketed as specific healing frequencies during meditation, rest, or work.", src: [
+    { c: "Bando et al., 2023, Int. J. Complementary & Alt. Medicine", n: "Concludes scientific evidence for 528 Hz 'healing' frequencies is insufficient.", u: "https://consensus.app/papers/details/4536a8dd4bf0555c9745db8802159753/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "gem", name: "Crystals for healing", howto: "Hold or display a crystal to balance energy or heal yourself.", src: [
+    { c: "Escolà-Gascón et al., 2025, CNS Spectrums", n: "RCT: rose quartz did not beat placebo; relief came only from believers' expectancy.", u: "https://consensus.app/papers/details/cff8da4fdf705a62a252d81d40883363/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "moon-star", name: "Astrology planning", howto: "Choose goals or timing based on horoscopes, signs, or transits.", src: [
+    { c: "Carlson, 1985, Nature", n: "Double-blind test: astrologers couldn't match charts to personalities above chance.", u: "https://consensus.app/papers/details/caf4681f3a4e5f02a09acd9a39ed96e2/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "calculator", name: "Numerology goals", howto: "Select goals, dates, or habits based on personally meaningful numbers.", src: [
+    { c: "Rodríguez Garcés et al., 2020, Universitas Psychologica", n: "Classifies numerology as a pseudoscientific belief with no scientific basis.", u: "https://consensus.app/papers/details/f9a42a6dbd915b4c8a919e7ceff32df2/?utm_source=claude_code" },
+    { c: "Morain, 2008, ETC: Review of General Semantics", n: "Groups numerology with astrology and palmistry as pseudoscience.", u: "https://consensus.app/papers/details/da6bc025da115a4cae83ea238a097685/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "magnet", name: "Law of Attraction", howto: "Think, visualize, or 'vibrate' as if the desired outcome is inevitable or has already happened.", src: [
+    { c: "Dixon et al., 2023, Pers. & Social Psych. Bulletin", n: "Law-of-attraction belief yields no real outcomes; tied to risky bets and bankruptcy.", u: "https://consensus.app/papers/details/00f6684111d0597ab2afb56018e86836/?utm_source=claude_code" },
+    { c: "Larsen et al., 2019, Alt. Spirituality & Religion Review", n: "Analyzes 'The Secret' as magical thinking and an illusion of control.", u: "https://consensus.app/papers/details/0c5ff8e46a4659f5b4df2929938b984b/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "shuffle", name: "Multitasking hack", howto: "Rapidly switch between tasks or media streams to get multiple things done at once.", src: [
+    { c: "May & Elder, 2018, Int. J. Educ. Tech. in Higher Ed.", n: "Review: media multitasking impairs attention, memory and GPA — it does not help.", u: "https://consensus.app/papers/details/c9fa82e2bc315a7798bacf11299db65e/?utm_source=claude_code" } ] },
+  { level: "unsupported", icon: "glass-water", name: "Detox cleanses", howto: "Use juices, teas, fasting, or colon cleanses to 'flush toxins' from the body.", src: [
+    { c: "Klein & Kiat, 2015, J. Human Nutrition & Dietetics", n: "Critical review: no rigorous evidence detox diets remove toxins or help.", u: "https://consensus.app/papers/details/2c90ae6b974f561fbf50e738c73ca656/?utm_source=claude_code" } ] },
 ];
 
 /* ----------------------------- BUILD DOM ----------------------------- */
@@ -967,6 +1124,7 @@ TIERS.forEach((tier, i) => {
     el.dataset.howto = t.howto;
     el.dataset.color = tier.color;
     el.dataset.level = tier.key;
+    el.dataset.src = JSON.stringify(t.src || []);
     el.innerHTML = `
       <div class="icon-disc" style="background:${tier.color}">
         <i data-lucide="${t.icon}" style="color:${tier.ink}"></i>
@@ -999,30 +1157,101 @@ lucide.createIcons();
 const tooltip = document.getElementById("tooltip");
 const ttName = tooltip.querySelector(".tt-name");
 const ttHowto = tooltip.querySelector(".tt-howto");
+const ttSources = tooltip.querySelector(".tt-sources");
+let ttHideTimer = null;
 
-document.querySelectorAll(".item").forEach(item => {
-  item.addEventListener("mouseenter", e => {
-    ttName.textContent = item.dataset.name;
-    ttHowto.textContent = item.dataset.howto;
-    tooltip.style.setProperty("--tt-color",
-      getComputedStyle(item.querySelector(".icon-disc")).backgroundColor);
-    tooltip.style.display = "block";
-    positionTooltip(e);
+function renderSources(item) {
+  let sources = [];
+  try { sources = JSON.parse(item.dataset.src || "[]"); } catch (_) {}
+  ttSources.textContent = "";
+
+  const label = document.createElement("div");
+  label.className = "tt-evidence-label";
+  label.textContent = sources.length ? "What the research says" : "Evidence";
+  ttSources.appendChild(label);
+
+  if (!sources.length) {
+    const note = document.createElement("div");
+    note.className = "tt-cite-note";
+    note.textContent = "No supporting papers were found.";
+    ttSources.appendChild(note);
+    return;
+  }
+
+  sources.forEach(s => {
+    const cite = document.createElement("div");
+    cite.className = "tt-cite";
+
+    const note = document.createElement("div");
+    note.className = "tt-cite-note";
+    note.textContent = s.n;
+    cite.appendChild(note);
+
+    if (s.u) {
+      const a = document.createElement("a");
+      a.className = "tt-cite-src";
+      a.href = s.u;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.appendChild(document.createTextNode(s.c + " "));
+      const ext = document.createElement("span");
+      ext.className = "ext";
+      ext.textContent = "↗";
+      a.appendChild(ext);
+      cite.appendChild(a);
+    } else {
+      const src = document.createElement("div");
+      src.className = "tt-cite-src";
+      src.textContent = s.c;
+      cite.appendChild(src);
+    }
+    ttSources.appendChild(cite);
   });
-  item.addEventListener("mousemove", positionTooltip);
-  item.addEventListener("mouseleave", () => { tooltip.style.display = "none"; });
-});
+}
 
-function positionTooltip(e) {
-  const padding = 16;
-  const rect = tooltip.getBoundingClientRect();
-  let x = e.clientX + padding;
-  let y = e.clientY + padding;
-  if (x + rect.width > window.innerWidth - 8) x = e.clientX - rect.width - padding;
-  if (y + rect.height > window.innerHeight - 8) y = e.clientY - rect.height - padding;
+function showTooltip(item) {
+  clearTimeout(ttHideTimer);
+  ttName.textContent = item.dataset.name;
+  ttHowto.textContent = item.dataset.howto;
+  tooltip.style.setProperty("--tt-color",
+    getComputedStyle(item.querySelector(".icon-disc")).backgroundColor);
+  renderSources(item);
+  tooltip.scrollTop = 0;
+  tooltip.style.display = "block";
+  positionTooltipTo(item);
+}
+
+function scheduleHideTooltip() {
+  clearTimeout(ttHideTimer);
+  ttHideTimer = setTimeout(() => { tooltip.style.display = "none"; }, 180);
+}
+
+// Anchor the tooltip beside the card (so its citation links stay clickable)
+function positionTooltipTo(item) {
+  const r = item.getBoundingClientRect();
+  const tw = tooltip.offsetWidth;
+  const th = tooltip.offsetHeight;
+  const gap = 14, pad = 8;
+
+  let x = r.right + gap;                                   // prefer to the right
+  if (x + tw > window.innerWidth - pad) x = r.left - tw - gap;  // else flip left
+  if (x < pad) x = Math.max(pad, (window.innerWidth - tw) / 2); // else center
+  if (x + tw > window.innerWidth - pad) x = window.innerWidth - tw - pad;
+
+  let y = r.top + r.height / 2 - th / 2;                   // vertically centered
+  if (y + th > window.innerHeight - pad) y = window.innerHeight - th - pad;
+  if (y < pad) y = pad;
+
   tooltip.style.left = x + "px";
   tooltip.style.top = y + "px";
 }
+
+document.querySelectorAll(".item").forEach(item => {
+  item.addEventListener("mouseenter", () => showTooltip(item));
+  item.addEventListener("mouseleave", scheduleHideTooltip);
+});
+tooltip.addEventListener("mouseenter", () => clearTimeout(ttHideTimer));
+tooltip.addEventListener("mouseleave", scheduleHideTooltip);
 
 /* ------------------------------ SEARCH ------------------------------- */
 const searchInput   = document.getElementById("search");
