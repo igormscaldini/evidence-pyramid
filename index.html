@@ -440,15 +440,6 @@
     z-index: 1000;
     pointer-events: none;
   }
-  #tooltip .tt-lever {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 6px;
-  }
   #tooltip .tt-name {
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
@@ -696,7 +687,7 @@
     </a>
     <h1>The Self-Help<br>Evidence Pyramid</h1>
     <p class="subtitle">Eighty-four popular self-improvement techniques reviewed for <a class="book-link" href="https://www.clearerthinking.org/the-12-levers-book">The 12 Levers book</a> by Spencer Greenberg, PhD, and Jeremy Stevenson, PhD. They're sorted by how strongly the research actually supports them.</p>
-    <p class="subtitle hover-hint">Hover over any card to learn more about each technique.</p>
+    <p class="subtitle hover-hint">Hover over any card to see how it's done.</p>
   </header>
 
   <!-- ============================ TOOLBAR =========================== -->
@@ -771,7 +762,6 @@
 </button>
 
 <div id="tooltip">
-  <div class="tt-lever"></div>
   <div class="tt-name"></div>
   <div class="tt-howto"></div>
 </div>
@@ -821,98 +811,98 @@ const TIERS = [
 
 const TECHNIQUES = [
   // STRONG EVIDENCE
-  { level: "strong", icon: "bike", name: "Aerobic exercise", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days." },
-  { level: "strong", icon: "dumbbell", name: "Resistance training", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Train major muscle groups 2–3 times per week with progressive overload and enough recovery." },
-  { level: "strong", icon: "file-text", name: "CBT Thought Record", lever: "Lever 7 · Steward Your Thoughts", howto: "Write the situation, emotion, automatic thought, evidence for and against it, a balanced thought, and the next action." },
-  { level: "strong", icon: "list-checks", name: "ABC Technique", lever: "Lever 1 · Unravel the Causes", howto: "Record the Activating event, Belief, and Consequence, then dispute the belief and choose a more useful response." },
-  { level: "strong", icon: "refresh-cw", name: "Cognitive restructuring", lever: "Lever 7 · Steward Your Thoughts", howto: "Identify a distorted thought, test it against evidence, and replace it with a more accurate belief." },
-  { level: "strong", icon: "zap", name: "Behavioral activation", lever: "Lever 9 · Do More Glad-You-Did-It Activities", howto: "Schedule small rewarding or valued actions before motivation appears, then track mood afterward." },
-  { level: "strong", icon: "trending-up", name: "Graded exposure", lever: "Lever 5 · Approach the Monster", howto: "Build a fear hierarchy and repeatedly face the easiest feared situation until anxiety drops before advancing." },
-  { level: "strong", icon: "shield", name: "ERP (exposure + prevention)", lever: "Lever 5 · Approach the Monster", howto: "Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior." },
-  { level: "strong", icon: "puzzle", name: "Problem-solving therapy", lever: "Lever 8 · Tune the Productivity Equation", howto: "Define the problem, generate options, choose one, act, and review the result." },
-  { level: "strong", icon: "timer", name: "Worry time", lever: "Lever 7 · Steward Your Thoughts", howto: "Postpone worries to a scheduled 10–20 minute window and redirect attention when they arise outside it." },
-  { level: "strong", icon: "anchor", name: "Progressive relaxation", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Tense and release each major muscle group in sequence while noticing the contrast." },
-  { level: "strong", icon: "sparkles", name: "Mindfulness meditation", lever: "Lever 12 · Pay Attention", howto: "Focus on breath, body, or sound, and gently return attention whenever the mind wanders." },
-  { level: "strong", icon: "bed", name: "Sleep restriction", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves." },
-  { level: "strong", icon: "git-branch", name: "Implementation intentions", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Write a specific 'If situation X happens, then I will do behavior Y' plan." },
-  { level: "strong", icon: "target", name: "Specific goal + feedback", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Set a hard but reachable target and compare progress against it regularly." },
-  { level: "strong", icon: "activity", name: "Self-monitoring", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Record the target behavior or outcome daily so patterns become visible." },
-  { level: "strong", icon: "repeat", name: "Feedback loops", lever: "Lever 8 · Tune the Productivity Equation", howto: "Review tracked data, identify the next bottleneck, and change one variable at a time." },
-  { level: "strong", icon: "lock", name: "Commitment device", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Stake money, reputation, or access so quitting has a real cost." },
-  { level: "strong", icon: "calendar-check", name: "Stable-cue habits", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Repeat one small behavior after the same cue in the same context until it becomes automatic." },
-  { level: "strong", icon: "layers", name: "Habit stacking", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Attach a new behavior immediately after an existing reliable routine." },
-  { level: "strong", icon: "check-square", name: "Default design", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Make the good option the default and add extra steps to the bad option." },
-  { level: "strong", icon: "users", name: "Social support", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Join or build a group where the desired behavior is normal, visible, and reinforced." },
-  { level: "strong", icon: "candy", name: "Savoring", lever: "Lever 11 · Choose Your Attitude", howto: "Slow down, attend to pleasant details, and deliberately extend the positive experience." },
-  { level: "strong", icon: "tree-pine", name: "Nature exposure", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Spend regular time walking, sitting, or exercising in green or blue spaces." },
+  { level: "strong", icon: "bike", name: "Aerobic exercise", howto: "Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days." },
+  { level: "strong", icon: "dumbbell", name: "Resistance training", howto: "Train major muscle groups 2–3 times per week with progressive overload and enough recovery." },
+  { level: "strong", icon: "file-text", name: "CBT Thought Record", howto: "Write the situation, emotion, automatic thought, evidence for and against it, a balanced thought, and the next action." },
+  { level: "strong", icon: "list-checks", name: "ABC Technique", howto: "Record the Activating event, Belief, and Consequence, then dispute the belief and choose a more useful response." },
+  { level: "strong", icon: "refresh-cw", name: "Cognitive restructuring", howto: "Identify a distorted thought, test it against evidence, and replace it with a more accurate belief." },
+  { level: "strong", icon: "zap", name: "Behavioral activation", howto: "Schedule small rewarding or valued actions before motivation appears, then track mood afterward." },
+  { level: "strong", icon: "trending-up", name: "Graded exposure", howto: "Build a fear hierarchy and repeatedly face the easiest feared situation until anxiety drops before advancing." },
+  { level: "strong", icon: "shield", name: "ERP (exposure + prevention)", howto: "Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior." },
+  { level: "strong", icon: "puzzle", name: "Problem-solving therapy", howto: "Define the problem, generate options, choose one, act, and review the result." },
+  { level: "strong", icon: "timer", name: "Worry time", howto: "Postpone worries to a scheduled 10–20 minute window and redirect attention when they arise outside it." },
+  { level: "strong", icon: "anchor", name: "Progressive relaxation", howto: "Tense and release each major muscle group in sequence while noticing the contrast." },
+  { level: "strong", icon: "sparkles", name: "Mindfulness meditation", howto: "Focus on breath, body, or sound, and gently return attention whenever the mind wanders." },
+  { level: "strong", icon: "bed", name: "Sleep restriction", howto: "Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves." },
+  { level: "strong", icon: "git-branch", name: "Implementation intentions", howto: "Write a specific 'If situation X happens, then I will do behavior Y' plan." },
+  { level: "strong", icon: "target", name: "Specific goal + feedback", howto: "Set a hard but reachable target and compare progress against it regularly." },
+  { level: "strong", icon: "activity", name: "Self-monitoring", howto: "Record the target behavior or outcome daily so patterns become visible." },
+  { level: "strong", icon: "repeat", name: "Feedback loops", howto: "Review tracked data, identify the next bottleneck, and change one variable at a time." },
+  { level: "strong", icon: "lock", name: "Commitment device", howto: "Stake money, reputation, or access so quitting has a real cost." },
+  { level: "strong", icon: "calendar-check", name: "Stable-cue habits", howto: "Repeat one small behavior after the same cue in the same context until it becomes automatic." },
+  { level: "strong", icon: "layers", name: "Habit stacking", howto: "Attach a new behavior immediately after an existing reliable routine." },
+  { level: "strong", icon: "check-square", name: "Default design", howto: "Make the good option the default and add extra steps to the bad option." },
+  { level: "strong", icon: "users", name: "Social support", howto: "Join or build a group where the desired behavior is normal, visible, and reinforced." },
+  { level: "strong", icon: "candy", name: "Savoring", howto: "Slow down, attend to pleasant details, and deliberately extend the positive experience." },
+  { level: "strong", icon: "tree-pine", name: "Nature exposure", howto: "Spend regular time walking, sitting, or exercising in green or blue spaces." },
 
   // MODERATE-TO-STRONG EVIDENCE
-  { level: "modstrong", icon: "footprints", name: "Step-count target", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy." },
-  { level: "modstrong", icon: "wind", name: "Diaphragmatic breathing", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes." },
-  { level: "modstrong", icon: "clipboard", name: "Action planning", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Specify exactly when, where, how, and with what materials you will act." },
-  { level: "modstrong", icon: "gift", name: "Temptation bundling", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Pair a beneficial task with an indulgence you only allow during that task." },
-  { level: "modstrong", icon: "sprout", name: "Tiny Habits", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion." },
-  { level: "modstrong", icon: "inbox", name: "GTD capture", lever: "Lever 8 · Tune the Productivity Equation", howto: "Put every open loop into one trusted inbox, clarify the next action, and review it regularly." },
-  { level: "modstrong", icon: "home", name: "Environmental design", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient." },
-  { level: "modstrong", icon: "compass", name: "Values clarification", lever: "Lever 2 · Uncover Your Guiding Foundations", howto: "Write the life domains that matter most and choose actions aligned with them." },
-  { level: "modstrong", icon: "cloud", name: "Cognitive defusion", lever: "Lever 12 · Pay Attention", howto: "Label thoughts as thoughts, such as 'I'm having the thought that…,' instead of treating them as commands." },
-  { level: "modstrong", icon: "heart", name: "Gratitude journaling", lever: "Lever 11 · Choose Your Attitude", howto: "Write three specific things you feel grateful for each day." },
-  { level: "modstrong", icon: "star", name: "Three Good Things", lever: "Lever 11 · Choose Your Attitude", howto: "Each evening, list three good events from the day and your role in them (or why they happened)." },
-  { level: "modstrong", icon: "eye", name: "Process visualization", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Mentally rehearse the steps, obstacles, and responses rather than only the desired outcome." },
-  { level: "modstrong", icon: "megaphone", name: "Assertiveness scripts", lever: "Lever 10 · Communicate Skillfully", howto: "State the facts, your feeling, your request, and your boundary in calm direct language." },
-  { level: "modstrong", icon: "ear", name: "Active listening", lever: "Lever 10 · Communicate Skillfully", howto: "Reflect the other person's point and emotion before offering advice or disagreement." },
-  { level: "modstrong", icon: "sunrise", name: "Morning light", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Get outdoor light soon after waking, ideally while moving and without sunglasses." },
-  { level: "modstrong", icon: "calendar", name: "Daily review", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "At day's end, note what happened, what worked, what failed, and tomorrow's priority." },
-  { level: "modstrong", icon: "scroll-text", name: "Personal mission", lever: "Lever 2 · Uncover Your Guiding Foundations", howto: "Draft a short statement of principles, roles, and long-term aims and revisit it regularly." },
-  { level: "modstrong", icon: "pie-chart", name: "Life audit", lever: "Lever 2 · Uncover Your Guiding Foundations", howto: "Rate major life domains, choose the lowest rated high-value domain, and set one action." },
-  { level: "modstrong", icon: "headphones", name: "Deep Work", lever: "Lever 8 · Tune the Productivity Equation", howto: "Schedule distraction-free blocks for cognitively demanding work and remove communication channels." },
-  { level: "modstrong", icon: "moon", name: "Sleep stimulus control", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time." },
-  { level: "modstrong", icon: "alarm-clock", name: "Fixed wake time", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm." },
+  { level: "modstrong", icon: "footprints", name: "Step-count target", howto: "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy." },
+  { level: "modstrong", icon: "wind", name: "Diaphragmatic breathing", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes." },
+  { level: "modstrong", icon: "clipboard", name: "Action planning", howto: "Specify exactly when, where, how, and with what materials you will act." },
+  { level: "modstrong", icon: "gift", name: "Temptation bundling", howto: "Pair a beneficial task with an indulgence you only allow during that task." },
+  { level: "modstrong", icon: "sprout", name: "Tiny Habits", howto: "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion." },
+  { level: "modstrong", icon: "inbox", name: "GTD capture", howto: "Put every open loop into one trusted inbox, clarify the next action, and review it regularly." },
+  { level: "modstrong", icon: "home", name: "Environmental design", howto: "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient." },
+  { level: "modstrong", icon: "compass", name: "Values clarification", howto: "Write the life domains that matter most and choose actions aligned with them." },
+  { level: "modstrong", icon: "cloud", name: "Cognitive defusion", howto: "Label thoughts as thoughts, such as 'I'm having the thought that…,' instead of treating them as commands." },
+  { level: "modstrong", icon: "heart", name: "Gratitude journaling", howto: "Write three specific things you feel grateful for each day." },
+  { level: "modstrong", icon: "star", name: "Three Good Things", howto: "Each evening, list three good events from the day and your role in them (or why they happened)." },
+  { level: "modstrong", icon: "eye", name: "Process visualization", howto: "Mentally rehearse the steps, obstacles, and responses rather than only the desired outcome." },
+  { level: "modstrong", icon: "megaphone", name: "Assertiveness scripts", howto: "State the facts, your feeling, your request, and your boundary in calm direct language." },
+  { level: "modstrong", icon: "ear", name: "Active listening", howto: "Reflect the other person's point and emotion before offering advice or disagreement." },
+  { level: "modstrong", icon: "sunrise", name: "Morning light", howto: "Get outdoor light soon after waking, ideally while moving and without sunglasses." },
+  { level: "modstrong", icon: "calendar", name: "Daily review", howto: "At day's end, note what happened, what worked, what failed, and tomorrow's priority." },
+  { level: "modstrong", icon: "scroll-text", name: "Personal mission", howto: "Draft a short statement of principles, roles, and long-term aims and revisit it regularly." },
+  { level: "modstrong", icon: "pie-chart", name: "Life audit", howto: "Rate major life domains, choose the lowest rated high-value domain, and set one action." },
+  { level: "modstrong", icon: "headphones", name: "Deep Work", howto: "Schedule distraction-free blocks for cognitively demanding work and remove communication channels." },
+  { level: "modstrong", icon: "moon", name: "Sleep stimulus control", howto: "Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time." },
+  { level: "modstrong", icon: "alarm-clock", name: "Fixed wake time", howto: "Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm." },
 
   // MODERATE EVIDENCE
-  { level: "moderate", icon: "target", name: "SMART goals", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Convert a vague aim into a Specific, Measurable, Achievable, Relevant, and Time-bound target." },
-  { level: "moderate", icon: "lightbulb", name: "WOOP", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Name the Wish, Outcome, Obstacle, and Plan an if-then response to the obstacle." },
-  { level: "moderate", icon: "timer", name: "Pomodoro Technique", lever: "Lever 8 · Tune the Productivity Equation", howto: "Work on one task for about 25 minutes, take a short break, and repeat." },
-  { level: "moderate", icon: "calendar", name: "Time blocking", lever: "Lever 8 · Tune the Productivity Equation", howto: "Reserve calendar blocks in advance for specific work you want to do during them, for time to rest, for time to exercise, etc." },
-  { level: "moderate", icon: "user-check", name: "Accountability partner", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Tell someone the exact commitment and report completion on a fixed schedule." },
-  { level: "moderate", icon: "heart-handshake", name: "Self-compassion break", lever: "Lever 11 · Choose Your Attitude", howto: "Notice suffering, remind yourself it is human, and speak to yourself as a good coach would." },
-  { level: "moderate", icon: "hand-heart", name: "Acts of kindness", lever: "Lever 11 · Choose Your Attitude", howto: "Perform small concrete helpful acts and notice their effects on others and yourself." },
-  { level: "moderate", icon: "pen-line", name: "Expressive writing", lever: "Lever 11 · Choose Your Attitude", howto: "Privately write for 15–20 minutes about a stressful event and what it means." },
-  { level: "moderate", icon: "star", name: "Best Possible Self", lever: "Lever 11 · Choose Your Attitude", howto: "Write vividly about a realistic future in which important goals have gone well." },
-  { level: "moderate", icon: "trophy", name: "Strengths use", lever: "Lever 2 · Uncover Your Guiding Foundations", howto: "Identify a character strength and use it in a new way each day." },
-  { level: "moderate", icon: "notebook", name: "Daily journaling", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Write a brief uncensored account of thoughts, decisions, and lessons each day." },
-  { level: "moderate", icon: "check-circle", name: "No Zero Days", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Do at least one tiny action toward the goal every day, even on bad days." },
-  { level: "moderate", icon: "snowflake", name: "Cold exposure", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects." },
-  { level: "moderate", icon: "wind", name: "Breathwork systems", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery." },
-  { level: "moderate", icon: "waves", name: "Urge surfing", lever: "Lever 12 · Pay Attention", howto: "Notice craving sensations as waves, breathe, and wait without acting until they crest and fall." },
-  { level: "moderate", icon: "user", name: "Identity-based habits", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Treat each small behavior as evidence for the identity you want to strengthen." },
-  { level: "moderate", icon: "key", name: "Keystone habit", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Pick one habit likely to improve other behaviors or make other habits easier and work on developing that habit first." },
-  { level: "moderate", icon: "link", name: "Don't Break the Chain", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Mark each day you complete the habit and try to preserve the streak." },
-  { level: "moderate", icon: "flag", name: "Eat the Frog", lever: "Lever 8 · Tune the Productivity Equation", howto: "Do the most aversive high-value task first in the workday." },
-  { level: "moderate", icon: "battery-low", name: "Dopamine fast", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Take a planned break from compulsive high-reward behaviors and replace them with low-stimulation activities." },
+  { level: "moderate", icon: "target", name: "SMART goals", howto: "Convert a vague aim into a Specific, Measurable, Achievable, Relevant, and Time-bound target." },
+  { level: "moderate", icon: "lightbulb", name: "WOOP", howto: "Name the Wish, Outcome, Obstacle, and Plan an if-then response to the obstacle." },
+  { level: "moderate", icon: "timer", name: "Pomodoro Technique", howto: "Work on one task for about 25 minutes, take a short break, and repeat." },
+  { level: "moderate", icon: "calendar", name: "Time blocking", howto: "Reserve calendar blocks in advance for specific work you want to do during them, for time to rest, for time to exercise, etc." },
+  { level: "moderate", icon: "user-check", name: "Accountability partner", howto: "Tell someone the exact commitment and report completion on a fixed schedule." },
+  { level: "moderate", icon: "heart-handshake", name: "Self-compassion break", howto: "Notice suffering, remind yourself it is human, and speak to yourself as a good coach would." },
+  { level: "moderate", icon: "hand-heart", name: "Acts of kindness", howto: "Perform small concrete helpful acts and notice their effects on others and yourself." },
+  { level: "moderate", icon: "pen-line", name: "Expressive writing", howto: "Privately write for 15–20 minutes about a stressful event and what it means." },
+  { level: "moderate", icon: "star", name: "Best Possible Self", howto: "Write vividly about a realistic future in which important goals have gone well." },
+  { level: "moderate", icon: "trophy", name: "Strengths use", howto: "Identify a character strength and use it in a new way each day." },
+  { level: "moderate", icon: "notebook", name: "Daily journaling", howto: "Write a brief uncensored account of thoughts, decisions, and lessons each day." },
+  { level: "moderate", icon: "check-circle", name: "No Zero Days", howto: "Do at least one tiny action toward the goal every day, even on bad days." },
+  { level: "moderate", icon: "snowflake", name: "Cold exposure", howto: "Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects." },
+  { level: "moderate", icon: "wind", name: "Breathwork systems", howto: "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery." },
+  { level: "moderate", icon: "waves", name: "Urge surfing", howto: "Notice craving sensations as waves, breathe, and wait without acting until they crest and fall." },
+  { level: "moderate", icon: "user", name: "Identity-based habits", howto: "Treat each small behavior as evidence for the identity you want to strengthen." },
+  { level: "moderate", icon: "key", name: "Keystone habit", howto: "Pick one habit likely to improve other behaviors or make other habits easier and work on developing that habit first." },
+  { level: "moderate", icon: "link", name: "Don't Break the Chain", howto: "Mark each day you complete the habit and try to preserve the streak." },
+  { level: "moderate", icon: "flag", name: "Eat the Frog", howto: "Do the most aversive high-value task first in the workday." },
+  { level: "moderate", icon: "battery-low", name: "Dopamine fast", howto: "Take a planned break from compulsive high-reward behaviors and replace them with low-stimulation activities." },
 
   // QUESTIONABLE
-  { level: "questionable", icon: "user", name: "Power posing", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Stand or sit expansively for a minute or two before a challenging interaction." },
-  { level: "questionable", icon: "hand", name: "EFT / tapping", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity." },
-  { level: "questionable", icon: "image", name: "Vision board", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Create a collage of goal-related images or words." },
-  { level: "questionable", icon: "message-circle", name: "Positive affirmations", lever: "Lever 11 · Choose Your Attitude", howto: "Repeat short positive statements about yourself (e.g., 'I am strong and capable.')." },
-  { level: "questionable", icon: "clover", name: "Lucky Girl Syndrome", lever: "Lever 11 · Choose Your Attitude", howto: "Repeat that things tend to work out for you and look for opportunities that match the expectation." },
-  { level: "questionable", icon: "feather", name: "Scripting manifestation", lever: "Lever 11 · Choose Your Attitude", howto: "Write a future scene as if the desired outcome has already happened." },
-  { level: "questionable", icon: "headphones", name: "Binaural beats", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Listen to two slightly different tones through headphones to try to induce a target mental state." },
-  { level: "questionable", icon: "puzzle", name: "Brain training games", lever: "Lever 12 · Pay Attention", howto: "Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence." },
-  { level: "questionable", icon: "hourglass", name: "10,000-hour rule", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints." },
-  { level: "questionable", icon: "bed-double", name: "Polyphasic sleep", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Split sleep into many short naps to reduce total sleep." },
+  { level: "questionable", icon: "user", name: "Power posing", howto: "Stand or sit expansively for a minute or two before a challenging interaction." },
+  { level: "questionable", icon: "hand", name: "EFT / tapping", howto: "While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity." },
+  { level: "questionable", icon: "image", name: "Vision board", howto: "Create a collage of goal-related images or words." },
+  { level: "questionable", icon: "message-circle", name: "Positive affirmations", howto: "Repeat short positive statements about yourself (e.g., 'I am strong and capable.')." },
+  { level: "questionable", icon: "clover", name: "Lucky Girl Syndrome", howto: "Repeat that things tend to work out for you and look for opportunities that match the expectation." },
+  { level: "questionable", icon: "feather", name: "Scripting manifestation", howto: "Write a future scene as if the desired outcome has already happened." },
+  { level: "questionable", icon: "headphones", name: "Binaural beats", howto: "Listen to two slightly different tones through headphones to try to induce a target mental state." },
+  { level: "questionable", icon: "puzzle", name: "Brain training games", howto: "Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence." },
+  { level: "questionable", icon: "hourglass", name: "10,000-hour rule", howto: "Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints." },
+  { level: "questionable", icon: "bed-double", name: "Polyphasic sleep", howto: "Split sleep into many short naps to reduce total sleep." },
 
   // UNSUPPORTED
-  { level: "unsupported", icon: "hash", name: "369 method", lever: "Lever 11 · Choose Your Attitude", howto: "Write a desired outcome 3 times in the morning, 6 times midday, and 9 times at night." },
-  { level: "unsupported", icon: "volume-2", name: "Subliminal audio", lever: "Lever 11 · Choose Your Attitude", howto: "Play affirming messages below conscious audibility while relaxing or sleeping." },
-  { level: "unsupported", icon: "music", name: "Solfeggio frequencies", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Play tracks marketed as specific healing frequencies during meditation, rest, or work." },
-  { level: "unsupported", icon: "gem", name: "Crystals for healing", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Hold or display a crystal to balance energy or heal yourself." },
-  { level: "unsupported", icon: "moon-star", name: "Astrology planning", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Choose goals or timing based on horoscopes, signs, or transits." },
-  { level: "unsupported", icon: "calculator", name: "Numerology goals", lever: "Lever 3 · Actualize Your Guiding Foundations", howto: "Select goals, dates, or habits based on personally meaningful numbers." },
-  { level: "unsupported", icon: "magnet", name: "Law of Attraction", lever: "Lever 11 · Choose Your Attitude", howto: "Think, visualize, or 'vibrate' as if the desired outcome is inevitable or has already happened." },
-  { level: "unsupported", icon: "shuffle", name: "Multitasking hack", lever: "Lever 8 · Tune the Productivity Equation", howto: "Rapidly switch between tasks or media streams to get multiple things done at once." },
-  { level: "unsupported", icon: "glass-water", name: "Detox cleanses", lever: "Lever 6 · Shift Your Body to Shift Your Mind", howto: "Use juices, teas, fasting, or colon cleanses to 'flush toxins' from the body." },
+  { level: "unsupported", icon: "hash", name: "369 method", howto: "Write a desired outcome 3 times in the morning, 6 times midday, and 9 times at night." },
+  { level: "unsupported", icon: "volume-2", name: "Subliminal audio", howto: "Play affirming messages below conscious audibility while relaxing or sleeping." },
+  { level: "unsupported", icon: "music", name: "Solfeggio frequencies", howto: "Play tracks marketed as specific healing frequencies during meditation, rest, or work." },
+  { level: "unsupported", icon: "gem", name: "Crystals for healing", howto: "Hold or display a crystal to balance energy or heal yourself." },
+  { level: "unsupported", icon: "moon-star", name: "Astrology planning", howto: "Choose goals or timing based on horoscopes, signs, or transits." },
+  { level: "unsupported", icon: "calculator", name: "Numerology goals", howto: "Select goals, dates, or habits based on personally meaningful numbers." },
+  { level: "unsupported", icon: "magnet", name: "Law of Attraction", howto: "Think, visualize, or 'vibrate' as if the desired outcome is inevitable or has already happened." },
+  { level: "unsupported", icon: "shuffle", name: "Multitasking hack", howto: "Rapidly switch between tasks or media streams to get multiple things done at once." },
+  { level: "unsupported", icon: "glass-water", name: "Detox cleanses", howto: "Use juices, teas, fasting, or colon cleanses to 'flush toxins' from the body." },
 ];
 
 /* ----------------------------- BUILD DOM ----------------------------- */
@@ -975,7 +965,6 @@ TIERS.forEach((tier, i) => {
     el.id = id;
     el.dataset.name = t.name;
     el.dataset.howto = t.howto;
-    el.dataset.lever = t.lever;
     el.dataset.color = tier.color;
     el.dataset.level = tier.key;
     el.innerHTML = `
@@ -1008,13 +997,11 @@ lucide.createIcons();
 
 /* ------------------------------ TOOLTIP ------------------------------ */
 const tooltip = document.getElementById("tooltip");
-const ttLever = tooltip.querySelector(".tt-lever");
 const ttName = tooltip.querySelector(".tt-name");
 const ttHowto = tooltip.querySelector(".tt-howto");
 
 document.querySelectorAll(".item").forEach(item => {
   item.addEventListener("mouseenter", e => {
-    ttLever.textContent = item.dataset.lever;
     ttName.textContent = item.dataset.name;
     ttHowto.textContent = item.dataset.howto;
     tooltip.style.setProperty("--tt-color",
