@@ -691,7 +691,9 @@
     .tier[data-tier="questionable"] .tier-inner { max-width: 58%; }
     .tier[data-tier="unsupported"]  .tier-inner { max-width: 50%; }
     .callout {
-      position: static;
+      position: relative;   /* sit above the band, which is absolute z-index:0 */
+      z-index: 4;
+      top: auto; right: auto;   /* clear the desktop circle's offsets */
       transform: none;
       width: auto;
       min-height: 0;
