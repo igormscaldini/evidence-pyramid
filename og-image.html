@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Montserrat:wght@600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,600;6..12,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; }
+  .card {
+    width: 1200px; height: 630px; position: relative; overflow: hidden;
+    background: radial-gradient(125% 95% at 50% 0%, #f5faff 0%, #e7f1fc 52%, #d6e6f7 100%);
+    font-family: "Nunito Sans", sans-serif;
+    display: flex; align-items: center;
+  }
+  .left { width: 612px; padding: 0 0 0 76px; }
+  .eyebrow {
+    font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 16px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #0885f8;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 26px;
+  }
+  .eyebrow svg { width: 23px; height: 23px; }
+  h1 {
+    font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 64px;
+    line-height: 1.02; letter-spacing: -0.012em; color: #233b47; margin-bottom: 28px;
+  }
+  .sub {
+    font-size: 23px; font-weight: 600; line-height: 1.45; color: #54656f;
+    max-width: 482px; margin-bottom: 40px;
+  }
+  .foot { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 15.5px; color: #233b47; letter-spacing: 0.01em; }
+  .foot b { color: #0885f8; font-weight: 800; }
+  .right { flex: 1; height: 100%; position: relative; }
+  .right svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .tlabel {
+    font-family: "Montserrat", sans-serif; font-weight: 800; fill: #fff;
+    text-anchor: middle; letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0885f8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        ClearerThinking.org
+      </div>
+      <h1>The Self-Help<br>Evidence Pyramid</h1>
+      <div class="sub">84 popular self-improvement techniques, ranked by how strongly the science actually backs them.</div>
+      <div class="foot">Made by <b>Clearer Thinking</b></div>
+    </div>
+    <div class="right">
+      <svg viewBox="0 0 600 630" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="g0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0885f8"/><stop offset="1" stop-color="#0f9dba"/></linearGradient>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f9dba"/><stop offset="1" stop-color="#8ac03f"/></linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ac03f"/><stop offset="1" stop-color="#fbae0e"/></linearGradient>
+          <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbae0e"/><stop offset="1" stop-color="#ed6624"/></linearGradient>
+          <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ed6624"/><stop offset="1" stop-color="#e23b2e"/></linearGradient>
+          <filter id="ds" x="-30%" y="-20%" width="160%" height="140%">
+            <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#233b47" flood-opacity="0.22"/>
+          </filter>
+          <filter id="ts" x="-20%" y="-40%" width="140%" height="180%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1.4" flood-color="#233b47" flood-opacity="0.45"/>
+          </filter>
+        </defs>
+        <g filter="url(#ds)">
+          <polygon points="70,80 530,80 498,176 102,176" fill="url(#g0)"/>
+          <polygon points="102,176 498,176 466,272 134,272" fill="url(#g1)"/>
+          <polygon points="134,272 466,272 434,368 166,368" fill="url(#g2)"/>
+          <polygon points="166,368 434,368 402,464 198,464" fill="url(#g3)"/>
+          <polygon points="198,464 402,464 370,560 230,560" fill="url(#g4)"/>
+        </g>
+        <g filter="url(#ts)">
+          <text class="tlabel" x="300" y="135" font-size="25">STRONG</text>
+          <text class="tlabel" x="300" y="230" font-size="18.5">MODERATE-TO-STRONG</text>
+          <text class="tlabel" x="300" y="327" font-size="20">MODERATE</text>
+          <text class="tlabel" x="300" y="423" font-size="16.5">QUESTIONABLE</text>
+          <text class="tlabel" x="300" y="518" font-size="14.5">UNSUPPORTED</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
