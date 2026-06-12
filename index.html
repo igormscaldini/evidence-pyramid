@@ -7,9 +7,21 @@
 <meta name="description" content="The Self-Help Evidence Pyramid from ClearerThinking.org ranks 84 popular self-improvement techniques by how strongly the research supports them — from strong evidence to no evidence at all.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
+<link rel="canonical" href="https://igormscaldini.github.io/evidence-pyramid/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Clearer Thinking">
+<meta name="theme-color" content="#0885f8">
 <meta property="og:title" content="The Self-Help Evidence Pyramid | ClearerThinking.org">
 <meta property="og:description" content="84 popular self-help techniques ranked by how strongly the research supports them — by ClearerThinking.org.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://igormscaldini.github.io/evidence-pyramid/">
+<meta property="og:site_name" content="Clearer Thinking">
+<meta property="og:image" content="https://igormscaldini.github.io/evidence-pyramid/book.png">
+<meta property="og:image:alt" content="The 12 Levers book by Spencer Greenberg, PhD and Jeremy Stevenson, PhD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Self-Help Evidence Pyramid">
+<meta name="twitter:description" content="84 popular self-help techniques ranked by how strongly the research supports them.">
+<meta name="twitter:image" content="https://igormscaldini.github.io/evidence-pyramid/book.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Montserrat:wght@500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
@@ -664,6 +676,11 @@
     100% { box-shadow: 0 0 0 4px rgba(254, 203, 2, 0.95), 0 0 0 16px rgba(254, 203, 2, 0); }
   }
 
+  /* noscript SEO fallback — only rendered when JavaScript is disabled */
+  .seo-fallback { max-width: 760px; margin: 30px auto 50px; padding: 0 22px; font-family: "Nunito Sans", sans-serif; color: var(--txt-dark); line-height: 1.55; }
+  .seo-fallback h2 { font-family: "Montserrat", sans-serif; color: var(--dark-accent); margin: 24px 0 8px; }
+  .seo-fallback li { margin-bottom: 7px; }
+
   /* ---------------------------- RESPONSIVE -------------------------- */
   @media (max-width: 1239px) {
     .pyramid { max-width: 100%; }
@@ -697,16 +714,1364 @@
   }
   @media (max-width: 560px) {
     .page { padding: 40px 12px 56px; }
-    .item { width: 92px; }
-    .icon-disc { width: 46px; height: 46px; }
-    .icon-disc svg { width: 22px; height: 22px; }
+    .tier-inner { padding: 24px 10px 26px; }
+    /* bands are flattened on mobile (see setBandShapes in JS); keep every card
+       block inside the colored shape with one shared, conservative width */
+    .tier[data-tier="strong"]       .tier-inner,
+    .tier[data-tier="modstrong"]    .tier-inner,
     .tier[data-tier="moderate"]     .tier-inner,
     .tier[data-tier="questionable"] .tier-inner,
-    .tier[data-tier="unsupported"]  .tier-inner { max-width: 90%; }
+    .tier[data-tier="unsupported"]  .tier-inner { max-width: 88%; }
+    .items { gap: 10px 9px; }
+    .item-row { gap: 9px; }
+    .item { width: 84px; padding: 11px 6px; }
+    .item .label { font-size: 11.5px; }
+    .icon-disc { width: 46px; height: 46px; }
+    .icon-disc svg { width: 22px; height: 22px; }
+    .callout { margin: 6px auto 2px; }
+  }
+  @media (max-width: 380px) {
+    .page { padding: 36px 8px 52px; }
+    .item { width: 78px; }
+    .items { gap: 9px 7px; }
+    .item-row { gap: 7px; }
+    .item .label { font-size: 11px; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://igormscaldini.github.io/evidence-pyramid/#org",
+      "name": "Clearer Thinking",
+      "url": "https://www.clearerthinking.org"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://igormscaldini.github.io/evidence-pyramid/#site",
+      "url": "https://igormscaldini.github.io/evidence-pyramid/",
+      "name": "The Self-Help Evidence Pyramid",
+      "publisher": {
+        "@id": "https://igormscaldini.github.io/evidence-pyramid/#org"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://igormscaldini.github.io/evidence-pyramid/#webpage",
+      "url": "https://igormscaldini.github.io/evidence-pyramid/",
+      "name": "The Self-Help Evidence Pyramid — 84 Techniques Ranked by Evidence",
+      "isPartOf": {
+        "@id": "https://igormscaldini.github.io/evidence-pyramid/#site"
+      },
+      "about": "Evidence-based ranking of popular self-help and self-improvement techniques",
+      "description": "84 popular self-improvement techniques ranked by how strongly scientific research supports them, from strong evidence to no evidence."
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://igormscaldini.github.io/evidence-pyramid/#list",
+      "name": "Self-help techniques ranked by strength of scientific evidence",
+      "numberOfItems": 84,
+      "itemListOrder": "https://schema.org/ItemListOrderDescending",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Aerobic exercise",
+            "text": "Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Resistance training",
+            "text": "Train major muscle groups 2–3 times per week with progressive overload and enough recovery.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "HowToTip",
+            "name": "CBT Thought Record",
+            "text": "Use a structured worksheet to log a situation, the emotion it triggered, the automatic thought, the evidence for and against it, and a balanced alternative.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "HowToTip",
+            "name": "ABC Technique",
+            "text": "See how a Belief (B) — not the Activating event (A) itself — drives your emotional Consequence (C), then dispute that belief to change the reaction.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Cognitive restructuring",
+            "text": "Catch a distorted or exaggerated thought, weigh the actual evidence for and against it, and reframe it in more accurate, balanced terms.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Behavioral activation",
+            "text": "Schedule small rewarding or valued actions before motivation appears, then track mood afterward.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Graded exposure",
+            "text": "Build a fear hierarchy and repeatedly face feared situations without escaping or using safety behaviors, advancing as each becomes manageable.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "HowToTip",
+            "name": "ERP (exposure + prevention)",
+            "text": "Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Problem-solving therapy",
+            "text": "Define the problem, generate options, choose one, act, and review the result.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Worry time",
+            "text": "Postpone worries to a scheduled 10–20 minute window and redirect attention when they arise outside it.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Progressive relaxation",
+            "text": "Tense and release each major muscle group in sequence while noticing the contrast.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Mindfulness meditation",
+            "text": "Focus on breath, body, or sound, and gently return attention whenever the mind wanders.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Sleep restriction",
+            "text": "Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Implementation intentions",
+            "text": "Write a specific 'If situation X happens, then I will do behavior Y' plan.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Specific goal + feedback",
+            "text": "Set a hard but reachable target and compare progress against it regularly.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Self-monitoring",
+            "text": "Record the target behavior or outcome daily so patterns become visible.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Feedback loops",
+            "text": "Review tracked data, identify the next bottleneck, and change one variable at a time.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Commitment device",
+            "text": "Lock in money, reputation, or access ahead of time so that not following through on the desired action carries a real cost.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Stable-cue habits",
+            "text": "Repeat one small behavior after the same cue in the same context until it becomes automatic.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Habit stacking",
+            "text": "Attach a new behavior immediately after an existing reliable routine.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Default design",
+            "text": "Make the good option the default and add extra steps to the bad option.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Social support",
+            "text": "Draw on others for emotional, practical, and informational support — through close relationships or a group pursuing the same goal.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Savoring",
+            "text": "Slow down, attend to pleasant details, and deliberately extend the positive experience.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 24,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Nature exposure",
+            "text": "Spend regular time walking, sitting, or exercising in green or blue spaces.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 25,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Step-count target",
+            "text": "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 26,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Diaphragmatic breathing",
+            "text": "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 27,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Action planning",
+            "text": "Specify exactly when, where, how, and with what materials you will act.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 28,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Temptation bundling",
+            "text": "Pair a beneficial task with an indulgence you only allow during that task.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 29,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Tiny Habits",
+            "text": "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 30,
+          "item": {
+            "@type": "HowToTip",
+            "name": "GTD capture",
+            "text": "Put every open loop into one trusted inbox, clarify the next action, and review it regularly.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 31,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Environmental design",
+            "text": "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 32,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Values clarification",
+            "text": "Work out what you most deeply value in life, then use those values to decide which goals are worth setting and pursuing.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 33,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Cognitive defusion",
+            "text": "Step back and relate to thoughts as passing mental events rather than literal truths or commands — using techniques like labeling, repeating, or otherwise creating distance from them.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 34,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Gratitude journaling",
+            "text": "Write three specific things you feel grateful for each day.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 35,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Three Good Things",
+            "text": "Each evening, list three good events from the day and your role in them (or why they happened).",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 36,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Process visualization",
+            "text": "Before a specific task or performance, vividly rehearse yourself carrying out each step and technique well — the execution itself, not just the end result.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 37,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Assertiveness scripts",
+            "text": "Describe the facts, express your feeling, specify the request, and state the consequences — in calm, direct language.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 38,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Active listening",
+            "text": "Reflect the other person's point and emotion before offering advice or disagreement.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 39,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Morning light",
+            "text": "Get bright light soon after waking — outdoors when possible, or from a light box — to anchor your circadian rhythm.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 40,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Daily review",
+            "text": "At day's end, note what happened, what worked, what failed, and tomorrow's priority.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 41,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Personal mission",
+            "text": "Draft a short statement of principles, roles, and long-term aims and revisit it regularly.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 42,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Life audit",
+            "text": "Rate major life domains, choose the lowest rated high-value domain, and set one action.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 43,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Deep Work",
+            "text": "Schedule distraction-free blocks for cognitively demanding work and remove communication channels.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 44,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Sleep stimulus control",
+            "text": "Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 45,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Fixed wake time",
+            "text": "Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate-to-Strong Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 46,
+          "item": {
+            "@type": "HowToTip",
+            "name": "SMART goals",
+            "text": "Convert a vague aim into a Specific, Measurable, Achievable, Relevant, and Time-bound target.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 47,
+          "item": {
+            "@type": "HowToTip",
+            "name": "WOOP",
+            "text": "Name the Wish, Outcome, Obstacle, and Plan an if-then response to the obstacle.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 48,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Pomodoro Technique",
+            "text": "Work on one task for about 25 minutes, take a short break, and repeat.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 49,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Time blocking",
+            "text": "Reserve calendar blocks in advance for specific work you want to do during them, for time to rest, for time to exercise, etc.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 50,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Accountability partner",
+            "text": "Tell someone the exact commitment and report completion on a fixed schedule.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 51,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Self-compassion break",
+            "text": "Notice suffering, remind yourself it is human, and speak to yourself as a good coach would.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 52,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Acts of kindness",
+            "text": "Perform small concrete helpful acts and notice their effects on others and yourself.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 53,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Expressive writing",
+            "text": "Privately write for 15–20 minutes about a stressful event and what it means.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 54,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Best Possible Self",
+            "text": "Write vividly about a realistic future in which important goals have gone well.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 55,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Strengths use",
+            "text": "Identify a character strength and use it in a new way each day.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 56,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Daily journaling",
+            "text": "Write a brief uncensored account of thoughts, decisions, and lessons each day.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 57,
+          "item": {
+            "@type": "HowToTip",
+            "name": "No Zero Days",
+            "text": "Do at least one tiny action toward the goal every day, even on bad days.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 58,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Cold exposure",
+            "text": "Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 59,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Breathwork systems",
+            "text": "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 60,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Urge surfing",
+            "text": "Notice craving sensations as waves, breathe, and wait without acting until they crest and fall.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 61,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Identity-based habits",
+            "text": "Treat each small behavior as evidence for the identity you want to strengthen.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 62,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Keystone habit",
+            "text": "Pick one habit likely to improve other behaviors or make other habits easier and work on developing that habit first.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 63,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Don't Break the Chain",
+            "text": "Mark each day you complete the habit and try to preserve the streak.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 64,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Eat the Frog",
+            "text": "Do the most aversive high-value task first in the workday.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 65,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Dopamine fast",
+            "text": "Take a planned break from compulsive high-reward behaviors and replace them with low-stimulation activities.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 66,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Power posing",
+            "text": "Stand or sit expansively for a minute or two before a challenging interaction.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 67,
+          "item": {
+            "@type": "HowToTip",
+            "name": "EFT / tapping",
+            "text": "While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 68,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Vision board",
+            "text": "Create a collage of goal-related images or words.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 69,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Positive affirmations",
+            "text": "Repeat short positive statements about yourself (e.g., 'I am strong and capable.').",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 70,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Lucky Girl Syndrome",
+            "text": "Repeat that things tend to work out for you and look for opportunities that match the expectation.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 71,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Scripting manifestation",
+            "text": "Write a future scene as if the desired outcome has already happened.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 72,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Binaural beats",
+            "text": "Listen to two slightly different tones through headphones to try to induce a target mental state.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 73,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Brain training games",
+            "text": "Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 74,
+          "item": {
+            "@type": "HowToTip",
+            "name": "10,000-hour rule",
+            "text": "Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 75,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Polyphasic sleep",
+            "text": "Split sleep into many short naps to reduce total sleep.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Questionable Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 76,
+          "item": {
+            "@type": "HowToTip",
+            "name": "369 method",
+            "text": "Write a desired outcome 3 times in the morning, 6 times midday, and 9 times at night.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 77,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Subliminal audio",
+            "text": "Play affirming messages below conscious audibility while relaxing or sleeping.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 78,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Solfeggio frequencies",
+            "text": "Play tracks marketed as specific healing frequencies during meditation, rest, or work.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 79,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Crystals for healing",
+            "text": "Hold or display a crystal to balance energy or heal yourself.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 80,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Astrology planning",
+            "text": "Choose goals or timing based on horoscopes, signs, or transits.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 81,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Numerology goals",
+            "text": "Select goals, dates, or habits based on personally meaningful numbers.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 82,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Law of Attraction",
+            "text": "Think, visualize, or 'vibrate' as if the desired outcome is inevitable or has already happened.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 83,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Multitasking hack",
+            "text": "Rapidly switch between tasks or media streams to get multiple things done at once.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 84,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Detox cleanses",
+            "text": "Use juices, teas, fasting, or colon cleanses to 'flush toxins' from the body.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Unsupported / No Evidence"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
+<noscript>
+  <div class="seo-fallback">
+    <p>This interactive pyramid ranks 84 popular self-help techniques by how strongly scientific research supports them. Enable JavaScript for the interactive version. Full list below:</p>
+    <section>
+      <h2>Strong Evidence</h2>
+      <ul>
+        <li><strong>Aerobic exercise:</strong> Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days.</li>
+        <li><strong>Resistance training:</strong> Train major muscle groups 2–3 times per week with progressive overload and enough recovery.</li>
+        <li><strong>CBT Thought Record:</strong> Use a structured worksheet to log a situation, the emotion it triggered, the automatic thought, the evidence for and against it, and a balanced alternative.</li>
+        <li><strong>ABC Technique:</strong> See how a Belief (B) — not the Activating event (A) itself — drives your emotional Consequence (C), then dispute that belief to change the reaction.</li>
+        <li><strong>Cognitive restructuring:</strong> Catch a distorted or exaggerated thought, weigh the actual evidence for and against it, and reframe it in more accurate, balanced terms.</li>
+        <li><strong>Behavioral activation:</strong> Schedule small rewarding or valued actions before motivation appears, then track mood afterward.</li>
+        <li><strong>Graded exposure:</strong> Build a fear hierarchy and repeatedly face feared situations without escaping or using safety behaviors, advancing as each becomes manageable.</li>
+        <li><strong>ERP (exposure + prevention):</strong> Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior.</li>
+        <li><strong>Problem-solving therapy:</strong> Define the problem, generate options, choose one, act, and review the result.</li>
+        <li><strong>Worry time:</strong> Postpone worries to a scheduled 10–20 minute window and redirect attention when they arise outside it.</li>
+        <li><strong>Progressive relaxation:</strong> Tense and release each major muscle group in sequence while noticing the contrast.</li>
+        <li><strong>Mindfulness meditation:</strong> Focus on breath, body, or sound, and gently return attention whenever the mind wanders.</li>
+        <li><strong>Sleep restriction:</strong> Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves.</li>
+        <li><strong>Implementation intentions:</strong> Write a specific 'If situation X happens, then I will do behavior Y' plan.</li>
+        <li><strong>Specific goal + feedback:</strong> Set a hard but reachable target and compare progress against it regularly.</li>
+        <li><strong>Self-monitoring:</strong> Record the target behavior or outcome daily so patterns become visible.</li>
+        <li><strong>Feedback loops:</strong> Review tracked data, identify the next bottleneck, and change one variable at a time.</li>
+        <li><strong>Commitment device:</strong> Lock in money, reputation, or access ahead of time so that not following through on the desired action carries a real cost.</li>
+        <li><strong>Stable-cue habits:</strong> Repeat one small behavior after the same cue in the same context until it becomes automatic.</li>
+        <li><strong>Habit stacking:</strong> Attach a new behavior immediately after an existing reliable routine.</li>
+        <li><strong>Default design:</strong> Make the good option the default and add extra steps to the bad option.</li>
+        <li><strong>Social support:</strong> Draw on others for emotional, practical, and informational support — through close relationships or a group pursuing the same goal.</li>
+        <li><strong>Savoring:</strong> Slow down, attend to pleasant details, and deliberately extend the positive experience.</li>
+        <li><strong>Nature exposure:</strong> Spend regular time walking, sitting, or exercising in green or blue spaces.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Moderate-to-Strong Evidence</h2>
+      <ul>
+        <li><strong>Step-count target:</strong> Pick a realistic daily step target, track it, and increase it gradually when it becomes easy.</li>
+        <li><strong>Diaphragmatic breathing:</strong> Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.</li>
+        <li><strong>Action planning:</strong> Specify exactly when, where, how, and with what materials you will act.</li>
+        <li><strong>Temptation bundling:</strong> Pair a beneficial task with an indulgence you only allow during that task.</li>
+        <li><strong>Tiny Habits:</strong> Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion.</li>
+        <li><strong>GTD capture:</strong> Put every open loop into one trusted inbox, clarify the next action, and review it regularly.</li>
+        <li><strong>Environmental design:</strong> Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient.</li>
+        <li><strong>Values clarification:</strong> Work out what you most deeply value in life, then use those values to decide which goals are worth setting and pursuing.</li>
+        <li><strong>Cognitive defusion:</strong> Step back and relate to thoughts as passing mental events rather than literal truths or commands — using techniques like labeling, repeating, or otherwise creating distance from them.</li>
+        <li><strong>Gratitude journaling:</strong> Write three specific things you feel grateful for each day.</li>
+        <li><strong>Three Good Things:</strong> Each evening, list three good events from the day and your role in them (or why they happened).</li>
+        <li><strong>Process visualization:</strong> Before a specific task or performance, vividly rehearse yourself carrying out each step and technique well — the execution itself, not just the end result.</li>
+        <li><strong>Assertiveness scripts:</strong> Describe the facts, express your feeling, specify the request, and state the consequences — in calm, direct language.</li>
+        <li><strong>Active listening:</strong> Reflect the other person's point and emotion before offering advice or disagreement.</li>
+        <li><strong>Morning light:</strong> Get bright light soon after waking — outdoors when possible, or from a light box — to anchor your circadian rhythm.</li>
+        <li><strong>Daily review:</strong> At day's end, note what happened, what worked, what failed, and tomorrow's priority.</li>
+        <li><strong>Personal mission:</strong> Draft a short statement of principles, roles, and long-term aims and revisit it regularly.</li>
+        <li><strong>Life audit:</strong> Rate major life domains, choose the lowest rated high-value domain, and set one action.</li>
+        <li><strong>Deep Work:</strong> Schedule distraction-free blocks for cognitively demanding work and remove communication channels.</li>
+        <li><strong>Sleep stimulus control:</strong> Use bed only for sleep and sex, leave if awake too long, and keep a consistent wake time.</li>
+        <li><strong>Fixed wake time:</strong> Wake at the same time every day, including weekends, to stabilize the sleep-wake rhythm.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Moderate Evidence</h2>
+      <ul>
+        <li><strong>SMART goals:</strong> Convert a vague aim into a Specific, Measurable, Achievable, Relevant, and Time-bound target.</li>
+        <li><strong>WOOP:</strong> Name the Wish, Outcome, Obstacle, and Plan an if-then response to the obstacle.</li>
+        <li><strong>Pomodoro Technique:</strong> Work on one task for about 25 minutes, take a short break, and repeat.</li>
+        <li><strong>Time blocking:</strong> Reserve calendar blocks in advance for specific work you want to do during them, for time to rest, for time to exercise, etc.</li>
+        <li><strong>Accountability partner:</strong> Tell someone the exact commitment and report completion on a fixed schedule.</li>
+        <li><strong>Self-compassion break:</strong> Notice suffering, remind yourself it is human, and speak to yourself as a good coach would.</li>
+        <li><strong>Acts of kindness:</strong> Perform small concrete helpful acts and notice their effects on others and yourself.</li>
+        <li><strong>Expressive writing:</strong> Privately write for 15–20 minutes about a stressful event and what it means.</li>
+        <li><strong>Best Possible Self:</strong> Write vividly about a realistic future in which important goals have gone well.</li>
+        <li><strong>Strengths use:</strong> Identify a character strength and use it in a new way each day.</li>
+        <li><strong>Daily journaling:</strong> Write a brief uncensored account of thoughts, decisions, and lessons each day.</li>
+        <li><strong>No Zero Days:</strong> Do at least one tiny action toward the goal every day, even on bad days.</li>
+        <li><strong>Cold exposure:</strong> Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects.</li>
+        <li><strong>Breathwork systems:</strong> Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.</li>
+        <li><strong>Urge surfing:</strong> Notice craving sensations as waves, breathe, and wait without acting until they crest and fall.</li>
+        <li><strong>Identity-based habits:</strong> Treat each small behavior as evidence for the identity you want to strengthen.</li>
+        <li><strong>Keystone habit:</strong> Pick one habit likely to improve other behaviors or make other habits easier and work on developing that habit first.</li>
+        <li><strong>Don't Break the Chain:</strong> Mark each day you complete the habit and try to preserve the streak.</li>
+        <li><strong>Eat the Frog:</strong> Do the most aversive high-value task first in the workday.</li>
+        <li><strong>Dopamine fast:</strong> Take a planned break from compulsive high-reward behaviors and replace them with low-stimulation activities.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Questionable Evidence</h2>
+      <ul>
+        <li><strong>Power posing:</strong> Stand or sit expansively for a minute or two before a challenging interaction.</li>
+        <li><strong>EFT / tapping:</strong> While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity.</li>
+        <li><strong>Vision board:</strong> Create a collage of goal-related images or words.</li>
+        <li><strong>Positive affirmations:</strong> Repeat short positive statements about yourself (e.g., 'I am strong and capable.').</li>
+        <li><strong>Lucky Girl Syndrome:</strong> Repeat that things tend to work out for you and look for opportunities that match the expectation.</li>
+        <li><strong>Scripting manifestation:</strong> Write a future scene as if the desired outcome has already happened.</li>
+        <li><strong>Binaural beats:</strong> Listen to two slightly different tones through headphones to try to induce a target mental state.</li>
+        <li><strong>Brain training games:</strong> Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence.</li>
+        <li><strong>10,000-hour rule:</strong> Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints.</li>
+        <li><strong>Polyphasic sleep:</strong> Split sleep into many short naps to reduce total sleep.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Unsupported / No Evidence</h2>
+      <ul>
+        <li><strong>369 method:</strong> Write a desired outcome 3 times in the morning, 6 times midday, and 9 times at night.</li>
+        <li><strong>Subliminal audio:</strong> Play affirming messages below conscious audibility while relaxing or sleeping.</li>
+        <li><strong>Solfeggio frequencies:</strong> Play tracks marketed as specific healing frequencies during meditation, rest, or work.</li>
+        <li><strong>Crystals for healing:</strong> Hold or display a crystal to balance energy or heal yourself.</li>
+        <li><strong>Astrology planning:</strong> Choose goals or timing based on horoscopes, signs, or transits.</li>
+        <li><strong>Numerology goals:</strong> Select goals, dates, or habits based on personally meaningful numbers.</li>
+        <li><strong>Law of Attraction:</strong> Think, visualize, or 'vibrate' as if the desired outcome is inevitable or has already happened.</li>
+        <li><strong>Multitasking hack:</strong> Rapidly switch between tasks or media streams to get multiple things done at once.</li>
+        <li><strong>Detox cleanses:</strong> Use juices, teas, fasting, or colon cleanses to 'flush toxins' from the body.</li>
+      </ul>
+    </section>
+  </div>
+</noscript>
 <div class="page">
 
   <!-- ============================ HEADER ============================ -->
@@ -740,7 +2105,7 @@
     </a>
     <h1>The Self-Help<br>Evidence Pyramid</h1>
     <p class="subtitle">Eighty-four popular self-improvement techniques reviewed for <a class="book-link" href="https://www.clearerthinking.org/the-12-levers-book">The 12 Levers book</a> by Spencer Greenberg, PhD, and Jeremy Stevenson, PhD. They're sorted by how strongly the research actually supports them.</p>
-    <p class="subtitle hover-hint">Hover over any card to see how it's done.</p>
+    <p class="subtitle hover-hint">Tap or hover any card to see how it's done.</p>
   </header>
 
   <!-- ============================ TOOLBAR =========================== -->
@@ -1122,6 +2487,7 @@ const TECHNIQUES = [
 /* ----------------------------- BUILD DOM ----------------------------- */
 const pyramid = document.getElementById("pyramid");
 const INDEX = [];          // searchable record per card
+const bandPolys = [];      // funnel band polygons, reshaped per viewport
 let cardCounter = 0;
 
 // Render a technique name across two balanced lines (single words stay one line)
@@ -1169,6 +2535,7 @@ TIERS.forEach((tier, i) => {
     </aside>
   `;
   pyramid.appendChild(section);
+  bandPolys.push({ poly: section.querySelector(".band polygon"), inset: tier.inset });
 
   const container = section.querySelector(`#items-${tier.key}`);
 
@@ -1210,6 +2577,28 @@ TIERS.forEach((tier, i) => {
 });
 
 lucide.createIcons();
+
+/* --------------------- RESPONSIVE FUNNEL SHAPE ----------------------- */
+/* The colored bands are SVG trapezoids. On narrow screens a deep taper
+   pushes fixed-width cards outside the shape, so we flatten the taper as
+   the viewport shrinks — keeping the funnel look on desktop while making
+   sure every card stays inside its band on mobile. */
+function setBandShapes() {
+  const w = window.innerWidth;
+  const scale = w <= 560 ? 0.16 : w <= 760 ? 0.42 : w <= 1000 ? 0.7 : 1;
+  bandPolys.forEach(({ poly, inset }) => {
+    if (!poly) return;
+    const t = +(inset[0] * scale).toFixed(2);
+    const b = +(inset[1] * scale).toFixed(2);
+    poly.setAttribute("points", `${t},0 ${100 - t},0 ${100 - b},100 ${b},100`);
+  });
+}
+setBandShapes();
+let bandRT;
+window.addEventListener("resize", () => {
+  clearTimeout(bandRT);
+  bandRT = setTimeout(setBandShapes, 120);
+}, { passive: true });
 
 /* ------------------------------ TOOLTIP ------------------------------ */
 const tooltip = document.getElementById("tooltip");
@@ -1330,9 +2719,24 @@ function positionTooltipTo(item) {
 document.querySelectorAll(".item").forEach(item => {
   item.addEventListener("mouseenter", () => showTooltip(item));
   item.addEventListener("mouseleave", scheduleHideTooltip);
+  // tap/click toggles the tooltip so cards are readable on touch devices,
+  // where hover never fires
+  item.addEventListener("click", e => {
+    e.stopPropagation();
+    const open = tooltip.style.display === "block" && tooltip.dataset.for === item.id;
+    if (open) { tooltip.style.display = "none"; tooltip.dataset.for = ""; }
+    else { tooltip.dataset.for = item.id; showTooltip(item); }
+  });
 });
 tooltip.addEventListener("mouseenter", () => clearTimeout(ttHideTimer));
 tooltip.addEventListener("mouseleave", scheduleHideTooltip);
+// tap anywhere outside a card or the tooltip closes it (touch dismissal)
+document.addEventListener("click", e => {
+  if (!e.target.closest(".item") && !e.target.closest("#tooltip")) {
+    tooltip.style.display = "none";
+    tooltip.dataset.for = "";
+  }
+});
 
 /* ------------------------------ SEARCH ------------------------------- */
 const searchInput   = document.getElementById("search");

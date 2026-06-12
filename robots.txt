@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://igormscaldini.github.io/evidence-pyramid/sitemap.xml
