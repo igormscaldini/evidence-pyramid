@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Self-Help Evidence Pyramid — 84 Techniques Ranked by Evidence | ClearerThinking.org</title>
-<meta name="description" content="The Self-Help Evidence Pyramid from ClearerThinking.org ranks 84 popular self-improvement techniques by how strongly the research supports them — from strong evidence to no evidence at all.">
+<title>The Self-Help Evidence Pyramid — 81 Techniques Ranked by Evidence | ClearerThinking.org</title>
+<meta name="description" content="The Self-Help Evidence Pyramid from ClearerThinking.org ranks 81 popular self-improvement techniques by how strongly the research supports them — from strong evidence to no evidence at all.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="canonical" href="https://igormscaldini.github.io/evidence-pyramid/">
@@ -12,19 +12,19 @@
 <meta name="author" content="Clearer Thinking">
 <meta name="theme-color" content="#0885f8">
 <meta property="og:title" content="The Self-Help Evidence Pyramid | ClearerThinking.org">
-<meta property="og:description" content="84 popular self-help techniques ranked by how strongly the research supports them — by ClearerThinking.org.">
+<meta property="og:description" content="81 popular self-help techniques ranked by how strongly the research supports them — by ClearerThinking.org.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://igormscaldini.github.io/evidence-pyramid/">
 <meta property="og:site_name" content="Clearer Thinking">
 <meta property="og:image" content="https://igormscaldini.github.io/evidence-pyramid/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Self-Help Evidence Pyramid — 84 techniques ranked from Strong to Unsupported evidence, by Clearer Thinking">
+<meta property="og:image:alt" content="The Self-Help Evidence Pyramid — 81 techniques ranked from Strong to Unsupported evidence, by Clearer Thinking">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Self-Help Evidence Pyramid">
-<meta name="twitter:description" content="84 popular self-help techniques ranked by how strongly the research supports them.">
+<meta name="twitter:description" content="81 popular self-help techniques ranked by how strongly the research supports them.">
 <meta name="twitter:image" content="https://igormscaldini.github.io/evidence-pyramid/og-image.png">
-<meta name="twitter:image:alt" content="The Self-Help Evidence Pyramid — 84 techniques ranked from Strong to Unsupported evidence, by Clearer Thinking">
+<meta name="twitter:image:alt" content="The Self-Help Evidence Pyramid — 81 techniques ranked from Strong to Unsupported evidence, by Clearer Thinking">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Montserrat:wght@500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
@@ -688,6 +688,9 @@
   @media (max-width: 1239px) {
     .pyramid { max-width: 100%; }
     .rail { display: none; }
+    /* contain the top callout's margin so it doesn't collapse through the
+       section and open a background gap (divider) between tiers */
+    .tier { display: flow-root; }
     .tier[data-tier="strong"]       .tier-inner { max-width: 96%; }
     .tier[data-tier="modstrong"]    .tier-inner { max-width: 86%; }
     .tier[data-tier="moderate"]     .tier-inner { max-width: 72%; }
@@ -701,7 +704,7 @@
       width: auto;
       min-height: 0;
       border-radius: 999px;
-      margin: 0 auto 16px;
+      margin: 14px auto 0;   /* sits at the TOP of each tier, above the header */
       padding: 9px 18px;
       flex-direction: row;
       gap: 8px;
@@ -719,7 +722,7 @@
   }
   @media (max-width: 560px) {
     .page { padding: 40px 12px 56px; }
-    .tier-inner { padding: 24px 10px 26px; }
+    .tier-inner { padding: 16px 10px 26px; }
     /* bands are flattened on mobile (see setBandShapes in JS); keep every card
        block inside the colored shape with one shared, conservative width */
     .tier[data-tier="strong"]       .tier-inner,
@@ -733,7 +736,7 @@
     .item .label { font-size: 11.5px; }
     .icon-disc { width: 46px; height: 46px; }
     .icon-disc svg { width: 22px; height: 22px; }
-    .callout { margin: 6px auto 2px; }
+    .callout { margin: 14px auto 0; }
   }
   @media (max-width: 380px) {
     .page { padding: 36px 8px 52px; }
@@ -766,18 +769,18 @@
       "@type": "WebPage",
       "@id": "https://igormscaldini.github.io/evidence-pyramid/#webpage",
       "url": "https://igormscaldini.github.io/evidence-pyramid/",
-      "name": "The Self-Help Evidence Pyramid — 84 Techniques Ranked by Evidence",
+      "name": "The Self-Help Evidence Pyramid — 81 Techniques Ranked by Evidence",
       "isPartOf": {
         "@id": "https://igormscaldini.github.io/evidence-pyramid/#site"
       },
       "about": "Evidence-based ranking of popular self-help and self-improvement techniques",
-      "description": "84 popular self-improvement techniques ranked by how strongly scientific research supports them, from strong evidence to no evidence."
+      "description": "81 popular self-improvement techniques ranked by how strongly scientific research supports them, from strong evidence to no evidence."
     },
     {
       "@type": "ItemList",
       "@id": "https://igormscaldini.github.io/evidence-pyramid/#list",
       "name": "Self-help techniques ranked by strength of scientific evidence",
-      "numberOfItems": 84,
+      "numberOfItems": 81,
       "itemListOrder": "https://schema.org/ItemListOrderDescending",
       "itemListElement": [
         {
@@ -810,29 +813,15 @@
         },
         {
           "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "HowToTip",
-            "name": "CBT Thought Record",
-            "text": "Use a structured worksheet to log a situation, the emotion it triggered, the automatic thought, the evidence for and against it, and a balanced alternative.",
-            "additionalProperty": {
-              "@type": "PropertyValue",
-              "name": "Evidence level",
-              "value": "Strong Evidence"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
           "position": 4,
           "item": {
             "@type": "HowToTip",
             "name": "ABC Technique",
-            "text": "See how a Belief (B) — not the Activating event (A) itself — drives your emotional Consequence (C), then dispute that belief to change the reaction.",
+            "text": "Break situations down into activating event (A), beliefs (B), and consequences (C), both emotional and behavioral.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
-              "value": "Strong Evidence"
+              "value": "Moderate-to-Strong Evidence"
             }
           }
         },
@@ -856,7 +845,7 @@
           "item": {
             "@type": "HowToTip",
             "name": "Behavioral activation",
-            "text": "Schedule small rewarding or valued actions before motivation appears, then track mood afterward.",
+            "text": "Gradually schedule more and more activities that are likely to improve your mood.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -884,7 +873,7 @@
           "item": {
             "@type": "HowToTip",
             "name": "ERP (exposure + prevention)",
-            "text": "Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior.",
+            "text": "Trigger the obsession or fear while deliberately not doing the compulsion.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -940,7 +929,7 @@
           "item": {
             "@type": "HowToTip",
             "name": "Mindfulness meditation",
-            "text": "Focus on breath, body, or sound, and gently return attention whenever the mind wanders.",
+            "text": "Focus your attention on an anchor (eg the breath) with an attitude of acceptance and curiosity. Gently return attention whenever the mind wanders.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1006,20 +995,6 @@
         },
         {
           "@type": "ListItem",
-          "position": 17,
-          "item": {
-            "@type": "HowToTip",
-            "name": "Feedback loops",
-            "text": "Review tracked data, identify the next bottleneck, and change one variable at a time.",
-            "additionalProperty": {
-              "@type": "PropertyValue",
-              "name": "Evidence level",
-              "value": "Strong Evidence"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
           "position": 18,
           "item": {
             "@type": "HowToTip",
@@ -1062,20 +1037,6 @@
         },
         {
           "@type": "ListItem",
-          "position": 21,
-          "item": {
-            "@type": "HowToTip",
-            "name": "Default design",
-            "text": "Make the good option the default and add extra steps to the bad option.",
-            "additionalProperty": {
-              "@type": "PropertyValue",
-              "name": "Evidence level",
-              "value": "Strong Evidence"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
           "position": 22,
           "item": {
             "@type": "HowToTip",
@@ -1098,7 +1059,7 @@
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
-              "value": "Strong Evidence"
+              "value": "Moderate-to-Strong Evidence"
             }
           }
         },
@@ -1135,7 +1096,7 @@
           "position": 26,
           "item": {
             "@type": "HowToTip",
-            "name": "Diaphragmatic breathing",
+            "name": "Slow breathing",
             "text": "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.",
             "additionalProperty": {
               "@type": "PropertyValue",
@@ -1191,8 +1152,8 @@
           "position": 30,
           "item": {
             "@type": "HowToTip",
-            "name": "GTD capture",
-            "text": "Put every open loop into one trusted inbox, clarify the next action, and review it regularly.",
+            "name": "Outsourcing memory",
+            "text": "Use external reminders like calendars, alarms, sticky notes etc.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1234,7 +1195,7 @@
           "item": {
             "@type": "HowToTip",
             "name": "Cognitive defusion",
-            "text": "Step back and relate to thoughts as passing mental events rather than literal truths or commands — using techniques like labeling, repeating, or otherwise creating distance from them.",
+            "text": "Step back and relate to thoughts as passing mental events rather than literal truths or commands (eg through techniques like labeling the thought or imagining it as a leaf on a stream).",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1252,7 +1213,7 @@
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
-              "value": "Moderate-to-Strong Evidence"
+              "value": "Strong Evidence"
             }
           }
         },
@@ -1289,8 +1250,8 @@
           "position": 37,
           "item": {
             "@type": "HowToTip",
-            "name": "Assertiveness scripts",
-            "text": "Describe the facts, express your feeling, specify the request, and state the consequences — in calm, direct language.",
+            "name": "Assertiveness training",
+            "text": "Communicate in a way that is neither aggressive nor passive, and balances your needs with the needs of others.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1304,7 +1265,7 @@
           "item": {
             "@type": "HowToTip",
             "name": "Active listening",
-            "text": "Reflect the other person's point and emotion before offering advice or disagreement.",
+            "text": "Show the other person you're listening by paying close attention, reflecting back what you've heard, and encouraging them to say more.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1485,8 +1446,22 @@
           "position": 51,
           "item": {
             "@type": "HowToTip",
-            "name": "Self-compassion break",
-            "text": "Notice suffering, remind yourself it is human, and speak to yourself as a good coach would.",
+            "name": "Self-compassionate letter writing",
+            "text": "Write yourself a letter about a struggle from the perspective of a warm, understanding friend.",
+            "additionalProperty": {
+              "@type": "PropertyValue",
+              "name": "Evidence level",
+              "value": "Moderate Evidence"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 85,
+          "item": {
+            "@type": "HowToTip",
+            "name": "Loving-kindness meditation",
+            "text": "Silently extend warm wishes — for safety, health, and ease — to yourself, then to loved ones, acquaintances, and all beings.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1504,7 +1479,7 @@
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
-              "value": "Moderate Evidence"
+              "value": "Moderate-to-Strong Evidence"
             }
           }
         },
@@ -1532,7 +1507,7 @@
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
-              "value": "Moderate Evidence"
+              "value": "Moderate-to-Strong Evidence"
             }
           }
         },
@@ -1597,7 +1572,7 @@
           "position": 59,
           "item": {
             "@type": "HowToTip",
-            "name": "Breathwork systems",
+            "name": "Energetic Breathing",
             "text": "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.",
             "additionalProperty": {
               "@type": "PropertyValue",
@@ -1710,7 +1685,7 @@
           "item": {
             "@type": "HowToTip",
             "name": "EFT / tapping",
-            "text": "While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity.",
+            "text": "While naming a distressing issue, tap through the standard points — eyebrow, side of eye, under eye, under nose, chin, collarbone, under arm, and top of head — then re-rate the emotional intensity.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1781,20 +1756,6 @@
             "@type": "HowToTip",
             "name": "Binaural beats",
             "text": "Listen to two slightly different tones through headphones to try to induce a target mental state.",
-            "additionalProperty": {
-              "@type": "PropertyValue",
-              "name": "Evidence level",
-              "value": "Questionable Evidence"
-            }
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 73,
-          "item": {
-            "@type": "HowToTip",
-            "name": "Brain training games",
-            "text": "Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence.",
             "additionalProperty": {
               "@type": "PropertyValue",
               "name": "Evidence level",
@@ -1965,53 +1926,52 @@
 <body>
 <noscript>
   <div class="seo-fallback">
-    <p>This interactive pyramid ranks 84 popular self-help techniques by how strongly scientific research supports them. Enable JavaScript for the interactive version. Full list below:</p>
+    <p>This interactive pyramid ranks 81 popular self-help techniques by how strongly scientific research supports them. Enable JavaScript for the interactive version. Full list below:</p>
     <section>
       <h2>Strong Evidence</h2>
       <ul>
         <li><strong>Aerobic exercise:</strong> Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days.</li>
         <li><strong>Resistance training:</strong> Train major muscle groups 2–3 times per week with progressive overload and enough recovery.</li>
-        <li><strong>CBT Thought Record:</strong> Use a structured worksheet to log a situation, the emotion it triggered, the automatic thought, the evidence for and against it, and a balanced alternative.</li>
-        <li><strong>ABC Technique:</strong> See how a Belief (B) — not the Activating event (A) itself — drives your emotional Consequence (C), then dispute that belief to change the reaction.</li>
         <li><strong>Cognitive restructuring:</strong> Catch a distorted or exaggerated thought, weigh the actual evidence for and against it, and reframe it in more accurate, balanced terms.</li>
-        <li><strong>Behavioral activation:</strong> Schedule small rewarding or valued actions before motivation appears, then track mood afterward.</li>
+        <li><strong>Behavioral activation:</strong> Gradually schedule more and more activities that are likely to improve your mood.</li>
         <li><strong>Graded exposure:</strong> Build a fear hierarchy and repeatedly face feared situations without escaping or using safety behaviors, advancing as each becomes manageable.</li>
-        <li><strong>ERP (exposure + prevention):</strong> Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior.</li>
+        <li><strong>ERP (exposure + prevention):</strong> Trigger the obsession or fear while deliberately not doing the compulsion.</li>
         <li><strong>Problem-solving therapy:</strong> Define the problem, generate options, choose one, act, and review the result.</li>
         <li><strong>Worry time:</strong> Postpone worries to a scheduled 10–20 minute window and redirect attention when they arise outside it.</li>
         <li><strong>Progressive relaxation:</strong> Tense and release each major muscle group in sequence while noticing the contrast.</li>
-        <li><strong>Mindfulness meditation:</strong> Focus on breath, body, or sound, and gently return attention whenever the mind wanders.</li>
+        <li><strong>Mindfulness meditation:</strong> Focus your attention on an anchor (eg the breath) with an attitude of acceptance and curiosity. Gently return attention whenever the mind wanders.</li>
         <li><strong>Sleep restriction:</strong> Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves.</li>
         <li><strong>Implementation intentions:</strong> Write a specific 'If situation X happens, then I will do behavior Y' plan.</li>
         <li><strong>Specific goal + feedback:</strong> Set a hard but reachable target and compare progress against it regularly.</li>
         <li><strong>Self-monitoring:</strong> Record the target behavior or outcome daily so patterns become visible.</li>
-        <li><strong>Feedback loops:</strong> Review tracked data, identify the next bottleneck, and change one variable at a time.</li>
         <li><strong>Commitment device:</strong> Lock in money, reputation, or access ahead of time so that not following through on the desired action carries a real cost.</li>
         <li><strong>Stable-cue habits:</strong> Repeat one small behavior after the same cue in the same context until it becomes automatic.</li>
         <li><strong>Habit stacking:</strong> Attach a new behavior immediately after an existing reliable routine.</li>
-        <li><strong>Default design:</strong> Make the good option the default and add extra steps to the bad option.</li>
         <li><strong>Social support:</strong> Draw on others for emotional, practical, and informational support — through close relationships or a group pursuing the same goal.</li>
-        <li><strong>Savoring:</strong> Slow down, attend to pleasant details, and deliberately extend the positive experience.</li>
         <li><strong>Nature exposure:</strong> Spend regular time walking, sitting, or exercising in green or blue spaces.</li>
+        <li><strong>Gratitude journaling:</strong> Write three specific things you feel grateful for each day.</li>
       </ul>
     </section>
     <section>
       <h2>Moderate-to-Strong Evidence</h2>
       <ul>
         <li><strong>Step-count target:</strong> Pick a realistic daily step target, track it, and increase it gradually when it becomes easy.</li>
-        <li><strong>Diaphragmatic breathing:</strong> Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.</li>
+        <li><strong>Slow breathing:</strong> Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.</li>
         <li><strong>Action planning:</strong> Specify exactly when, where, how, and with what materials you will act.</li>
         <li><strong>Temptation bundling:</strong> Pair a beneficial task with an indulgence you only allow during that task.</li>
         <li><strong>Tiny Habits:</strong> Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion.</li>
-        <li><strong>GTD capture:</strong> Put every open loop into one trusted inbox, clarify the next action, and review it regularly.</li>
+        <li><strong>Outsourcing memory:</strong> Use external reminders like calendars, alarms, sticky notes etc.</li>
         <li><strong>Environmental design:</strong> Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient.</li>
         <li><strong>Values clarification:</strong> Work out what you most deeply value in life, then use those values to decide which goals are worth setting and pursuing.</li>
-        <li><strong>Cognitive defusion:</strong> Step back and relate to thoughts as passing mental events rather than literal truths or commands — using techniques like labeling, repeating, or otherwise creating distance from them.</li>
-        <li><strong>Gratitude journaling:</strong> Write three specific things you feel grateful for each day.</li>
+        <li><strong>Cognitive defusion:</strong> Step back and relate to thoughts as passing mental events rather than literal truths or commands (eg through techniques like labeling the thought or imagining it as a leaf on a stream).</li>
+        <li><strong>ABC Technique:</strong> Break situations down into activating event (A), beliefs (B), and consequences (C), both emotional and behavioral.</li>
         <li><strong>Three Good Things:</strong> Each evening, list three good events from the day and your role in them (or why they happened).</li>
+        <li><strong>Savoring:</strong> Slow down, attend to pleasant details, and deliberately extend the positive experience.</li>
+        <li><strong>Best Possible Self:</strong> Write vividly about a realistic future in which important goals have gone well.</li>
+        <li><strong>Acts of kindness:</strong> Perform small concrete helpful acts and notice their effects on others and yourself.</li>
         <li><strong>Process visualization:</strong> Before a specific task or performance, vividly rehearse yourself carrying out each step and technique well — the execution itself, not just the end result.</li>
-        <li><strong>Assertiveness scripts:</strong> Describe the facts, express your feeling, specify the request, and state the consequences — in calm, direct language.</li>
-        <li><strong>Active listening:</strong> Reflect the other person's point and emotion before offering advice or disagreement.</li>
+        <li><strong>Assertiveness training:</strong> Communicate in a way that is neither aggressive nor passive, and balances your needs with the needs of others.</li>
+        <li><strong>Active listening:</strong> Show the other person you're listening by paying close attention, reflecting back what you've heard, and encouraging them to say more.</li>
         <li><strong>Morning light:</strong> Get bright light soon after waking — outdoors when possible, or from a light box — to anchor your circadian rhythm.</li>
         <li><strong>Daily review:</strong> At day's end, note what happened, what worked, what failed, and tomorrow's priority.</li>
         <li><strong>Personal mission:</strong> Draft a short statement of principles, roles, and long-term aims and revisit it regularly.</li>
@@ -2029,15 +1989,14 @@
         <li><strong>Pomodoro Technique:</strong> Work on one task for about 25 minutes, take a short break, and repeat.</li>
         <li><strong>Time blocking:</strong> Reserve calendar blocks in advance for specific work you want to do during them, for time to rest, for time to exercise, etc.</li>
         <li><strong>Accountability partner:</strong> Tell someone the exact commitment and report completion on a fixed schedule.</li>
-        <li><strong>Self-compassion break:</strong> Notice suffering, remind yourself it is human, and speak to yourself as a good coach would.</li>
-        <li><strong>Acts of kindness:</strong> Perform small concrete helpful acts and notice their effects on others and yourself.</li>
+        <li><strong>Self-compassionate letter writing:</strong> Write yourself a letter about a struggle from the perspective of a warm, understanding friend.</li>
+        <li><strong>Loving-kindness meditation:</strong> Silently extend warm wishes — for safety, health, and ease — to yourself, then to loved ones, acquaintances, and all beings.</li>
         <li><strong>Expressive writing:</strong> Privately write for 15–20 minutes about a stressful event and what it means.</li>
-        <li><strong>Best Possible Self:</strong> Write vividly about a realistic future in which important goals have gone well.</li>
         <li><strong>Strengths use:</strong> Identify a character strength and use it in a new way each day.</li>
         <li><strong>Daily journaling:</strong> Write a brief uncensored account of thoughts, decisions, and lessons each day.</li>
         <li><strong>No Zero Days:</strong> Do at least one tiny action toward the goal every day, even on bad days.</li>
         <li><strong>Cold exposure:</strong> Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects.</li>
-        <li><strong>Breathwork systems:</strong> Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.</li>
+        <li><strong>Energetic Breathing:</strong> Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.</li>
         <li><strong>Urge surfing:</strong> Notice craving sensations as waves, breathe, and wait without acting until they crest and fall.</li>
         <li><strong>Identity-based habits:</strong> Treat each small behavior as evidence for the identity you want to strengthen.</li>
         <li><strong>Keystone habit:</strong> Pick one habit likely to improve other behaviors or make other habits easier and work on developing that habit first.</li>
@@ -2050,13 +2009,12 @@
       <h2>Questionable Evidence</h2>
       <ul>
         <li><strong>Power posing:</strong> Stand or sit expansively for a minute or two before a challenging interaction.</li>
-        <li><strong>EFT / tapping:</strong> While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity.</li>
+        <li><strong>EFT / tapping:</strong> While naming a distressing issue, tap through the standard points — eyebrow, side of eye, under eye, under nose, chin, collarbone, under arm, and top of head — then re-rate the emotional intensity.</li>
         <li><strong>Vision board:</strong> Create a collage of goal-related images or words.</li>
         <li><strong>Positive affirmations:</strong> Repeat short positive statements about yourself (e.g., 'I am strong and capable.').</li>
         <li><strong>Lucky Girl Syndrome:</strong> Repeat that things tend to work out for you and look for opportunities that match the expectation.</li>
         <li><strong>Scripting manifestation:</strong> Write a future scene as if the desired outcome has already happened.</li>
         <li><strong>Binaural beats:</strong> Listen to two slightly different tones through headphones to try to induce a target mental state.</li>
-        <li><strong>Brain training games:</strong> Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence.</li>
         <li><strong>10,000-hour rule:</strong> Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints.</li>
         <li><strong>Polyphasic sleep:</strong> Split sleep into many short naps to reduce total sleep.</li>
       </ul>
@@ -2244,8 +2202,8 @@ const LEVERS = {
   "Values clarification": [2], "Personal mission": [2], "Life audit": [2],
   // Lever 3 — Actualize Your Foundations (goals & habits)
   "Implementation intentions": [3], "Specific goal + feedback": [3], "Self-monitoring": [3],
-  "Feedback loops": [3], "Commitment device": [3], "Stable-cue habits": [3], "Habit stacking": [3],
-  "Default design": [3], "Step-count target": [3], "Action planning": [3], "Temptation bundling": [3],
+  "Commitment device": [3], "Stable-cue habits": [3], "Habit stacking": [3],
+  "Step-count target": [3], "Action planning": [3], "Temptation bundling": [3],
   "Tiny Habits": [3], "Environmental design": [3], "Daily review": [3], "SMART goals": [3],
   "WOOP": [3], "No Zero Days": [3], "Identity-based habits": [3], "Keystone habit": [3],
   "Don't Break the Chain": [3], "Accountability partner": [3], "Dopamine fast": [3],
@@ -2253,20 +2211,20 @@ const LEVERS = {
   "Graded exposure": [5], "ERP (exposure + prevention)": [5],
   // Lever 6 — Shift Your Body to Shift Your Mind
   "Aerobic exercise": [6], "Resistance training": [6], "Progressive relaxation": [6],
-  "Sleep restriction": [6], "Diaphragmatic breathing": [6], "Morning light": [6],
-  "Sleep stimulus control": [6], "Fixed wake time": [6], "Cold exposure": [6], "Breathwork systems": [6],
+  "Sleep restriction": [6], "Slow breathing": [6], "Morning light": [6],
+  "Sleep stimulus control": [6], "Fixed wake time": [6], "Cold exposure": [6], "Energetic Breathing": [6],
   // Lever 7 — Steward Your Thoughts
-  "CBT Thought Record": [7], "Cognitive restructuring": [7], "Worry time": [7],
+  "Cognitive restructuring": [7], "Worry time": [7],
   // Lever 8 — Tune the Productivity Equation
-  "Problem-solving therapy": [8], "GTD capture": [8], "Deep Work": [8],
+  "Problem-solving therapy": [8], "Outsourcing memory": [8], "Deep Work": [8],
   "Pomodoro Technique": [8], "Time blocking": [8], "Eat the Frog": [8],
   // Lever 9 — Do More Glad-You-Did-It Activities
   "Behavioral activation": [9],
   // Lever 10 — Communicate Skillfully
-  "Assertiveness scripts": [10], "Active listening": [10],
+  "Assertiveness training": [10], "Active listening": [10],
   // Lever 11 — Choose Your Attitude (appreciation / kindness / optimism)
   "Savoring": [11], "Gratitude journaling": [11], "Three Good Things": [11],
-  "Self-compassion break": [11], "Acts of kindness": [11], "Best Possible Self": [11],
+  "Self-compassionate letter writing": [11], "Acts of kindness": [11], "Best Possible Self": [11], "Loving-kindness meditation": [11],
   // Lever 12 — Pay Attention
   "Mindfulness meditation": [12], "Cognitive defusion": [12], "Urge surfing": [12],
 };
@@ -2278,19 +2236,14 @@ const TECHNIQUES = [
     { c: "Heissel et al., 2023, Br. J. Sports Medicine", n: "41 RCTs (n=2,264): large antidepressant effect (SMD −0.95).", u: "https://doi.org/10.1136/bjsports-2022-106282" } ] },
   { level: "strong", icon: "dumbbell", name: "Resistance training", howto: "Train major muscle groups 2–3 times per week with progressive overload and enough recovery.", src: [
     { c: "Gordon et al., 2018, JAMA Psychiatry", n: "33 RCTs (n=1,877): meaningful drop in depressive symptoms (Δ 0.66).", u: "https://doi.org/10.1001/jamapsychiatry.2018.0572" } ] },
-  { level: "strong", icon: "file-text", name: "CBT Thought Record", howto: "Use a structured worksheet to log a situation, the emotion it triggered, the automatic thought, the evidence for and against it, and a balanced alternative.", src: [
-    { c: "Cuijpers et al., 2023, World Psychiatry", n: "409 RCTs (52,702 patients): CBT clearly beats control (g 0.79).", u: "https://doi.org/10.1002/wps.21069" } ] },
-  { level: "strong", icon: "list-checks", name: "ABC Technique", howto: "See how a Belief (B) — not the Activating event (A) itself — drives your emotional Consequence (C), then dispute that belief to change the reaction.", src: [
-    { c: "David et al., 2018, J. Clinical Psychology", n: "84 studies: REBT improves outcomes (d 0.58) and cuts irrational beliefs.", u: "https://doi.org/10.1002/jclp.22514" },
-    { c: "King et al., 2024, PLOS ONE", n: "162 studies: ABC-based REBT reduced irrational beliefs, improved mental health.", u: "https://doi.org/10.1371/journal.pone.0306835" } ] },
   { level: "strong", icon: "refresh-cw", name: "Cognitive restructuring", howto: "Catch a distorted or exaggerated thought, weigh the actual evidence for and against it, and reframe it in more accurate, balanced terms.", src: [
     { c: "Ciharova et al., 2021, J. Consulting & Clinical Psych.", n: "45 RCTs (n=3,382): superior to usual care (SMD 0.57).", u: "https://doi.org/10.1037/ccp0000654" } ] },
-  { level: "strong", icon: "zap", name: "Behavioral activation", howto: "Schedule small rewarding or valued actions before motivation appears, then track mood afterward.", src: [
+  { level: "strong", icon: "zap", name: "Behavioral activation", howto: "Gradually schedule more and more activities that are likely to improve your mood.", src: [
     { c: "Stein et al., 2021, Psychological Medicine", n: "28 RCTs: large effect on depression (g 0.83).", u: "https://doi.org/10.1017/S0033291720000239" },
     { c: "Cuijpers et al., 2023, Psychotherapy Research", n: "22 RCTs (n=819): large effect for individual BA (g 0.85).", u: "https://doi.org/10.1080/10503307.2023.2197630" } ] },
   { level: "strong", icon: "trending-up", name: "Graded exposure", howto: "Build a fear hierarchy and repeatedly face feared situations without escaping or using safety behaviors, advancing as each becomes manageable.", src: [
     { c: "Wolitzky-Taylor et al., 2008, Clinical Psych. Review", n: "33 RCTs: exposure produced large effects, beating placebo and other therapies.", u: "https://doi.org/10.1016/j.cpr.2008.02.007" } ] },
-  { level: "strong", icon: "shield", name: "ERP (exposure + prevention)", howto: "Trigger the obsession or fear while deliberately not doing the compulsion, reassurance, avoidance, or escape behavior.", src: [
+  { level: "strong", icon: "shield", name: "ERP (exposure + prevention)", howto: "Trigger the obsession or fear while deliberately not doing the compulsion.", src: [
     { c: "Reid et al., 2021, Comprehensive Psychiatry", n: "36 RCTs (n=2,020): large effect for ERP in OCD (g 0.74).", u: "https://doi.org/10.1016/j.comppsych.2021.152223" } ] },
   { level: "strong", icon: "puzzle", name: "Problem-solving therapy", howto: "Define the problem, generate options, choose one, act, and review the result.", src: [
     { c: "Cuijpers et al., 2018, European Psychiatry", n: "30 RCTs (n=3,530): effective for depression (g 0.79).", u: "https://doi.org/10.1016/j.eurpsy.2017.11.006" } ] },
@@ -2298,7 +2251,7 @@ const TECHNIQUES = [
     { c: "Dippel et al., 2023, Int. J. Cognitive Therapy", n: "7 RCTs (n=999): worry postponement cut worry duration (d 0.31).", u: "https://doi.org/10.1007/s41811-023-00193-x" } ] },
   { level: "strong", icon: "anchor", name: "Progressive relaxation", howto: "Tense and release each major muscle group in sequence while noticing the contrast.", src: [
     { c: "Donato et al., 2026, J. Psychosomatic Research", n: "31 RCTs (n=2,277): reduced anxiety (SMD −1.11) and improved sleep.", u: "https://doi.org/10.1016/j.jpsychores.2026.112563" } ] },
-  { level: "strong", icon: "sparkles", name: "Mindfulness meditation", howto: "Focus on breath, body, or sound, and gently return attention whenever the mind wanders.", src: [
+  { level: "strong", icon: "sparkles", name: "Mindfulness meditation", howto: "Focus your attention on an anchor (eg the breath) with an attitude of acceptance and curiosity. Gently return attention whenever the mind wanders.", src: [
     { c: "Khoury et al., 2015, J. Psychosomatic Research", n: "29 studies (n=2,668): moderately effective (g 0.55); large on stress.", u: "https://doi.org/10.1016/j.jpsychores.2015.03.009" } ] },
   { level: "strong", icon: "bed", name: "Sleep restriction", howto: "Limit time in bed to actual sleep time, then gradually expand the window as sleep efficiency improves.", src: [
     { c: "Maurer et al., 2021, Sleep Medicine Reviews", n: "8 RCTs: large drop in insomnia severity (g −0.93).", u: "https://doi.org/10.1016/j.smrv.2021.101493" } ] },
@@ -2309,8 +2262,6 @@ const TECHNIQUES = [
     { c: "Mento et al., 1987, Org. Behavior & Human Decision Proc.", n: "Classic meta-analysis: specific hard goals plus feedback beat goals alone.", u: "https://doi.org/10.1016/0749-5978(87)90045-8" } ] },
   { level: "strong", icon: "activity", name: "Self-monitoring", howto: "Record the target behavior or outcome daily so patterns become visible.", src: [
     { c: "Harkin et al., 2016, Psychological Bulletin", n: "138 studies (N=19,951): monitoring progress boosts goal attainment (d 0.40).", u: "https://doi.org/10.1037/bul0000025" } ] },
-  { level: "strong", icon: "repeat", name: "Feedback loops", howto: "Review tracked data, identify the next bottleneck, and change one variable at a time.", src: [
-    { c: "Krukowski et al., 2024, Int. J. Behav. Nutr. & Phys. Act.", n: "19 RCTs (N=3,261): adding feedback beat no-feedback (d 0.73).", u: "https://doi.org/10.1186/s12966-023-01555-6" } ] },
   { level: "strong", icon: "lock", name: "Commitment device", howto: "Lock in money, reputation, or access ahead of time so that not following through on the desired action carries a real cost.", src: [
     { c: "Rogers et al., 2014, JAMA", n: "Review: deposit/contract commitment devices aid weight loss, exercise & quitting.", u: "https://doi.org/10.1001/jama.2014.3485" },
     { c: "Coupe et al., 2019, BMC Public Health", n: "Systematic review: commitment devices added ~1.5 kg extra weight loss at 12 mo.", u: "https://doi.org/10.1186/s12889-019-7185-3" } ] },
@@ -2319,21 +2270,19 @@ const TECHNIQUES = [
   { level: "strong", icon: "layers", name: "Habit stacking", howto: "Attach a new behavior immediately after an existing reliable routine.", src: [
     { c: "Stecher et al., 2024, J. Behavioral Medicine", n: "RCT (N=161): anchoring activity to an existing cue raised step counts.", u: "https://doi.org/10.1007/s10865-024-00492-4" },
     { c: "Kaushal et al., 2017, Annals of Behavioral Medicine", n: "RCT (N=94): cue + consistency intervention increased activity (d 0.39).", u: "https://doi.org/10.1007/s12160-017-9881-5" } ] },
-  { level: "strong", icon: "check-square", name: "Default design", howto: "Make the good option the default and add extra steps to the bad option.", src: [
-    { c: "Mertens et al., 2022, PNAS", n: "200+ studies (N=2.1M): nudges change behavior (d 0.45); defaults strongest.", u: "https://doi.org/10.1073/pnas.2107346118" },
-    { c: "Jachimowicz et al., 2019, Behavioural Public Policy", n: "58 studies (N=73,675): defaults have a large effect on choice (d 0.68).", u: "https://doi.org/10.1017/bpp.2018.43" } ] },
   { level: "strong", icon: "users", name: "Social support", howto: "Draw on others for emotional, practical, and informational support — through close relationships or a group pursuing the same goal.", src: [
     { c: "Zell et al., 2024, American Psychologist", n: "60 meta-analyses (2.1M people): social support aids adjustment (r 0.24).", u: "https://doi.org/10.1037/amp0001323" },
     { c: "Lyons et al., 2021, BMC Psychiatry", n: "8 RCTs (N=2,131): group peer support improves recovery.", u: "https://doi.org/10.1186/s12888-021-03321-z" } ] },
-  { level: "strong", icon: "candy", name: "Savoring", howto: "Slow down, attend to pleasant details, and deliberately extend the positive experience.", src: [
-    { c: "Chen et al., 2026, Applied Psych.: Health & Well-Being", n: "20 RCTs (N=4,805): savoring boosts wellbeing and cuts distress (g 0.51).", u: "https://doi.org/10.1111/aphw.70134" } ] },
   { level: "strong", icon: "tree-pine", name: "Nature exposure", howto: "Spend regular time walking, sitting, or exercising in green or blue spaces.", src: [
     { c: "Coventry et al., 2021, SSM – Population Health", n: "50 studies (16 RCTs): nature reduced depression (d −0.64) and anxiety.", u: "https://doi.org/10.1016/j.ssmph.2021.100934" } ] },
+  { level: "strong", icon: "heart", name: "Gratitude journaling", howto: "Write three specific things you feel grateful for each day.", src: [
+    { c: "Choi et al., 2025, PNAS", n: "145 papers (n=24,804): gratitude gave small wellbeing gains (g 0.19).", u: "https://doi.org/10.1073/pnas.2425193122" },
+    { c: "Kirca et al., 2023, Int. J. Applied Positive Psych.", n: "25 RCTs (n=6,745): gratitude improved wellbeing (g 0.22).", u: "https://doi.org/10.1007/s41042-023-00086-6" } ] },
 
   // MODERATE-TO-STRONG EVIDENCE
   { level: "modstrong", icon: "footprints", name: "Step-count target", howto: "Pick a realistic daily step target, track it, and increase it gradually when it becomes easy.", src: [
     { c: "Chaudhry et al., 2020, Int. J. Behav. Nutr. & Phys. Act.", n: "70 RCTs: step-count monitoring adds ~1,100 steps/day.", u: "https://doi.org/10.1186/s12966-020-01020-8" } ] },
-  { level: "modstrong", icon: "wind", name: "Diaphragmatic breathing", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.", src: [
+  { level: "modstrong", icon: "wind", name: "Slow breathing", howto: "Breathe low into the belly at roughly 5–6 breaths per minute for several minutes.", src: [
     { c: "Fincham et al., 2023, Scientific Reports", n: "RCTs (N=785): breathwork lowers stress (g −0.35), anxiety & depression.", u: "https://doi.org/10.1038/s41598-022-27247-y" },
     { c: "Hopper et al., 2019, JBI Evidence Synthesis", n: "Systematic review: diaphragmatic breathing lowers cortisol and stress.", u: "https://doi.org/10.11124/JBISRIR-2017-003848" } ] },
   { level: "modstrong", icon: "clipboard", name: "Action planning", howto: "Specify exactly when, where, how, and with what materials you will act.", src: [
@@ -2345,7 +2294,7 @@ const TECHNIQUES = [
   { level: "modstrong", icon: "sprout", name: "Tiny Habits", howto: "Shrink the behavior until it feels easy, perform it after a cue, and briefly celebrate completion.", src: [
     { c: "Singh et al., 2024, Healthcare", n: "20 studies (n=2,601): habit-formation interventions raised habit strength (SMD 0.69).", u: "https://doi.org/10.3390/healthcare12232488" },
     { c: "Ma et al., 2023, Int. J. Behav. Nutr. & Phys. Act.", n: "10 RCTs: habit-formation interventions increased activity habit (SMD 0.31).", u: "https://doi.org/10.1186/s12966-023-01493-3" } ] },
-  { level: "modstrong", icon: "inbox", name: "GTD capture", howto: "Put every open loop into one trusted inbox, clarify the next action, and review it regularly.", src: [
+  { level: "modstrong", icon: "inbox", name: "Outsourcing memory", howto: "Use external reminders like calendars, alarms, sticky notes etc.", src: [
     { c: "Gilbert et al., 2022, Psychonomic Bulletin & Review", n: "Review: offloading intentions to external reminders reliably aids task completion.", u: "https://doi.org/10.3758/s13423-022-02139-4" },
     { c: "Gilbert et al., 2020, J. Exp. Psychology: General", n: "3 experiments: external reminders boosted task completion vs. memory.", u: "https://doi.org/10.1037/xge0000652" } ] },
   { level: "modstrong", icon: "home", name: "Environmental design", howto: "Change your surroundings so the desired behavior is easy and the undesired behavior is inconvenient.", src: [
@@ -2353,21 +2302,28 @@ const TECHNIQUES = [
   { level: "modstrong", icon: "compass", name: "Values clarification", howto: "Work out what you most deeply value in life, then use those values to decide which goals are worth setting and pursuing.", src: [
     { c: "Han et al., 2022, J. Medical Internet Research", n: "34 RCTs: ACT improved valued living and psychological flexibility.", u: "https://doi.org/10.2196/39182" },
     { c: "Viskovich & Pakenham, 2019, J. Clinical Psychology", n: "RCT (n=1,162): ACT improved wellbeing and valued living.", u: "https://doi.org/10.1002/jclp.22848" } ] },
-  { level: "modstrong", icon: "cloud", name: "Cognitive defusion", howto: "Step back and relate to thoughts as passing mental events rather than literal truths or commands — using techniques like labeling, repeating, or otherwise creating distance from them.", src: [
+  { level: "modstrong", icon: "cloud", name: "Cognitive defusion", howto: "Step back and relate to thoughts as passing mental events rather than literal truths or commands (eg through techniques like labeling the thought or imagining it as a leaf on a stream).", src: [
     { c: "Larsson et al., 2016, Behavior Modification", n: "RCT: defusion lowered thought believability/discomfort, raised positive affect.", u: "https://doi.org/10.1177/0145445515621488" },
     { c: "Masuda et al., 2010, J. Behav. Ther. & Exp. Psychiatry", n: "Experiment: defusion cut discomfort and believability more than distraction.", u: "https://doi.org/10.1016/j.jbtep.2009.08.006" } ] },
-  { level: "modstrong", icon: "heart", name: "Gratitude journaling", howto: "Write three specific things you feel grateful for each day.", src: [
-    { c: "Choi et al., 2025, PNAS", n: "145 papers (n=24,804): gratitude gave small wellbeing gains (g 0.19).", u: "https://doi.org/10.1073/pnas.2425193122" },
-    { c: "Kirca et al., 2023, Int. J. Applied Positive Psych.", n: "25 RCTs (n=6,745): gratitude improved wellbeing (g 0.22).", u: "https://doi.org/10.1007/s41042-023-00086-6" } ] },
+  { level: "modstrong", icon: "list-checks", name: "ABC Technique", howto: "Break situations down into activating event (A), beliefs (B), and consequences (C), both emotional and behavioral.", src: [
+    { c: "David et al., 2018, J. Clinical Psychology", n: "84 studies: REBT improves outcomes (d 0.58) and cuts irrational beliefs.", u: "https://doi.org/10.1002/jclp.22514" },
+    { c: "King et al., 2024, PLOS ONE", n: "162 studies: ABC-based REBT reduced irrational beliefs, improved mental health.", u: "https://doi.org/10.1371/journal.pone.0306835" } ] },
   { level: "modstrong", icon: "star", name: "Three Good Things", howto: "Each evening, list three good events from the day and your role in them (or why they happened).", src: [
     { c: "Gander et al., 2016, Frontiers in Psychology", n: "RCT (n=1,624): the 'three things' exercise raised happiness vs. placebo.", u: "https://doi.org/10.3389/fpsyg.2016.00686" },
     { c: "Mongrain & Anselmo-Matthews, 2012, J. Clinical Psych.", n: "RCT replication: Three Good Things produced lasting happiness gains.", u: "https://doi.org/10.1002/jclp.21839" } ] },
+  { level: "modstrong", icon: "candy", name: "Savoring", howto: "Slow down, attend to pleasant details, and deliberately extend the positive experience.", src: [
+    { c: "Chen et al., 2026, Applied Psych.: Health & Well-Being", n: "20 RCTs (N=4,805): savoring boosts wellbeing and cuts distress (g 0.51).", u: "https://doi.org/10.1111/aphw.70134" } ] },
+  { level: "modstrong", icon: "star", name: "Best Possible Self", howto: "Write vividly about a realistic future in which important goals have gone well.", src: [
+    { c: "Carrillo et al., 2019, PLoS ONE", n: "29 studies (N=2,909): improved wellbeing, optimism & positive affect (d 0.33–0.51).", u: "https://doi.org/10.1371/journal.pone.0222386" },
+    { c: "Heekerens & Eid, 2020, J. Positive Psychology", n: "34 RCTs: small gains in positive affect (g 0.28) and optimism.", u: "https://doi.org/10.1080/17439760.2020.1716052" } ] },
+  { level: "modstrong", icon: "hand-heart", name: "Acts of kindness", howto: "Perform small concrete helpful acts and notice their effects on others and yourself.", src: [
+    { c: "Curry et al., 2018, J. Experimental Social Psych.", n: "27 studies (N=4,045): kindness boosts the actor's wellbeing (δ 0.28).", u: "https://doi.org/10.1016/j.jesp.2018.02.014" } ] },
   { level: "modstrong", icon: "eye", name: "Process visualization", howto: "Before a specific task or performance, vividly rehearse yourself carrying out each step and technique well — the execution itself, not just the end result.", src: [
     { c: "Lindsay et al., 2021, Phys. Education & Sport Pedagogy", n: "36 studies (n=1,449): mental imagery improved performance (g 0.48).", u: "https://doi.org/10.1080/17408989.2021.1991297" },
     { c: "Toth et al., 2020, Psychology of Sport & Exercise", n: "37 studies: mental practice gave small but reliable performance gains.", u: "https://doi.org/10.1016/j.psychsport.2020.101672" } ] },
-  { level: "modstrong", icon: "megaphone", name: "Assertiveness scripts", howto: "Describe the facts, express your feeling, specify the request, and state the consequences — in calm, direct language.", src: [
+  { level: "modstrong", icon: "megaphone", name: "Assertiveness training", howto: "Communicate in a way that is neither aggressive nor passive, and balances your needs with the needs of others.", src: [
     { c: "Omura et al., 2017, Int. J. Nursing Studies", n: "Systematic review (8 studies): assertiveness training improved assertive communication.", u: "https://doi.org/10.1016/j.ijnurstu.2017.09.001" } ] },
-  { level: "modstrong", icon: "ear", name: "Active listening", howto: "Reflect the other person's point and emotion before offering advice or disagreement.", src: [
+  { level: "modstrong", icon: "ear", name: "Active listening", howto: "Show the other person you're listening by paying close attention, reflecting back what you've heard, and encouraging them to say more.", src: [
     { c: "Weger et al., 2014, Int. J. of Listening", n: "Experiment (n=115): active listening made partners feel more understood.", u: "https://doi.org/10.1080/10904018.2013.813234" },
     { c: "Lee et al., 2024, Br. J. Clinical Psychology", n: "Lab experiment: active listening raised alliance, positive affect & wellbeing.", u: "https://doi.org/10.1111/bjc.12489" } ] },
   { level: "modstrong", icon: "sunrise", name: "Morning light", howto: "Get bright light soon after waking — outdoors when possible, or from a light box — to anchor your circadian rhythm.", src: [
@@ -2402,16 +2358,14 @@ const TECHNIQUES = [
     { c: "Aeon et al., 2021, PLoS ONE", n: "Meta-analysis: time management moderately improves performance and wellbeing.", u: "https://doi.org/10.1371/journal.pone.0245066" } ] },
   { level: "moderate", icon: "user-check", name: "Accountability partner", howto: "Tell someone the exact commitment and report completion on a fixed schedule.", src: [
     { c: "Harkin et al., 2016, Psychological Bulletin", n: "138 studies (N=19,951): monitoring boosts attainment (d 0.40), more when reported.", u: "https://doi.org/10.1037/bul0000025" } ] },
-  { level: "moderate", icon: "heart-handshake", name: "Self-compassion break", howto: "Notice suffering, remind yourself it is human, and speak to yourself as a good coach would.", src: [
+  { level: "moderate", icon: "mail", name: "Self-compassionate letter writing", howto: "Write yourself a letter about a struggle from the perspective of a warm, understanding friend.", src: [
     { c: "Ferrari et al., 2019, Mindfulness", n: "27 RCTs: improved stress (g 0.67), depression (g 0.66), anxiety (g 0.57).", u: "https://doi.org/10.1007/s12671-019-01134-6" },
     { c: "Han et al., 2023, Mindfulness", n: "56 RCTs: small-to-medium reductions in depression, anxiety & stress.", u: "https://doi.org/10.1007/s12671-023-02148-x" } ] },
-  { level: "moderate", icon: "hand-heart", name: "Acts of kindness", howto: "Perform small concrete helpful acts and notice their effects on others and yourself.", src: [
-    { c: "Curry et al., 2018, J. Experimental Social Psych.", n: "27 studies (N=4,045): kindness boosts the actor's wellbeing (δ 0.28).", u: "https://doi.org/10.1016/j.jesp.2018.02.014" } ] },
+  { level: "moderate", icon: "heart-handshake", name: "Loving-kindness meditation", howto: "Silently extend warm wishes — for safety, health, and ease — to yourself, then to loved ones, acquaintances, and all beings.", src: [
+    { c: "Petrovic et al., 2024, Clinical Psychology Review", n: "23 RCTs: raised compassion & positive affect and cut psychological symptoms vs. passive controls.", u: "https://doi.org/10.1016/j.cpr.2024.102433" },
+    { c: "Zheng et al., 2023, Mindfulness", n: "19 RCTs (n=1,284): loving-kindness/compassion meditation reduced anxiety (d −0.28).", u: "https://doi.org/10.1007/s12671-023-02121-8" } ] },
   { level: "moderate", icon: "pen-line", name: "Expressive writing", howto: "Privately write for 15–20 minutes about a stressful event and what it means.", src: [
     { c: "Frattaroli, 2006, Psychological Bulletin", n: "146 RCTs: experimental disclosure had a positive, significant effect.", u: "https://doi.org/10.1037/0033-2909.132.6.823" } ] },
-  { level: "moderate", icon: "star", name: "Best Possible Self", howto: "Write vividly about a realistic future in which important goals have gone well.", src: [
-    { c: "Carrillo et al., 2019, PLoS ONE", n: "29 studies (N=2,909): improved wellbeing, optimism & positive affect (d 0.33–0.51).", u: "https://doi.org/10.1371/journal.pone.0222386" },
-    { c: "Heekerens & Eid, 2020, J. Positive Psychology", n: "34 RCTs: small gains in positive affect (g 0.28) and optimism.", u: "https://doi.org/10.1080/17439760.2020.1716052" } ] },
   { level: "moderate", icon: "trophy", name: "Strengths use", howto: "Identify a character strength and use it in a new way each day.", src: [
     { c: "Schutte & Malouff, 2019, J. Happiness Studies", n: "Meta-analysis: raises happiness (g 0.32) and life satisfaction (g 0.42).", u: "https://doi.org/10.1007/s10902-018-9990-2" } ] },
   { level: "moderate", icon: "notebook", name: "Daily journaling", howto: "Write a brief uncensored account of thoughts, decisions, and lessons each day.", src: [
@@ -2420,7 +2374,7 @@ const TECHNIQUES = [
     { c: "Gardner et al., 2019, Oxford Research Encyclopedia of Psych.", n: "Review: context-consistent daily repetition builds automatic, self-sustaining habits.", u: "https://doi.org/10.1093/acrefore/9780190236557.013.129" } ] },
   { level: "moderate", icon: "snowflake", name: "Cold exposure", howto: "Expose yourself briefly to cold water, starting mild and short, and observe stress or mood effects.", src: [
     { c: "Cain et al., 2025, PLOS ONE", n: "11 RCTs (n=3,177): cold-water immersion cut stress (SMD −1.0), improved sleep/QoL.", u: "https://doi.org/10.1371/journal.pone.0317615" } ] },
-  { level: "moderate", icon: "wind", name: "Breathwork systems", howto: "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.", src: [
+  { level: "moderate", icon: "wind", name: "Energetic Breathing", howto: "Follow a fixed pattern such as box breathing, 4-7-8 breathing, or cyclic hyperventilation with recovery.", src: [
     { c: "Fincham et al., 2023, Scientific Reports", n: "12 RCTs: breathwork lowered stress (g −0.35), anxiety & depression.", u: "https://doi.org/10.1038/s41598-022-27247-y" },
     { c: "Balban et al., 2023, Cell Reports Medicine", n: "RCT: 5-min daily breathwork (incl. box breathing) improved mood, lowered arousal.", u: "https://doi.org/10.1016/j.xcrm.2022.100895" } ] },
   { level: "moderate", icon: "waves", name: "Urge surfing", howto: "Notice craving sensations as waves, breathe, and wait without acting until they crest and fall.", src: [
@@ -2444,7 +2398,7 @@ const TECHNIQUES = [
   { level: "questionable", icon: "user", name: "Power posing", howto: "Stand or sit expansively for a minute or two before a challenging interaction.", src: [
     { c: "Ranehill et al., 2015, Psychological Science", n: "Replication (n=200): no effect on hormones or behavior — participants only felt more powerful, with a small effect size.", u: "https://doi.org/10.1177/0956797614553946" },
     { c: "Smith & Apicella, 2017, Hormones and Behavior", n: "Study (n=247): no effect on testosterone, cortisol or risk-taking.", u: "https://doi.org/10.1016/j.yhbeh.2016.11.003" } ] },
-  { level: "questionable", icon: "hand", name: "EFT / tapping", howto: "While naming a distressing issue, tap through the standard point sequence and re-rate emotional intensity.", src: [
+  { level: "questionable", icon: "hand", name: "EFT / tapping", howto: "While naming a distressing issue, tap through the standard points — eyebrow, side of eye, under eye, under nose, chin, collarbone, under arm, and top of head — then re-rate the emotional intensity.", src: [
     { c: "Boness et al., 2024, J. Psychotherapy Integration", n: "Critique: no evidence the tapping is the active ingredient; meridian basis is pseudoscientific.", u: "https://doi.org/10.1037/int0000315" } ] },
   { level: "questionable", icon: "image", name: "Vision board", howto: "Create a collage of goal-related images or words.", src: [
     { c: "Kappes & Oettingen, 2011, J. Experimental Social Psych.", n: "4 experiments: positive future fantasies sapped energy and predicted poorer achievement.", u: "https://doi.org/10.1016/j.jesp.2011.02.003" },
@@ -2458,9 +2412,6 @@ const TECHNIQUES = [
   { level: "questionable", icon: "headphones", name: "Binaural beats", howto: "Listen to two slightly different tones through headphones to try to induce a target mental state.", src: [
     { c: "Basu et al., 2022, Psychological Research", n: "Meta-analysis/review: small and conflicting effects on memory and attention.", u: "https://doi.org/10.1007/s00426-022-01706-7" },
     { c: "Leistiko et al., 2023, Current Psychology", n: "Controlled study: no effect of gamma binaural beats on attention or anxiety.", u: "https://doi.org/10.1007/s12144-023-04681-3" } ] },
-  { level: "questionable", icon: "puzzle", name: "Brain training games", howto: "Play cognitive games daily, but expect improvement mainly on trained or nearby tasks rather than broad intelligence.", src: [
-    { c: "Simons et al., 2016, Psych. Science in the Public Interest", n: "Review: little evidence training transfers to everyday cognition.", u: "https://doi.org/10.1177/1529100616661983" },
-    { c: "Nguyen et al., 2021, Neuropsychology Review", n: "Meta-analysis: insufficient evidence it improves general cognition.", u: "https://doi.org/10.1007/s11065-021-09515-2" } ] },
   { level: "questionable", icon: "hourglass", name: "10,000-hour rule", howto: "Accumulate practice hours, but do not expect hours alone to overcome feedback quality, genetics, timing, and domain constraints.", src: [
     { c: "Macnamara et al., 2014, Psychological Science", n: "Meta-analysis: deliberate practice explains only a small share of performance.", u: "https://doi.org/10.1177/0956797614535810" },
     { c: "Macnamara et al., 2016, Perspectives on Psych. Science", n: "Practice accounted for only ~18% of sports performance variance.", u: "https://doi.org/10.1177/1745691616635591" } ] },
@@ -2527,6 +2478,10 @@ TIERS.forEach((tier, i) => {
       </defs>
       <polygon points="${topInset},0 ${100 - topInset},0 ${100 - botInset},100 ${botInset},100" fill="url(#${gid})"/>
     </svg>
+    <aside class="callout" style="background:${tier.color};color:${tier.ink}">
+      <span class="c-verdict">${tier.verdict}</span>
+      <span class="c-sub">${tier.sub}</span>
+    </aside>
     <div class="tier-inner">
       <header class="tier-head" style="color:${tier.headInk}">
         <span class="numeral" style="color:${tier.color}" title="${items.length} techniques">${items.length}</span>
@@ -2534,10 +2489,6 @@ TIERS.forEach((tier, i) => {
       </header>
       <div class="items" id="items-${tier.key}"></div>
     </div>
-    <aside class="callout" style="background:${tier.color};color:${tier.ink}">
-      <span class="c-verdict">${tier.verdict}</span>
-      <span class="c-sub">${tier.sub}</span>
-    </aside>
   `;
   pyramid.appendChild(section);
   bandPolys.push({ poly: section.querySelector(".band polygon"), inset: tier.inset });
