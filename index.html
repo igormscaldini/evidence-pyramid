@@ -2251,6 +2251,93 @@ const LEVERS = {
   "Mindfulness meditation": [12], "Cognitive defusion": [12], "Urge surfing": [12],
 };
 
+// Hidden related search terms per technique (synonyms / lay terms / goals / conditions).
+// These ONLY influence search matching — they are never displayed.
+const KEYWORDS = {
+  "Aerobic exercise": "running jogging run cardio brisk walking walk cycling biking bike swimming sport workout fitness gym move movement physical activity endurance treadmill",
+  "Resistance training": "weights weightlifting lifting strength training gym muscle building dumbbells barbell workout resistance bands bodyweight pushups squats fitness",
+  "Cognitive restructuring": "cbt negative thoughts reframe reframing thinking distortions challenge thoughts thought challenging rational thinking change your thinking pessimism",
+  "Behavioral activation": "depression motivation activity scheduling get moving do things low mood pleasant activities anhedonia mood boost",
+  "Graded exposure": "phobia phobias fear facing fears anxiety exposure therapy desensitization avoidance panic confronting fear hierarchy",
+  "ERP (exposure + prevention)": "ocd obsessive compulsive compulsions intrusive thoughts response prevention rituals contamination",
+  "Problem-solving therapy": "problem solving decisions decision making coping stress overwhelmed life problems solutions",
+  "Worry time": "worry worrying anxiety overthinking rumination gad generalized anxiety scheduled worry postpone",
+  "Progressive relaxation": "pmr muscle relaxation tension relax stress relief calm body scan unwind anxiety",
+  "Mindfulness meditation": "meditation mindful breath awareness presence present moment zen calm stress vipassana mbsr",
+  "Sleep restriction": "insomnia sleep cbti sleep therapy cant sleep trouble sleeping time in bed sleep efficiency",
+  "Implementation intentions": "if then plan if-then planning intentions goals follow through habit triggers gollwitzer",
+  "Specific goal + feedback": "goals goal setting targets objectives kpi progress tracking feedback performance",
+  "Self-monitoring": "tracking track logging log measure record self tracking quantified self habit tracker data",
+  "Commitment device": "commitment accountability stakes penalty deposit contract beeminder stickk forfeit money on the line",
+  "Stable-cue habits": "habit habits routine cue trigger context automatic habit formation consistency",
+  "Habit stacking": "habit stacking anchor habits chaining routine attach habit atomic habits",
+  "Social support": "friends family support network community belonging loneliness relationships connection peer support group help",
+  "Nature exposure": "nature outdoors green space forest bathing park outside walk in nature blue space trees sunlight",
+  "Gratitude journaling": "gratitude thankful grateful appreciation gratitude journal count your blessings thankfulness",
+  "Step-count target": "steps step count walking pedometer 10000 steps fitbit activity tracker daily steps walk more",
+  "Slow breathing": "breathing breathwork deep breathing diaphragmatic belly breathing slow breaths calm anxiety relax paced breathing",
+  "Action planning": "planning plan coping plan when where how prepare logistics how to start",
+  "Temptation bundling": "temptation bundling pairing reward motivation make it fun gym audiobook treat yourself",
+  "Tiny Habits": "tiny habits small habits start small bj fogg micro habits baby steps easy habits celebrate",
+  "Outsourcing memory (GTD)": "gtd getting things done reminders to do list todo notes calendar productivity david allen capture inbox sticky notes alarms forgetting remembering",
+  "Environmental design": "environment surroundings choice architecture friction make it easy remove temptation setup nudge home design",
+  "Values clarification": "values core values what matters act purpose direction meaning self affirmation priorities",
+  "Cognitive defusion": "defusion act thoughts detach distance from thoughts leaves on a stream observe thoughts",
+  "ABC Technique": "rebt irrational beliefs disputing albert ellis activating event beliefs consequences abcde cognitive",
+  "Three Good Things": "three good things 3 good things what went well positive psychology happiness seligman",
+  "Savoring": "savoring enjoy the moment pleasure appreciate positive experiences mindful enjoyment relish",
+  "Best Possible Self": "best possible self optimism future self positive future hope imagine ideal future",
+  "Acts of kindness": "kindness helping others good deeds generosity altruism volunteering prosocial be kind",
+  "Process visualization": "visualization mental rehearsal imagery mental practice rehearse picture it sports psychology performance",
+  "Assertiveness training": "assertiveness assertive saying no boundaries standing up for yourself confidence communication speak up",
+  "Active listening": "listening communication empathy relationships understanding reflective listening conversation",
+  "Morning light": "light therapy sunlight morning sun bright light circadian sad seasonal affective light box wake up light",
+  "Daily review": "review reflection reflect end of day debrief retrospective lessons learned evening review",
+  "Personal mission": "mission statement purpose vision life purpose principles values direction meaning",
+  "Life audit": "life audit wheel of life life areas balance assessment review life domains satisfaction",
+  "Deep Work": "focus concentration deep work distraction free flow productivity cal newport no distractions uninterrupted focus blocks",
+  "Sleep stimulus control": "insomnia sleep hygiene bed only for sleep cant sleep stimulus control sleep habits",
+  "Fixed wake time": "wake time consistent sleep schedule wake up same time sleep routine circadian regular sleep",
+  "SMART goals": "smart goals goal setting specific measurable achievable objectives",
+  "WOOP": "woop mental contrasting wish outcome obstacle plan oettingen if then motivation goals",
+  "Pomodoro Technique": "pomodoro timer focus 25 minutes breaks time management productivity study technique",
+  "Time blocking": "time blocking timeboxing calendar scheduling time management plan your day calendar blocking",
+  "Accountability partner": "accountability partner buddy check in report goals support motivation",
+  "Self-compassionate letter writing": "self compassion self kindness self criticism letter writing be kind to yourself shame compassionate",
+  "Loving-kindness meditation": "loving kindness metta meditation compassion meditation well wishes warmth buddhist",
+  "Expressive writing": "expressive writing journaling write about feelings emotional writing trauma writing pennebaker venting",
+  "Strengths use": "strengths character strengths use your strengths via signature strengths talents",
+  "Daily journaling": "journaling journal diary writing daily diary write thoughts",
+  "No Zero Days": "no zero days streak daily minimum never miss consistency do something every day",
+  "Cold exposure": "cold exposure cold shower ice bath cold water immersion cold plunge wim hof cryotherapy",
+  "Energetic Breathing": "wim hof breathwork breath of fire hyperventilation energizing breathing holotropic tummo power breathing",
+  "Urge surfing": "urge surfing cravings addiction resist cravings craving impulse control quit smoking",
+  "Identity-based habits": "identity based habits be the type of person identity change atomic habits self image become",
+  "Keystone habit": "keystone habit cornerstone habit one habit domino habit core habit",
+  "Don't Break the Chain": "dont break the chain streak seinfeld calendar streak chain method consistency",
+  "Eat the Frog": "eat the frog hardest task first most important task procrastination mit do the worst first",
+  "Dopamine fast": "dopamine fast dopamine detox digital detox screen break social media break abstinence reset stimulation",
+  "Power posing": "power posing body language confidence posture amy cuddy power pose stance",
+  "EFT / tapping": "eft tapping emotional freedom technique acupressure meridian tapping points",
+  "Vision board": "vision board manifesting goals collage dream board law of attraction visualize goals",
+  "Positive affirmations": "affirmations positive self talk mantras self esteem mirror affirmations daily affirmations",
+  "Lucky Girl Syndrome": "lucky girl syndrome manifestation tiktok luck mindset assume success",
+  "Scripting manifestation": "scripting manifestation manifesting writing journaling manifest law of attraction",
+  "Binaural beats": "binaural beats sound frequencies focus music brainwaves audio meditation music tones",
+  "Brain training games": "brain training brain games lumosity cognitive training memory games iq sudoku puzzles",
+  "10,000-hour rule": "10000 hour rule deliberate practice mastery expertise gladwell practice hours talent",
+  "Polyphasic sleep": "polyphasic sleep naps uberman sleep hacking biphasic sleep less sleep napping",
+  "369 method": "369 method manifestation manifesting writing law of attraction 3 6 9",
+  "Subliminal audio": "subliminal audio subliminals sleep affirmations subconscious messages hypnosis",
+  "Solfeggio frequencies": "solfeggio frequencies 528 hz healing frequencies sound healing music hz",
+  "Crystals for healing": "crystals healing crystals gemstones energy healing quartz spiritual rocks",
+  "Astrology planning": "astrology horoscope zodiac star signs planets mercury retrograde transits birth chart",
+  "Numerology goals": "numerology numbers life path number lucky numbers angel numbers",
+  "Law of Attraction": "law of attraction manifestation the secret manifesting vibration positive thinking abundance",
+  "Multitasking hack": "multitasking multi tasking doing multiple things juggling tasks switching productivity",
+  "Detox cleanses": "detox cleanse juice cleanse diet fasting colon cleanse toxins flush teatox weight loss",
+};
+
 const TECHNIQUES = [
   // STRONG EVIDENCE
   { level: "strong", icon: "bike", name: "Aerobic exercise", howto: "Do brisk walking, jogging, cycling, swimming, or similar moderate-to-vigorous movement for 20–45 minutes on most days.", src: [
@@ -2536,7 +2623,7 @@ TIERS.forEach((tier, i) => {
       </div>
       <span class="label">${twoLineName(t.name)}</span>
     `;
-    INDEX.push({ id, name: t.name, howto: t.howto, tierName: tier.name, color: tier.color });
+    INDEX.push({ id, name: t.name, howto: t.howto, tierName: tier.name, color: tier.color, kw: (KEYWORDS[t.name] || "").toLowerCase() });
     return el;
   }
 
@@ -2738,13 +2825,16 @@ function runSearch(q) {
   return INDEX.map(rec => {
     const name = rec.name.toLowerCase();
     const howto = rec.howto.toLowerCase();
+    const kw = rec.kw || "";
     let score = 0;
     if (name.includes(q)) score += 100;
     if (name.startsWith(q)) score += 60;
     if (howto.includes(q)) score += 20;
+    if (kw.includes(q)) score += 70;          // related-term phrase match
     tokens.forEach(tok => {
       if (name.includes(tok)) score += 12;
       if (howto.includes(tok)) score += 4;
+      if (tok.length >= 3 && kw.includes(tok)) score += 8;   // related-term token match
     });
     return { rec, score };
   }).filter(x => x.score > 0)
