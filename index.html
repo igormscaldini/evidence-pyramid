@@ -214,7 +214,7 @@
     background: #ffffff;
     border: 1px solid rgba(35, 59, 71, 0.07);
     border-radius: 15px;
-    cursor: help;
+    cursor: default;
     box-shadow: 0 5px 16px rgba(35, 59, 71, 0.13);
     transition: transform 0.18s cubic-bezier(.2,.7,.3,1), box-shadow 0.18s ease;
   }
@@ -476,8 +476,8 @@
     margin-top: 11px;
     padding: 8px 11px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 0, 0, 0.06);
   }
   #tooltip .tt-lever a {
     display: inline-flex;
@@ -487,7 +487,7 @@
     font-weight: 700;
     font-size: 11.5px;
     line-height: 1.35;
-    color: var(--tt-color, #fecb02);
+    color: #16202a;
     text-decoration: none;
   }
   #tooltip .tt-lever a:hover { text-decoration: underline; }
@@ -530,6 +530,27 @@
     color: rgba(255, 255, 255, 0.6);
     margin: -2px 0 10px;
   }
+  #tooltip .tt-close {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    cursor: pointer;
+    line-height: 0;
+  }
+  #tooltip.pinned .tt-close { display: flex; }
+  #tooltip.pinned .tt-name { padding-right: 24px; }
+  #tooltip .tt-close:hover { background: rgba(255, 255, 255, 0.28); }
+  #tooltip .tt-close svg { width: 13px; height: 13px; }
 
   /* ----------------------------- TOOLBAR ---------------------------- */
   .toolbar {
@@ -538,7 +559,7 @@
     justify-content: center;
     gap: 12px;
     max-width: 680px;
-    margin: 26px auto 4px;
+    margin: 26px auto 12px;
   }
   .search-wrap { position: relative; flex: none; width: 240px; }
   .search-box {
@@ -2150,6 +2171,9 @@
 </button>
 
 <div id="tooltip">
+  <button class="tt-close" type="button" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
   <div class="tt-name"></div>
   <div class="tt-howto"></div>
   <div class="tt-sources"></div>
@@ -2657,6 +2681,7 @@ const ttName = tooltip.querySelector(".tt-name");
 const ttHowto = tooltip.querySelector(".tt-howto");
 const ttLever = tooltip.querySelector(".tt-lever");
 const ttSources = tooltip.querySelector(".tt-sources");
+const ttClose = tooltip.querySelector(".tt-close");
 let ttHideTimer = null;
 
 function renderLever(item) {
@@ -2749,9 +2774,20 @@ function showTooltip(item) {
   positionTooltipTo(item);
 }
 
-function scheduleHideTooltip() {
+let ttPinned = false;
+
+function closeTooltip() {
+  ttPinned = false;
+  tooltip.classList.remove("pinned");
+  tooltip.style.display = "none";
+  tooltip.dataset.for = "";
   clearTimeout(ttHideTimer);
-  ttHideTimer = setTimeout(() => { tooltip.style.display = "none"; }, 180);
+}
+
+function scheduleHideTooltip() {
+  if (ttPinned) return;                 // frozen open: never auto-hide
+  clearTimeout(ttHideTimer);
+  ttHideTimer = setTimeout(() => { tooltip.style.display = "none"; tooltip.dataset.for = ""; }, 180);
 }
 
 // Anchor the tooltip beside the card (so its citation links stay clickable)
@@ -2775,25 +2811,25 @@ function positionTooltipTo(item) {
 }
 
 document.querySelectorAll(".item").forEach(item => {
-  item.addEventListener("mouseenter", () => showTooltip(item));
+  // hover preview — unchanged; only active when nothing is frozen open
+  item.addEventListener("mouseenter", () => { if (!ttPinned) showTooltip(item); });
   item.addEventListener("mouseleave", scheduleHideTooltip);
-  // tap/click toggles the tooltip so cards are readable on touch devices,
-  // where hover never fires
+  // click freezes the card open (also covers touch, where hover never fires)
   item.addEventListener("click", e => {
     e.stopPropagation();
-    const open = tooltip.style.display === "block" && tooltip.dataset.for === item.id;
-    if (open) { tooltip.style.display = "none"; tooltip.dataset.for = ""; }
-    else { tooltip.dataset.for = item.id; showTooltip(item); }
+    if (ttPinned && tooltip.dataset.for === item.id) { closeTooltip(); return; }
+    ttPinned = true;
+    tooltip.dataset.for = item.id;
+    showTooltip(item);
+    tooltip.classList.add("pinned");
   });
 });
 tooltip.addEventListener("mouseenter", () => clearTimeout(ttHideTimer));
 tooltip.addEventListener("mouseleave", scheduleHideTooltip);
-// tap anywhere outside a card or the tooltip closes it (touch dismissal)
+ttClose.addEventListener("click", e => { e.stopPropagation(); closeTooltip(); });
+// click anywhere outside a card or the tooltip closes it
 document.addEventListener("click", e => {
-  if (!e.target.closest(".item") && !e.target.closest("#tooltip")) {
-    tooltip.style.display = "none";
-    tooltip.dataset.for = "";
-  }
+  if (!e.target.closest(".item") && !e.target.closest("#tooltip")) closeTooltip();
 });
 
 /* ------------------------------ SEARCH ------------------------------- */
